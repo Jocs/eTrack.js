@@ -1,31 +1,38 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { render } from 'react-dom'
+import {
+	Router,
+	Route,
+	IndexRoute,
+	browserHistory
+} from 'react-router'
 
-require('./index.scss')
+import Nav from './navbar'
+import Home from './home'
+import Console from './console'
 
-class Like extends Component {
+class App extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			like: true
-		}
 	}
-	handleClick(e) {
-		this.setState({
-			like: !this.state.like
-		})
-	}
+
 	render() {
-		const text = this.state.like ? 'like' : 'dont like'
 		return (
-			<div className="test" onClick={e => this.handleClick(e)}>
-				You {text} this app.
+			<div>
+				<Nav/>
+				{this.props.children}
 			</div>
 		)
 	}
 }
 
 render(
-	<Like />,
+	(<Router history={browserHistory}>
+		<Route path="/" component={App}>
+			<IndexRoute component={Home}/>
+			<Route path="console" component={Console}>
+			</Route>
+		</Route>
+	</Router>),
 	document.querySelector('#root')
 )
