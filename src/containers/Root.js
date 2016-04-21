@@ -1,3 +1,6 @@
+/**
+ * create by Jocs 2016.04.21
+ */
 import React, { Component, PropTypes } from 'react'
 import { Provider } from 'react-redux'
 import { ReduxRouter } from 'redux-router'
