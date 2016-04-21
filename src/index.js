@@ -1,38 +1,16 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 import { render } from 'react-dom'
-import {
-	Router,
-	Route,
-	IndexRoute,
-	browserHistory
-} from 'react-router'
+import Root from './containers/Root'
+import configureStore from './store/configureStore'
+import { loginUserSuccess } from './actions'
+import { getToken } from './utils'
 
-import Nav from './navbar'
-import Home from './home'
-import Console from './console'
+const rootElement = document.querySelector('#root')
+const store = configureStore(window.__INITIAL_STATE__)
 
-class App extends Component {
-	constructor(props) {
-		super(props)
-	}
+const node = (<Root store={store} />)
 
-	render() {
-		return (
-			<div>
-				<Nav/>
-				{this.props.children}
-			</div>
-		)
-	}
-}
+const token = getToken()
+token && store.dispatch(loginUserSuccess(token))
 
-render(
-	(<Router history={browserHistory}>
-		<Route path="/" component={App}>
-			<IndexRoute component={Home}/>
-			<Route path="console" component={Console}>
-			</Route>
-		</Route>
-	</Router>),
-	document.querySelector('#root')
-)
+render(node, rootElement)
