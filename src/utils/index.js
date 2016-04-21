@@ -1,3 +1,7 @@
+/**
+ * create by Jocs 2016.04.21
+ */
+
 export const createConstants = (...constants) => constants.reduce((acc, constant) => {
 	acc[constant] = constant
 	return acc

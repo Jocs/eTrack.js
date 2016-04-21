@@ -1,0 +1,16 @@
+
+.et-navbar-accont {
+	width: 150px;
+	color: #ffffff;
+	.et-avatar {
+		vertical-align: bottom;
+		margin-right: 15px;
+		cursor: pointer;
+	}
+	span {
+		border-bottom: 2px solid #ffffff;
+	    line-height: 48px;
+	    height: 42px;
+	    display: inline-block;
+	}
+}

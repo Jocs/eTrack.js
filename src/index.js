@@ -2,8 +2,10 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Root } from './containers'
 import configureStore from './store/configureStore'
-import { loginUserSuccess } from './actions'
+import { loginUserSuccess } from './actions/auth'
 import { getToken } from './utils'
+
+import './index.scss'
 
 const rootElement = document.querySelector('#root')
 const store = configureStore(window.__INITIAL_STATE__)

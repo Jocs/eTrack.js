@@ -1,11 +1,11 @@
 /**
  * create by Jocs 2016.04.21
  */
-import { combineReducer } from 'redux'
+import { combineReducers } from 'redux'
 import { routerStateReducer } from 'redux-router'
 import auth from './auth'
 
-export default combineReducer({
+export default combineReducers({
 	auth,
 	router: routerStateReducer
 })
