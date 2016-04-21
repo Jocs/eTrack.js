@@ -9,8 +9,9 @@ export const loginUserSuccess = token => ({
 	payload: token
 })
 
-export const showLoginPanel = () => ({
-	type: C.SHOW_LOGIN_PANEL
+export const toggleLoginPanel = msg => ({
+	type: C.TOGGLE_LOGIN_PANEL,
+	payload: msg
 })
 
 

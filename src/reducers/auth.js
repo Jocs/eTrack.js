@@ -11,7 +11,7 @@ const initialState = {
 	isAuthenticated: false,
 	isAuthenticating: false,
 	statusText: null,
-	loginPanel: false
+	loginPanel: 'hidden'
 }
 
 export default createReducer(initialState, {
@@ -24,9 +24,9 @@ export default createReducer(initialState, {
 			statusText: 'You have been successfully logged in.'
 		})
 	},
-	[C.SHOW_LOGIN_PANEL]: (state, payload) => {
+	[C.TOGGLE_LOGIN_PANEL]: (state, payload) => {
 		return Object.assign({}, state, {
-			loginPanel: true
+			loginPanel: payload
 		})
 	}
 })

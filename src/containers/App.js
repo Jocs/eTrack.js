@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import { NavBar, Login } from '../components'
 import * as actionCreators from '../actions/auth'
+import * as loadActionCreators from '../actions/loading'
 
 class App extends Component {
 	static propTypes = {
@@ -26,11 +27,12 @@ class App extends Component {
 
 const mapStateToProps = state => {
 	const { isAuthenticated, userName, isAuthenticating, loginPanel } = state.auth
-	return { isAuthenticated, userName, isAuthenticating, loginPanel }
+	const { loadStatus } = state
+	return { isAuthenticated, userName, isAuthenticating, loginPanel, loadStatus }
 }
 
 const mapDispatchToProps = dispatch => {
-	return bindActionCreators(actionCreators, dispatch)
+	return bindActionCreators(Object.assign({}, actionCreators, loadActionCreators), dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

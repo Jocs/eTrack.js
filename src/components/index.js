@@ -3,3 +3,4 @@
  */
 export NavBar from './NavBar'
 export Login from './Login'
+export Home from './Home'
