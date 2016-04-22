@@ -8,7 +8,7 @@
     "start": "node bin/index.js",
     "build": "webpack --progress --werbose --colors --display-error-details --config webpack/common.config.js",
     "build:production": "npm run clear && npm run build",
-    "lint": "eslint src"
+    "lint": "eslint src server"
   },
   "keywords": [
     "react",
@@ -55,8 +55,21 @@
     "webpack-merge": "^0.10.0"
   },
   "dependencies": {
+    "body-parser": "^1.15.0",
+    "composable-middleware": "^0.3.0",
+    "connect-mongo": "^1.1.0",
+    "cookie-parser": "^1.4.1",
+    "express": "^5.0.0-alpha.2",
+    "express-jwt": "^3.3.0",
+    "express-session": "^1.13.0",
+    "jsonwebtoken": "^5.7.0",
     "jwt-decode": "^2.0.1",
+    "lodash": "^4.11.1",
     "material-ui": "^0.14.4",
+    "mongoose": "^4.4.13",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-redux": "^4.4.5",

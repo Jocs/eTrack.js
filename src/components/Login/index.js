@@ -60,7 +60,7 @@ export default class Login extends Component {
 				onMouseDown={this.handleCancel}
 			/>
 		]
-
+		
 		const loginToSignup = loginPanel === 'login' ?
 			(<div className='et-login-to-signup'>
 				没有eTrack账号？那就
@@ -68,7 +68,7 @@ export default class Login extends Component {
 					onClick={this.handleChangeLoginPanel}
 				>注册</a>一个吧!
 			</div>) : (<div className='et-login-to-signup'>
-				返回<a href='javascript:;'
+				已有eTrack账号？返回<a href='javascript:;'
 					onClick={this.handleBackLogin}
 				>登陆</a>
 			</div>)

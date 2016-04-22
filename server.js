@@ -1,31 +1,20 @@
-const http = require('http')
-const express = require('express')
+/**
+ * create by Jocs 2016.04.22
+ */
+import express from 'express'
+import http from 'http'
+
+import config from './server/config'
+import router from './server/router'
+
 const app = express()
-
-app.use(require('morgan')('short'));
-
-(function initWebpack() {
-	const webpack = require('webpack')
-	const webpackConfig = require('./webpack/common.config')
-	const compiler = webpack(webpackConfig)
-
-	app.use(require('webpack-dev-middleware')(compiler, {
-		noInfo: true, publicPath: webpackConfig.output.publicPath
-	}))
-
-	app.use(require('webpack-hot-middleware')(compiler, {
-		log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
-	}))
-
-	app.use(express.static(__dirname + '/'))
-})()
-
-app.get(/.*/, function root(req, res) {
-	res.sendFile(__dirname + '/index.html')
-})
-
 const server = http.createServer(app)
-server.listen(process.env.PORT || 3000, function onListen() {
+const DIRNAME = __dirname
+
+Object.keys(config).forEach(key => config[key](app, DIRNAME))
+router(app, DIRNAME)
+
+server.listen(process.env.PORT || 8080, function onListen() {
 	const address = server.address()
 	console.log('Listening on: %j', address)
 	console.log(' -> that probably means: http://localhost:%d', address.port)
