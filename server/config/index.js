@@ -3,8 +3,10 @@
  */
 import webpackConfig from './webpack'
 import expressConfig from './express'
+import mongooseConfig from './mongoose'
 
 export default {
 	webpackConfig,
-	expressConfig
+	expressConfig,
+	mongooseConfig
 }

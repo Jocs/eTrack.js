@@ -73,6 +73,12 @@ export default class Login extends Component {
 				>登陆</a>
 			</div>)
 
+		const userName = loginPanel === 'signup' ?
+			(<TextField
+				hintText='请输入用户名'
+				floatingLabelText='User Name'
+			/>) : null
+
 		return (
 			<div>
 				<Dialog
@@ -84,13 +90,14 @@ export default class Login extends Component {
 					contentStyle={contentStyle}
 					actionsContainerStyle={actionsContainerStyle}
 				>
+					{ userName }
 					<TextField
-						hintText="请输入您的邮箱地址"
-						floatingLabelText="Email Address"
+						hintText='请输入您的邮箱地址'
+						floatingLabelText='Email Address'
 					/><br/>
 					<TextField
-						hintText="请输入您的密码"
-						floatingLabelText="Password"
+						hintText='请输入您的密码'
+						floatingLabelText='Password'
 						type='password'
 					/><br/>
 					{ loginToSignup }
