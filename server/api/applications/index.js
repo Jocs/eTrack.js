@@ -1,8 +1,8 @@
 import express from 'express'
-import { createUser } from './controller'
+import { createApp } from './controller'
 
 const router = express.Router()
 
-router.post('/createUser', createUser)
+router.post('/createApp', createApp)
 
 export default router

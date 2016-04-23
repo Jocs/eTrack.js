@@ -5,7 +5,7 @@ import mongoose from 'mongoose'
 
 const mongooseInit = () => {
 
-	const mongoUri = process.env.NODE_ENV === 'development' ? 'mongodb://localhost:12345/eTrack' : ''
+	const mongoUri = process.env.NODE_ENV === 'development' ? 'mongodb://127.0.0.1:12345/eTrack' : ''
 	mongoose.connect(mongoUri)
 
 	const db = mongoose.connection
@@ -16,6 +16,7 @@ const mongooseInit = () => {
 	// bin/mongod -f conf/mongod.conf
 	// 控制台启动mongo
 	// bin/mongo 127.0.0.1:12345
+
 }
 
 export default mongooseInit

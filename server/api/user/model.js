@@ -1,14 +1,16 @@
+/**
+ * create by Jocs 2016.04.23
+ */
 import mongoose from 'mongoose'
 import crypto from 'crypto'
 
 const Schema = mongoose.Schema
-const model = mongoose.model
 
 const UserSchema = new Schema({
 	userName: String,
 	companyName: String,
-	email: {type: String, lowercase: true},
-	applycation: [{appName: String, appId: String, appUrl: String}],
+	email: {type: String, lowercase: true, required: true},
+	applycations: [{type: Schema.Types.ObjectId, ref: 'Applycation'}],
 	signupDate: {type: Date, default: Date.now()},
 	hashPassword: String,
 	salt: String
@@ -16,14 +18,51 @@ const UserSchema = new Schema({
 
 UserSchema
 .virtual('password')
-.set(password => {
+.set(function(password) {
 	this._password = password
 	this.salt = this.makeSalt()
-	this.hashPassword = this.cryptoPassword(password)
+	this.hashPassword = this.encryptPassword(password)
 })
-.get(() => this._password)
+.get(function() { this._password })
 
-const User = model('User', UserSchema)
+UserSchema
+.virtual('token')
+.get(function() {
+	return {
+		userName: this.userName,
+		email: this.email,
+		id: this._id
+	}
+})
+
+// const emailValidator = function(value, respond) {
+// 	this.constructor.findOne({email: value})
+// 	.then(user => {
+// 		if (user) respond(false)
+// 		else respond(true)
+// 	})
+// 	.catch(error => { throw error })
+// }
+
+// UserSchema
+// .path('email')
+// .validate(emailValidator, '邮箱已被使用！')
+
+UserSchema.methods = {
+	authenticate: function(text) {
+		return this.encryptPassword(text) === this.hashedPassword
+	},
+	makeSalt: function() {
+		return crypto.randomBytes(16).toString('base64')
+	},
+	encryptPassword: function(password) {
+		if (!password || !this.salt) return ''
+		console.log(password, this.salt)
+		return crypto.pbkdf2Sync(password.toString(), this.salt, 10000, 64).toString('base64')
+	}
+}
+
+const User = mongoose.model('User', UserSchema)
 
 export default User
 
