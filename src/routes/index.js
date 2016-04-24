@@ -5,26 +5,33 @@
 import React from 'react'
 import {
 	Route,
-	IndexRedirect,
 	IndexRoute
 } from 'react-router'
 
 import App from '../containers/App.js'
-import { Home, Console, Dashboard } from '../components'
+import { Home, Console, Dashboard, Current, Applist } from '../components'
 import { getToken } from '../utils'
 
-// 判断是否登陆
-const token = false
+function consoleEnter(nextState, replace, next) {
+	const token = getToken()
+	if (token) next()
+	else {
+		replace('/')
+		next()
+	}
+}
 
 export default (
 	<Route path='/' component={App}>
-		{token ? <IndexRedirect to='dashboard'/> : <IndexRoute component={Home}/>}
-		<Route path='console' component={Console}>
+		<IndexRoute component={Home}/>
+		<Route path='console' component={Console} onEnter={consoleEnter}>
 			<Route path='/dashboard' component={Dashboard}/>
-			{/* <Route path='/current' component={Current}/>
-			<Route path='/detail/:id' component={Detail}/> */}
+			<Route path='/current' component={Current}/>
+			<Route path='/applist' component={Applist}/>
+			{/*<Route path='/detail/:id' component={Detail}/>*/}
 		</Route>
 	</Route>
 )
+
 
 

@@ -5,6 +5,7 @@ import Menu from 'material-ui/lib/menus/menu'
 import MenuItem from 'material-ui/lib/menus/menu-item'
 import AccontIcon from 'material-ui/lib/svg-icons/action/account-circle'
 import RefreshIndicator from 'material-ui/lib/refresh-indicator'
+import style from './style'
 
 import './index.scss'
 
@@ -14,6 +15,8 @@ class NavBar extends Component {
 		this.handleLogin = this.handleLogin.bind(this)
 		this.handleAvatarClick = this.handleAvatarClick.bind(this)
 		this.handleLogout = this.handleLogout.bind(this)
+		this.handleTitleClick = this.handleTitleClick.bind(this)
+
 		this.state = {
 			showMenu: false
 		}
@@ -23,7 +26,12 @@ class NavBar extends Component {
 		toggleLoginPanel: PropTypes.func.isRequired,
 		loadStatus: PropTypes.string.isRequired,
 		portrait: PropTypes.string,
-		logout: PropTypes.func
+		logout: PropTypes.func,
+		userName: PropTypes.string,
+		toggleConsleLeftNav: PropTypes.func.isRequired,
+		push: PropTypes.func.isRequired,
+		dispatch: PropTypes.func.isRequired,
+		router: PropTypes.object.isRequired
 	}
 	handleLogin(event) {
 		event.preventDefault()
@@ -32,9 +40,10 @@ class NavBar extends Component {
 
 	handleLogout(event) {
 		event.preventDefault()
-		const { logout } = this.props
+		const { logout, push, dispatch } = this.props
 		this.setState({showMenu: false})
 		logout()
+		dispatch(push('/'))
 	}
 
 	handleAvatarClick(event) {
@@ -44,34 +53,24 @@ class NavBar extends Component {
 		})
 	}
 
+	handleTitleClick(event) {
+		const { toggleConsleLeftNav, dispatch, push, router } = this.props
+		event.preventDefault()
+		console.log(router)
+		if (!/dashboard/.test(router.location.pathname)) dispatch(push('/dashboard'))
+		toggleConsleLeftNav()
+	}
+
 	render() {
-		const { isAuthenticated, loadStatus, portrait, userName} = this.props
-		const style = {
-			loading: {
-				boxShadow: 'none',
-				backgroundColor: 'rgb(0, 188, 212)'
-			},
-			menu: {
-				marginRight: 32,
-				marginBottom: 32,
-				top: 64,
-				right: 24,
-				width: 100,
-				float: 'left',
-				position: 'absolute',
-				zIndex: 0
-			},
-			account: {
-				height: 51,
-				width: 35,
-				fill: '#cccccc',
-				marginRight: 35,
-				cursor: 'pointer'
-			}
-		}
+		const { isAuthenticated, loadStatus, portrait, userName } = this.props
+		const title = (<span
+				className='et-nav-title'
+				onClick={this.handleTitleClick}
+			>&#123; eTrack.Js &#125;</span>)
 		return (
 			<AppBar
-				title='{ eTrack.Js }'
+				title={ title }
+				titleStyle={style.title}
 				iconElementLeft={
 					<div className='loading'>
 						<RefreshIndicator
@@ -93,7 +92,7 @@ class NavBar extends Component {
 							src={portrait}
 							onClick={this.handleAvatarClick}
 						/>
-						<span>{userName}</span>
+						<span>{ userName }</span>
 						{ this.state.showMenu ? (<Menu style={style.menu}>
 							<MenuItem
 								primaryText="Setting" />

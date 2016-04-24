@@ -13,6 +13,10 @@ const router = (app, rootPath) => {
 	app.use('/auth', authRouter)
 	app.use('/api/user', userRouter)
 	app.use('/api/applications', appRouter)
+	app.route('/*')
+	.get(function(req, res) {
+		res.sendFile(`${rootPath}/index.html`)
+	})
  }
 
  export default router

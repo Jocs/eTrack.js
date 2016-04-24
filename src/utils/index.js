@@ -54,7 +54,6 @@ export const fetchVGet = url => {
 		.then(parseJSON)
 		.then(resolve)
 		.catch(reject)
-
 	})
 }
 

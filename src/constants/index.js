@@ -12,6 +12,7 @@ export default createConstants(
 	'TOGGLE_LOGIN_PANEL',
 	'TOGGLE_LOADING',
 	'SIGNUP_SUCCESS',
-	'LOGOUT'
+	'LOGOUT',
+	'TOOGLE_CONSOLE_LEFTNAV'
 
 )

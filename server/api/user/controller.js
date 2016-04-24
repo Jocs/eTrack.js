@@ -30,3 +30,4 @@ export const getMe = (req, res) => {
 	}
 	res.send({code: 1, data})
 }
+
