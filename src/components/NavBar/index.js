@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { Link } from 'react-router'
 import Avatar from 'material-ui/lib/avatar'
 import AppBar from 'material-ui/lib/app-bar'
 import Menu from 'material-ui/lib/menus/menu'
@@ -95,9 +96,17 @@ class NavBar extends Component {
 						<span>{ userName }</span>
 						{ this.state.showMenu ? (<Menu style={style.menu}>
 							<MenuItem
-								primaryText="Setting" />
+								primaryText='个人设置'
+							/>
+							<Link to='/createApp'
+								className='navbar-link'
+							>
+								<MenuItem
+									primaryText='新建应用'
+								/>
+							</Link>
 							<MenuItem
-								primaryText="Logout"
+								primaryText="登出应用"
 								onClick={this.handleLogout}
 							/>
 						</Menu>) : null}
