@@ -9,7 +9,7 @@ const validateToken = expressJwt({secret: basicConfig.secrets.session})
 export const isAuthenticated = () => {
 	return compose()
 	.use((req, res, next) => {
-		if (req.query && req.query.hasOwnPropery('access-token')) {
+		if (req.query && req.query.hasOwnProperty('access-token')) {
 			req.headers.authorization = 'Bearer ' + req.query.access_token
 		}
 		validateToken(req, res, next)

@@ -29,4 +29,11 @@ export const toggleLoginPanel = msg => ({
 	payload: msg
 })
 
+export const logout = () => {
+	removeToken()
+	return {
+		type: C.LOGOUT
+	}
+}
+
 

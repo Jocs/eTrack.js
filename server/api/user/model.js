@@ -51,14 +51,13 @@ UserSchema
 
 UserSchema.methods = {
 	authenticate: function(text) {
-		return this.encryptPassword(text) === this.hashedPassword
+		return this.encryptPassword(text) === this.hashPassword
 	},
 	makeSalt: function() {
 		return crypto.randomBytes(16).toString('base64')
 	},
 	encryptPassword: function(password) {
 		if (!password || !this.salt) return ''
-		console.log(password, this.salt)
 		return crypto.pbkdf2Sync(password.toString(), this.salt, 10000, 64).toString('base64')
 	}
 }

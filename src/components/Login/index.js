@@ -12,7 +12,8 @@ import {
 	validatePassword,
 	validate,
 	canISignupOrLogin,
-	signup
+	signup,
+	login
 } from './validate'
 
 import './index.scss'
@@ -110,7 +111,19 @@ export default class Login extends Component {
 				this.setState({showErrorText: true})
 				if (canISignupOrLogin(loginPanel, this.state)) {
 					// 处理登陆
-					console.log(loginPanel)
+					login({
+						email,
+						password
+					})
+					.then(data => {
+						if (data.code === 1) {
+							singupSuccess(data.data)
+							toggleLoginPanel('hidden')
+						} else {
+							console.log(data)
+						}
+					})
+					.catch(error => console.log(error))
 				}
 			})
 		}

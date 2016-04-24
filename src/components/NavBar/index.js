@@ -13,6 +13,7 @@ class NavBar extends Component {
 		super(props)
 		this.handleLogin = this.handleLogin.bind(this)
 		this.handleAvatarClick = this.handleAvatarClick.bind(this)
+		this.handleLogout = this.handleLogout.bind(this)
 		this.state = {
 			showMenu: false
 		}
@@ -21,11 +22,19 @@ class NavBar extends Component {
 		isAuthenticated: PropTypes.bool.isRequired,
 		toggleLoginPanel: PropTypes.func.isRequired,
 		loadStatus: PropTypes.string.isRequired,
-		portrait: PropTypes.string
+		portrait: PropTypes.string,
+		logout: PropTypes.func
 	}
 	handleLogin(event) {
 		event.preventDefault()
 		this.props.toggleLoginPanel('login')
+	}
+
+	handleLogout(event) {
+		event.preventDefault()
+		const { logout } = this.props
+		this.setState({showMenu: false})
+		logout()
 	}
 
 	handleAvatarClick(event) {
@@ -36,7 +45,7 @@ class NavBar extends Component {
 	}
 
 	render() {
-		const { isAuthenticated, loadStatus, portrait } = this.props
+		const { isAuthenticated, loadStatus, portrait, userName} = this.props
 		const style = {
 			loading: {
 				boxShadow: 'none',
@@ -84,10 +93,14 @@ class NavBar extends Component {
 							src={portrait}
 							onClick={this.handleAvatarClick}
 						/>
-						<span>ransixi</span>
+						<span>{userName}</span>
 						{ this.state.showMenu ? (<Menu style={style.menu}>
-							<MenuItem primaryText="Setting" />
-							<MenuItem primaryText="Logout" />
+							<MenuItem
+								primaryText="Setting" />
+							<MenuItem
+								primaryText="Logout"
+								onClick={this.handleLogout}
+							/>
 						</Menu>) : null}
 					</div>)
 				}

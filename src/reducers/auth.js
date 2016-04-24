@@ -33,5 +33,8 @@ export default createReducer(initialState, {
 		return Object.assign({}, state, {
 			loginPanel: payload
 		})
+	},
+	[C.LOGOUT]: (state, payload) => {
+		return initialState
 	}
 })

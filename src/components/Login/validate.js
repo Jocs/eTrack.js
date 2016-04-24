@@ -36,8 +36,7 @@ function canISignupOrLogin(panel, state) {
 	}
 }
 
-const signup = payload => {
-	const url = '/api/user/createUser'
+const postForm = url => payload => {
 	return new Promise((resolve, reject) => {
 		postJSON(url, payload)
 		.then(checkHttpStatus)
@@ -47,11 +46,16 @@ const signup = payload => {
 	})
 }
 
+const signup = postForm('/api/user/createUser')
+
+const login = postForm('/auth')
+
 export {
 	validateUserName,
 	validateEmail,
 	validatePassword,
 	validate,
 	canISignupOrLogin,
-	signup
+	signup,
+	login
 }

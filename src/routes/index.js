@@ -14,7 +14,7 @@ import { Home, Console, Dashboard } from '../components'
 import { getToken } from '../utils'
 
 // 判断是否登陆
-const token = getToken()
+const token = false
 
 export default (
 	<Route path='/' component={App}>

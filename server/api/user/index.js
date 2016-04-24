@@ -5,6 +5,6 @@ import { isAuthenticated } from '../../auth/service'
 const router = express.Router()
 
 router.post('/createUser', createUser)
-router.get('/getMe', isAuthenticated, getMe)
+router.get('/getMe', isAuthenticated(), getMe)
 
 export default router
