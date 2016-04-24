@@ -1,0 +1,15 @@
+.create-app {
+	width: 600px;
+	margin: 50px auto;
+	padding: 20px;
+	h2 {
+		color: #666666;
+		.create-help {
+			padding: 0;
+			vertical-align: middle;
+		}
+	}
+	.bottom-buttons {
+		margin-top: 30px;
+	}
+}

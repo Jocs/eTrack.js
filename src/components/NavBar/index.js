@@ -57,8 +57,7 @@ class NavBar extends Component {
 	handleTitleClick(event) {
 		const { toggleConsleLeftNav, dispatch, push, router } = this.props
 		event.preventDefault()
-		console.log(router)
-		if (!/dashboard/.test(router.location.pathname)) dispatch(push('/dashboard'))
+		if (/^\/$/.test(router.location.pathname)) dispatch(push('/dashboard'))
 		toggleConsleLeftNav()
 	}
 

@@ -1,7 +1,20 @@
 import User from './model'
 import { getToken } from '../../auth/service'
 
+export const checkEmail = (req, res, next) => {
+	User.findOne({ email: req.body.email })
+		.then(user => {
+			if (user) res.send({code: 0, err: {errors: {email: {message: '邮箱已被使用！'}}}})
+			else next()
+		})
+		.catch(error => {
+			if (error) res.status(500).send(error)
+		})
+
+}
+
 export const createUser = (req, res) => {
+
 	const user = new User(req.body)
 	user.save()
 	.then(u => {

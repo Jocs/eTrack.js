@@ -5,6 +5,7 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
+import { push } from 'redux-router'
 import LeftNav from 'material-ui/lib/left-nav'
 import MenuItem from 'material-ui/lib/menus/menu-item'
 import DashIcon from 'material-ui/lib/svg-icons/action/dashboard'
@@ -80,7 +81,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-	return bindActionCreators(Object.assign({}, consoleActionsCreator), dispatch)
+	return {push, dispatch, ...bindActionCreators(Object.assign({}, consoleActionsCreator), dispatch)}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Console)

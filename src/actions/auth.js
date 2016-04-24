@@ -3,11 +3,11 @@
  */
 
 import C from '../constants'
-import { setToken, removeToken, fetchVGet } from '../utils'
+import { setToken, removeToken, fetchV } from '../utils'
 
 export const getMe = token => {
 	return (dispatch, getState) => {
-		fetchVGet('/api/user/getMe')
+		fetchV('/api/user/getMe', 'GET')
 		.then(response => dispatch(singupSuccess(response.data)))
 		.catch(error => {
 			console.log(error)

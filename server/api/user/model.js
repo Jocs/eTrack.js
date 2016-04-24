@@ -36,18 +36,18 @@ UserSchema
 	}
 })
 
-const emailValidator = function(value, respond) {
-	this.constructor.findOne({email: value})
-	.then(user => {
-		if (user) respond(false)
-		else respond(true)
-	})
-	.catch(error => { throw error })
-}
+// const emailValidator = function(value, respond) {
+// 	this.constructor.findOne({email: value})
+// 	.then(user => {
+// 		if (user) respond(false)
+// 		else respond(true)
+// 	})
+// 	.catch(error => { throw error })
+// }
 
-UserSchema
-.path('email')
-.validate(emailValidator, '邮箱已被使用！')
+// UserSchema
+// .path('email')
+// .validate(emailValidator, '邮箱已被使用！')
 
 UserSchema.methods = {
 	authenticate: function(text) {

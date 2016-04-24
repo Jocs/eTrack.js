@@ -40,20 +40,33 @@ export const postJSON = (url, data) => {
 	})
 }
 
-export const fetchVGet = url => {
+export const fetchV = (url, method, data) => {
 	return new Promise((resolve, reject) => {
-		fetch(url, {
-			method: 'GET',
+		
+		const option = method === 'GET' ? {
+			method: method,
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
 				'authorization': `Bearer ${getToken()}`
 			}
-		})
+		} : {
+			method: method,
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'authorization': `Bearer ${getToken()}`
+			},
+			body: data && JSON.stringify(data)
+		}
+
+		fetch(url, option)
 		.then(checkHttpStatus)
 		.then(parseJSON)
 		.then(resolve)
 		.catch(reject)
 	})
 }
+
+
 
