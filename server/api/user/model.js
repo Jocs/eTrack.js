@@ -7,6 +7,7 @@ import crypto from 'crypto'
 const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
+	portrait: {type: String, default: 'assets/images/user.jpg'},
 	userName: String,
 	companyName: String,
 	email: {type: String, lowercase: true, required: true},
