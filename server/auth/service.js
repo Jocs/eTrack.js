@@ -4,7 +4,7 @@ import compose from 'composable-middleware'
 import basicConfig from '../config/basic'
 import User from '../api/user/model'
 
-const validateToken = expressJwt({secrets: basicConfig.secrets.session})
+const validateToken = expressJwt({secret: basicConfig.secrets.session})
 
 export const isAuthenticated = () => {
 	return compose()

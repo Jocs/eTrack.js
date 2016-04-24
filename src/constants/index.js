@@ -10,6 +10,7 @@ export default createConstants(
 	'LOGIN_USER_FAILURE',
 	'LOGOUT_USER',
 	'TOGGLE_LOGIN_PANEL',
-	'TOGGLE_LOADING'
+	'TOGGLE_LOADING',
+	'SIGNUP_SUCCESS'
 
 )

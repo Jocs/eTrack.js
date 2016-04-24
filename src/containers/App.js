@@ -26,9 +26,15 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-	const { isAuthenticated, userName, isAuthenticating, loginPanel } = state.auth
+	const {
+		isAuthenticated,
+		userName,
+		isAuthenticating,
+		loginPanel,
+		portrait
+	} = state.auth
 	const { loadStatus } = state
-	return { isAuthenticated, userName, isAuthenticating, loginPanel, loadStatus }
+	return { isAuthenticated, userName, isAuthenticating, loginPanel, loadStatus, portrait }
 }
 
 const mapDispatchToProps = dispatch => {

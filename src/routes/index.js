@@ -10,21 +10,20 @@ import {
 } from 'react-router'
 
 import App from '../containers/App.js'
-import { Home } from '../components'
+import { Home, Console, Dashboard } from '../components'
 import { getToken } from '../utils'
 
 // 判断是否登陆
 const token = getToken()
 
-
 export default (
 	<Route path='/' component={App}>
 		{token ? <IndexRedirect to='dashboard'/> : <IndexRoute component={Home}/>}
-		{/* <Route path='console' component={Console}>
+		<Route path='console' component={Console}>
 			<Route path='/dashboard' component={Dashboard}/>
-			<Route path='/current' component={Current}/>
-			<Route path='/detail/:id' component={Detail}/>
-		</Route> */}
+			{/* <Route path='/current' component={Current}/>
+			<Route path='/detail/:id' component={Detail}/> */}
+		</Route>
 	</Route>
 )
 

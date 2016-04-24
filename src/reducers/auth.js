@@ -1,13 +1,15 @@
 /**
  * create by Jocs 2016.4.21
  */
-import jwtDecode from 'jwt-decode'
 import { createReducer } from '../utils'
 import C from '../constants'
 
 const initialState = {
 	token: null,
-	userName: null,
+	userName: '',
+	email: '',
+	userId: '',
+	portrait: '',
 	isAuthenticated: false,
 	isAuthenticating: false,
 	statusText: null,
@@ -15,12 +17,15 @@ const initialState = {
 }
 
 export default createReducer(initialState, {
-	[C.LOGIN_USER_SUCCESS]: (state, payload) => {
+	[C.SIGNUP_SUCCESS]: (state, payload) => {
 		return Object.assign({}, state, {
 			isAuthenticating: false,
 			isAuthenticated: true,
 			token: payload.token,
-			userName: jwtDecode(payload.token).userName,
+			userName: payload.userName,
+			email: payload.email,
+			userId: payload._id,
+			portrait: payload.portrait,
 			statusText: 'You have been successfully logged in.'
 		})
 	},

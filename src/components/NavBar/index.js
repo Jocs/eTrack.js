@@ -8,45 +8,56 @@ import RefreshIndicator from 'material-ui/lib/refresh-indicator'
 
 import './index.scss'
 
-const style = {
-	marginRight: 32,
-	marginBottom: 32,
-	top: 64,
-	right: 24,
-	width: 100,
-	float: 'left',
-	position: 'absolute',
-	zIndex: 0
-}
-const accountStyle = {
-	height: 51,
-	width: 35,
-	fill: '#cccccc',
-	marginRight: 35,
-	cursor: 'pointer'
-}
-
 class NavBar extends Component {
 	constructor(props) {
 		super(props)
 		this.handleLogin = this.handleLogin.bind(this)
+		this.handleAvatarClick = this.handleAvatarClick.bind(this)
+		this.state = {
+			showMenu: false
+		}
 	}
 	static propTypes = {
 		isAuthenticated: PropTypes.bool.isRequired,
 		toggleLoginPanel: PropTypes.func.isRequired,
-		loadStatus: PropTypes.string.isRequired
+		loadStatus: PropTypes.string.isRequired,
+		portrait: PropTypes.string
 	}
 	handleLogin(event) {
 		event.preventDefault()
 		this.props.toggleLoginPanel('login')
 	}
 
+	handleAvatarClick(event) {
+		event.preventDefault()
+		this.setState({
+			showMenu: !this.state.showMenu
+		})
+	}
+
 	render() {
-		const { isAuthenticated, loadStatus } = this.props
+		const { isAuthenticated, loadStatus, portrait } = this.props
 		const style = {
 			loading: {
 				boxShadow: 'none',
 				backgroundColor: 'rgb(0, 188, 212)'
+			},
+			menu: {
+				marginRight: 32,
+				marginBottom: 32,
+				top: 64,
+				right: 24,
+				width: 100,
+				float: 'left',
+				position: 'absolute',
+				zIndex: 0
+			},
+			account: {
+				height: 51,
+				width: 35,
+				fill: '#cccccc',
+				marginRight: 35,
+				cursor: 'pointer'
 			}
 		}
 		return (
@@ -66,17 +77,18 @@ class NavBar extends Component {
 				}
 				iconElementRight={
 					!isAuthenticated ? (
-						<AccontIcon style={accountStyle} onClick={this.handleLogin}/>
+						<AccontIcon style={style.account} onClick={this.handleLogin}/>
 					) : (<div className='et-navbar-accont'>
 						<Avatar
 							className='et-avatar'
-							src="src/assets/images/user.jpg"
+							src={portrait}
+							onClick={this.handleAvatarClick}
 						/>
 						<span>ransixi</span>
-						<Menu style={style}>
+						{ this.state.showMenu ? (<Menu style={style.menu}>
 							<MenuItem primaryText="Setting" />
 							<MenuItem primaryText="Logout" />
-						</Menu>
+						</Menu>) : null}
 					</div>)
 				}
 			/>
