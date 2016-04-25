@@ -7,12 +7,14 @@ import auth from './auth'
 import loadStatus from './loading'
 import consolo from './console'
 import snackbar from './snackBar'
+import appList from './appList'
 
 export default combineReducers({
 	auth,
 	loadStatus,
 	console: consolo,
 	snackbar,
+	appList,
 	router: routerStateReducer
 })
 

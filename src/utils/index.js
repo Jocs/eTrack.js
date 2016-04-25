@@ -42,7 +42,6 @@ export const postJSON = (url, data) => {
 
 export const fetchV = (url, method, data) => {
 	return new Promise((resolve, reject) => {
-		
 		const option = method === 'GET' ? {
 			method: method,
 			headers: {
@@ -67,6 +66,3 @@ export const fetchV = (url, method, data) => {
 		.catch(reject)
 	})
 }
-
-
-

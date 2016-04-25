@@ -2,16 +2,86 @@
  * crete by Jocs 2016.04.24
  */
 import React, { Component, PropTypes } from 'react'
+import * as appListActionsCreator from '../../actions/applist'
+import { push } from 'redux-router'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import Table from 'material-ui/lib/table/table'
+import TableHeaderColumn from 'material-ui/lib/table/table-header-column'
+import TableRow from 'material-ui/lib/table/table-row'
+import TableHeader from 'material-ui/lib/table/table-header'
+import TableRowColumn from 'material-ui/lib/table/table-row-column'
+import TableBody from 'material-ui/lib/table/table-body'
+import Recorder from 'material-ui/lib/svg-icons/action/view-headline'
+
+import './applist.scss'
 
 class Applist extends Component {
 	constructor(props) {
 		super(props)
 	}
+
+	static propTypes = {
+		appList: PropTypes.array.isRequired
+	}
+
 	render() {
+		const { appList } = this.props
+		const children = appList.map((app, i) => {
+			return (
+				<TableRow key={i}>
+					<TableRowColumn>{app.name}</TableRowColumn>
+					<TableRowColumn>{app._id}</TableRowColumn>
+					<TableRowColumn>{app.url}</TableRowColumn>
+				</TableRow>
+			)
+		})
 		return (
-			<h1 style={{marginLeft: 500}}>This is applist page</h1>
+			<div className='app-list'>
+				<h2><Recorder style={{verticalAlign: 'bottom'}}/>应用列表</h2>
+				<Table selectable={false}>
+					<TableHeader>
+						<TableRow>
+							<TableHeaderColumn>应用名称</TableHeaderColumn>
+							<TableHeaderColumn>应用ID</TableHeaderColumn>
+							<TableHeaderColumn>网站URL</TableHeaderColumn>
+						</TableRow>
+					</TableHeader>
+					<TableBody>
+						{children}
+						{/* <TableRow>
+							<TableRowColumn>1</TableRowColumn>
+							<TableRowColumn>John Smith</TableRowColumn>
+							<TableRowColumn>Employed</TableRowColumn>
+						</TableRow> */}
+					</TableBody>
+				</Table>
+			</div>
 		)
 	}
 }
 
-export default Applist
+const mapStateToProps = state => {
+	const { appList } = state
+	const { userId, userName, email } = state.auth
+	return { appList, userId, userName, email }
+}
+
+const mapActionToProps = dispatch => {
+	return {push, dispatch, ...bindActionCreators(Object.assign({}, appListActionsCreator), dispatch)}
+}
+
+export default connect(mapStateToProps, mapActionToProps)(Applist)
+
+
+
+
+
+
+
+
+
+
+
+

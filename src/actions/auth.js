@@ -4,11 +4,15 @@
 
 import C from '../constants'
 import { setToken, removeToken, fetchV } from '../utils'
+import { getAppList } from './applist'
 
 export const getMe = token => {
 	return (dispatch, getState) => {
 		fetchV('/api/user/getMe', 'GET')
-		.then(response => dispatch(singupSuccess(response.data)))
+		.then(response => {
+			dispatch(singupSuccess(response.data))
+			dispatch(getAppList(response.data._id))
+		})
 		.catch(error => {
 			console.log(error)
 			removeToken()

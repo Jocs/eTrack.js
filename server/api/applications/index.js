@@ -1,8 +1,10 @@
 import express from 'express'
-import { createApp } from './controller'
+import { createApp, getAll } from './controller'
+import { isAuthenticated } from '../../auth/service'
 
 const router = express.Router()
 
-router.post('/createApp', createApp)
+router.post('/createApp', isAuthenticated(), createApp)
+router.post('/getAll', isAuthenticated(), getAll)
 
 export default router

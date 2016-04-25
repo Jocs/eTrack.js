@@ -20,3 +20,20 @@ export const createApp = (req, res) => {
 		res.send({code: 0, err})
 	})
 }
+
+export const getAll = (req, res) => {
+	const creator = req.body.userId
+	App
+	.find({creator})
+	.then(apps => res.json({apps}))
+	.catch(err => res.status(500).send(err))
+}
+
+
+
+
+
+
+
+
+

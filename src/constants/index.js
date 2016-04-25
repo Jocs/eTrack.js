@@ -15,6 +15,7 @@ export default createConstants(
 	'LOGOUT',
 	'TOOGLE_CONSOLE_LEFTNAV',
 	'OPEN_SNACK_BAR',
-	'CLOSE_SNACK_BAR'
+	'CLOSE_SNACK_BAR',
+	'UNDATE_APP_LIST'
 
 )
