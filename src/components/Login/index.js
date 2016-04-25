@@ -124,7 +124,16 @@ export default class Login extends Component {
 							toggleLoginPanel('hidden')
 							dispatch(push('/dashboard'))
 						} else {
-							console.log(data)
+							switch (data.error.field) {
+								case 'password': {
+									this.setState({passwordErrorText: data.error.message})
+									break
+								}
+								case 'email': {
+									this.setState({emailErrorText: data.error.message})
+									break
+								}
+							}
 						}
 					})
 					.catch(error => console.log(error))
