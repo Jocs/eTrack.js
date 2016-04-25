@@ -69,6 +69,7 @@ class NavBar extends Component {
 			>&#123; eTrack.Js &#125;</span>)
 		return (
 			<AppBar
+				style={style.appStyle}
 				title={ title }
 				titleStyle={style.title}
 				iconElementLeft={
@@ -102,6 +103,7 @@ class NavBar extends Component {
 							>
 								<MenuItem
 									primaryText='新建应用'
+									onClick={() => this.setState({showMenu: false})}
 								/>
 							</Link>
 							<MenuItem

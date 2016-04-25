@@ -23,11 +23,13 @@ class Applist extends Component {
 	}
 
 	static propTypes = {
-		appList: PropTypes.array.isRequired
+		appList: PropTypes.array.isRequired,
+		consoleLeftNav: PropTypes.bool.isRequired
 	}
 
 	render() {
-		const { appList } = this.props
+		const { appList, consoleLeftNav } = this.props
+		const style = consoleLeftNav ? {marginLeft: 170} : {marginLeft: 0}
 		const children = appList.map((app, i) => {
 			return (
 				<TableRow key={i}>
@@ -38,7 +40,7 @@ class Applist extends Component {
 			)
 		})
 		return (
-			<div className='app-list'>
+			<div className='app-list' style={style}>
 				<h2><Recorder style={{verticalAlign: 'bottom'}}/>应用列表</h2>
 				<Table selectable={false}>
 					<TableHeader>
@@ -65,7 +67,8 @@ class Applist extends Component {
 const mapStateToProps = state => {
 	const { appList } = state
 	const { userId, userName, email } = state.auth
-	return { appList, userId, userName, email }
+	const { consoleLeftNav } = state.console
+	return { appList, userId, userName, email, consoleLeftNav }
 }
 
 const mapActionToProps = dispatch => {

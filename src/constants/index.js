@@ -16,6 +16,7 @@ export default createConstants(
 	'TOOGLE_CONSOLE_LEFTNAV',
 	'OPEN_SNACK_BAR',
 	'CLOSE_SNACK_BAR',
-	'UNDATE_APP_LIST'
+	'UNDATE_APP_LIST',
+	'ADD_APP_TO_STATE'
 
 )
