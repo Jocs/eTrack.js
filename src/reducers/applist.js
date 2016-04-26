@@ -12,6 +12,9 @@ export default createReducer(initialState, {
 	[C.ADD_APP_TO_STATE]: (state, payload) => {
 		console.log(payload)
 		return [payload, ...state]
+	},
+	[C.LOGOUT]: (state, payload) => {
+		return initialState
 	}
 })
 

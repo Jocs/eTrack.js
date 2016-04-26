@@ -28,12 +28,3 @@ export const getAll = (req, res) => {
 	.then(apps => res.json({apps}))
 	.catch(err => res.status(500).send(err))
 }
-
-
-
-
-
-
-
-
-

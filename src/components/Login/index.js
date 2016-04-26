@@ -41,7 +41,8 @@ export default class Login extends Component {
 		toggleLoginPanel: PropTypes.func.isRequired,
 		singupSuccess: PropTypes.func.isRequired,
 		dispatch: PropTypes.func.isRequired,
-		push: PropTypes.func.isRequired
+		push: PropTypes.func.isRequired,
+		getAppList: PropTypes.func.isRequired
 	}
 	handleCancel(event) {
 		event.preventDefault()
@@ -75,7 +76,7 @@ export default class Login extends Component {
 	handleSignupOrLogin(event) {
 		event.preventDefault()
 		const {userName, email, password} = this.state
-		const { loginPanel, singupSuccess, toggleLoginPanel, dispatch, push } = this.props
+		const { loginPanel, singupSuccess, toggleLoginPanel, dispatch, push, getAppList } = this.props
 		console.log(this.props)
 		const userNameErrorText = validateUserName(userName)
 		const emailErrorText = validateEmail(email)
@@ -121,6 +122,7 @@ export default class Login extends Component {
 					.then(data => {
 						if (data.code === 1) {
 							singupSuccess(data.data)
+							getAppList(data.data._id)
 							toggleLoginPanel('hidden')
 							dispatch(push('/dashboard'))
 						} else {

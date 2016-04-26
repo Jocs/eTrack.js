@@ -8,7 +8,7 @@ import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
 
 const expressInit = (app, rootPath) => {
-	app.use(express.static(`${rootPath}/src`))
+	app.use(express.static(`${rootPath}`))
 	app.use(bodyParser.urlencoded({extended: false}))
 	app.use(bodyParser.json())
 	app.use(morgan('dev'))

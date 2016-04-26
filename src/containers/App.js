@@ -9,6 +9,7 @@ import * as actionCreators from '../actions/auth'
 import * as loadActionCreators from '../actions/loading'
 import * as consoleActionCreators from '../actions/console'
 import * as snackbarActionCreators from '../actions/snackBar.js'
+import * as appListActionsCreator from '../actions/applist'
 
 import './app.scss'
 
@@ -118,7 +119,8 @@ const mapDispatchToProps = dispatch => {
 			actionCreators,
 			loadActionCreators,
 			consoleActionCreators,
-			snackbarActionCreators), dispatch)
+			snackbarActionCreators,
+			appListActionsCreator), dispatch)
 	}
 }
 
