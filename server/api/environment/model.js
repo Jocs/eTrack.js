@@ -8,15 +8,15 @@ const Schema = mongoose.Schema
 
 const EnvironmentSchema = Schema({
 	appId: String,
-	location: {accuracy: Number, latitude: Number, longitude: Number},
+	location: String,
 	dependencies: String,
 	runTime: Number,
 	url: String,
 	version: String,
-	viewPortHeight: Number,
-	viewPortWidth: Number,
+	viewportHeight: String,
+	viewportWidth: String,
 	loadOn: String,
-	createAt: {type: Date, default: Date.now(), expires: '30d'}
+	createdAt: {type: Date, default: Date.now, expires: 30}
 })
 
 const Environment = mongoose.model('Environment', EnvironmentSchema)

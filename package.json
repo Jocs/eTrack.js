@@ -59,6 +59,7 @@
     "composable-middleware": "^0.3.0",
     "connect-mongo": "^1.1.0",
     "cookie-parser": "^1.4.1",
+    "cors": "^2.7.1",
     "express": "^5.0.0-alpha.2",
     "express-jwt": "^3.3.0",
     "express-session": "^1.13.0",

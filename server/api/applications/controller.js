@@ -7,7 +7,6 @@ export const createApp = (req, res) => {
 
 	Promise.all([app.save(), User.findOne({_id: userId})])
 	.then(data => {
-		console.log(data)
 		data[1].applycations.push(data[0])
 		return new Promise((resolve, reject) => {
 			data[1].save()
