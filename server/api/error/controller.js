@@ -52,7 +52,8 @@ export const receiveError = (req, res) => {
 		ua
 	})
 
-	const writeFileHandle = (err, data) => {
+	// 以下是统计浏览器使用率或浏览器出错比例
+	const writeFileHandle = err => {
 		if (err) console.log(err)
 	}
 
@@ -67,6 +68,20 @@ export const receiveError = (req, res) => {
 
 	fs.readFile(__dirname + '/browser.txt', 'utf8', readFileHandle)
 
+	// 以下用来统计每日js 和 ajax错误的数量
+	const staWriteHandle = err => err && console.log(err)
+	const staReadHandle = (err, data) => {
+		if (err) {
+			console.log(err)
+		} else {
+			const str = `${data}\n${applicationId} ${new Date().getMonth() + 1}/${new Date().getDate()} ${errorType === 'ajax@error' ? 'ajax' : 'js'}`
+			fs.writeFile(`${__dirname}/statistic.txt`, str, 'utf8', staWriteHandle)
+		}
+	}
+
+	fs.readFile(`${__dirname}/statistic.txt`, 'utf8', staReadHandle)
+
+	// 以下用来存入错误
 	Promise.all([en.save(), ui.save(), App.findOne({_id: applicationId})])
 		.then(data => {
 			const er = new Error({

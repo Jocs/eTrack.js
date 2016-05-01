@@ -8,8 +8,7 @@ const Schema = mongoose.Schema
 
 const StatisticSchema = Schema({
 	appId: String,
-	ErrorPerDay: [{date: String, js: {type: Number, default: 0}, ajax: {type: Number, default: 0}}],
-	browsers: [{nameVersion: String, quatity: {type: Number, default: 0}}]
+	ErrorPerDay: [{date: String, js: {type: Number, default: 0}, ajax: {type: Number, default: 0}}]
 })
 
 const Statistic = mongoose.model('Statistic', StatisticSchema)
