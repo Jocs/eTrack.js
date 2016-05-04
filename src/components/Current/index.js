@@ -23,6 +23,7 @@ class Current extends Component {
 		super(props)
 		this.handleChange = this.handleChange.bind(this)
 		this.handleToggle = this.handleToggle.bind(this)
+		this.handleRefreshClick = this.handleRefreshClick.bind(this)
 	}
 
 	static propTypes = {
@@ -33,7 +34,8 @@ class Current extends Component {
 		autoRefresh: PropTypes.bool.isRequired,
 		toggleAutoRefresh: PropTypes.func.isRequired,
 		currentErrorList: PropTypes.array,
-		consoleLeftNav: PropTypes.bool.isRequired
+		consoleLeftNav: PropTypes.bool.isRequired,
+		fetchCurrentErrorList: PropTypes.func.isRequired
 	}
 	handleChange = value => {
 		const { appList, selectAppAndUpdateList } = this.props
@@ -43,8 +45,15 @@ class Current extends Component {
 	}
 
 	handleToggle(event) {
-		const { toggleAutoRefresh } = this.props
+		const { toggleAutoRefresh, fetchCurrentErrorList, currentApp } = this.props
 		toggleAutoRefresh(event.target.checked)
+		event.target.checked && fetchCurrentErrorList(currentApp._id)
+	}
+
+	handleRefreshClick(event) {
+		event.preventDefault()
+		const { fetchCurrentErrorList, currentApp } = this.props
+		fetchCurrentErrorList(currentApp._id)
 	}
 
 	componentDidMount() {
@@ -77,7 +86,9 @@ class Current extends Component {
 							onToggle={this.handleToggle}
 						/>
 					</div>
-					{!autoRefresh && <Refresh style={style.refresh}/>}
+					{!autoRefresh && <Refresh style={style.refresh}
+						onClick={this.handleRefreshClick}
+					/>}
 				</div>
 				{currentApp && <Table
 					list={currentErrorList}

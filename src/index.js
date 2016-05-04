@@ -5,7 +5,7 @@ import configureStore from './store/configureStore'
 import { getMe } from './actions/auth'
 import { getToken, getSocket } from './utils'
 import { socketConnect } from './actions/console'
-import { openSnackBar } from './actions/snackBar'
+import { socketErrorMessageListener } from './actions/socket'
 
 import './index.scss'
 
@@ -16,9 +16,8 @@ const socket = getSocket()
 socket.on('preSubscribe', function(data) {
 	if (data === 'connect') store.dispatch(socketConnect())
 })
-socket.on('errorMessage', data => {
-	store.dispatch(openSnackBar(`${data.user} : ${data.message}`, 'danger', 5000))
-})
+
+store.dispatch(socketErrorMessageListener())
 
 const node = (<Root store={store} />)
 

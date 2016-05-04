@@ -25,5 +25,9 @@ export default createReducer(initialState, {
 	},
 	[C.TOGGLE_AUTO_REFRESH]: (state, payload) => {
 		return Object.assign({}, state, {autoRefresh: payload})
+	},
+	[C.ADD_NEW_TO_ERROR_LIST]: (state, payload) => {
+		const { currentErrorList } = state
+		return Object.assign({}, state, {currentErrorList: [payload, ...currentErrorList].slice(0, 30)})
 	}
 })

@@ -23,6 +23,7 @@ export default createConstants(
 	'INCREASE_UNREAD_COUNT',
 	'TOGGLE_AUTO_REFRESH',
 	'SOCKET_CONNECT',
-	'SUBSCRIBE'
+	'SUBSCRIBE',
+	'ADD_NEW_TO_ERROR_LIST'
 
 )

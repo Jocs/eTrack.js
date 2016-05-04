@@ -39,6 +39,11 @@ export const updateCurrentErrorList = data => ({
 	payload: data
 })
 
+export const addNewToErrorList = err => ({
+	type: C.ADD_NEW_TO_ERROR_LIST,
+	payload: err
+})
+
 export const updateUnReadCount = number => ({
 	type: C.INCREASE_UNREAD_COUNT,
 	payload: number
