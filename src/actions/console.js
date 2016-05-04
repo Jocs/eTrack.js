@@ -9,3 +9,11 @@ export const toggleConsleLeftNav = () => {
 		type: C.TOOGLE_CONSOLE_LEFTNAV
 	}
 }
+
+export const socketConnect = () => ({
+	type: C.SOCKET_CONNECT
+})
+
+export const subscribe = () => ({
+	type: C.SUBSCRIBE
+})

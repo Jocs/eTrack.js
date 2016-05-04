@@ -11,6 +11,7 @@ import MenuItem from 'material-ui/lib/menus/menu-item'
 import DashIcon from 'material-ui/lib/svg-icons/action/dashboard'
 import ListIcon from 'material-ui/lib/svg-icons/device/dvr'
 import AppIcon from 'material-ui/lib/svg-icons/content/font-download'
+
 import * as consoleActionsCreator from '../../actions/console'
 
 import style from './style'
@@ -24,11 +25,12 @@ class Console extends Component {
 
 	static propTypes = {
 		children: PropTypes.object.isRequired,
-		consoleLeftNav: PropTypes.bool.isRequired
+		consoleLeftNav: PropTypes.bool.isRequired,
+		unReadCount: PropTypes.number.isRequired
 	}
 
 	render() {
-		const { consoleLeftNav } = this.props
+		const { consoleLeftNav, unReadCount } = this.props
 		return (
 			<div className='console'>
 				<LeftNav open={consoleLeftNav}
@@ -54,7 +56,7 @@ class Console extends Component {
 							leftIcon={<ListIcon style={style.icon}/>}
 						>
 							实时错误
-							<span className='barget'>4</span>
+							{unReadCount !== 0 && <span className='barget'>{unReadCount}</span>}
 						</MenuItem>
 					</Link>
 					<Link to='/applist'
@@ -79,7 +81,8 @@ const mapStateToProps = state => {
 	const {
 		consoleLeftNav
 	} = state.console
-	return { consoleLeftNav }
+	const { unReadCount } = state.current
+	return { consoleLeftNav, unReadCount }
 }
 
 const mapDispatchToProps = dispatch => {

@@ -117,6 +117,7 @@ export const receiveError = (req, res) => {
 export const getError = (req, res) => {
 	const { appId, pageNumber, pageSize } = req.params
 	Error.find({appId})
+		.sort({'time': -1})
 		.skip((Number(pageNumber) - 1) * Number(pageSize))
 		.limit(Number(pageSize))
 		.populate({
@@ -135,10 +136,3 @@ export const getError = (req, res) => {
 			res.send({code: 0, err})
 		})
 }
-
-
-
-
-
-
-

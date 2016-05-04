@@ -56,7 +56,7 @@ class App extends Component {
 				break
 			}
 			case 'danger': {
-				style = {background: 'rgb(242, 222, 222)'}
+				style = {background: 'rgb(255, 64, 129)'}
 				break
 			}
 			default: style = {background: 'rgb(223, 240, 216)'}

@@ -24,7 +24,8 @@
     "document": true,
     "navigator": true,
     "window": true,
-    "React": true
+    "React": true,
+    "io": true
   },
 
   "parser": "babel-eslint",

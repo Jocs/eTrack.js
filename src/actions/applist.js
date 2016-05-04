@@ -7,6 +7,8 @@ import { toggleLoadingStatus } from './loading'
 import { fetchAppList } from '../utils/fetchService'
 import { openSnackBar } from './snackBar'
 import { selectCurrentApp, fetchCurrentErrorList } from './current'
+import { getSocket } from '../utils'
+import { subscribe } from './console'
 
 export const updateAppList = apps => ({
 	type: C.UNDATE_APP_LIST,
@@ -14,10 +16,14 @@ export const updateAppList = apps => ({
 })
 
 export const getAppList = userId => {
+	const socket = getSocket()
 	return (dispatch, getState) => {
 		dispatch(toggleLoadingStatus('loading'))
 		fetchAppList(userId)
 		.then(apps => {
+			const { isSocketConnect, hasSubscribe } = getState().console
+			if (isSocketConnect && !hasSubscribe) socket.emit('subscribe', apps.apps[0]._id)
+			dispatch(subscribe())
 			dispatch(updateAppList(apps))
 			dispatch(selectCurrentApp(apps.apps[0]))
 			dispatch(fetchCurrentErrorList(apps.apps[0]._id))
@@ -31,13 +37,3 @@ export const getAppList = userId => {
 
 	}
 }
-
-
-
-
-
-
-
-
-
-

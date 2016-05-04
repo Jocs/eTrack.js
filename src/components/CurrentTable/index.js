@@ -29,7 +29,7 @@ export default class CurrentTable extends Component {
 		const rows = list.map((l, index) => {
 			const browser = JSON.parse(l.userAgentInfo.browser).name
 			return (
-				<TableRow key={index}>
+				<TableRow key={index} className='row-column'>
 					<TableRowColumn>
 						{
 							ERROR_REG.test(l.errorType) ? <span className='ajax'>AJAX</span> : <span className='js'>JS</span>

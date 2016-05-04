@@ -17,7 +17,7 @@ export default createReducer(initialState, {
 		return Object.assign({}, state, {currentApp: payload})
 	},
 	[C.UPDATE_CURRENT_ERROR_LIST]: (state, payload) => {
-		return Object.assign({}, state, {unReadCount: 0, currentErrorList: payload.reverse()})
+		return Object.assign({}, state, {unReadCount: 0, currentErrorList: payload})
 	},
 	[C.INCREASE_UNREAD_COUNT]: (state, payload) => {
 		const { unReadCount } = state

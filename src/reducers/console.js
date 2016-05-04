@@ -6,7 +6,9 @@ import C from '../constants'
 import { createReducer } from '../utils'
 
 const initialState = {
-	consoleLeftNav: true
+	consoleLeftNav: true,
+	isSocketConnect: false,
+	hasSubscribe: false
 }
 
 export default createReducer(initialState, {
@@ -14,5 +16,13 @@ export default createReducer(initialState, {
 		return Object.assign({}, state, {
 			consoleLeftNav: !state.consoleLeftNav
 		})
+	},
+	[C.SOCKET_CONNECT]: (state, payload) => {
+		return Object.assign({}, state, {
+			isSocketConnect: true
+		})
+	},
+	[C.SUBSCRIBE]: (state, payload) => {
+		return Object.assign({}, state, {hasSubscribe: true})
 	}
 })

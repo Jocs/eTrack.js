@@ -66,3 +66,13 @@ export const fetchV = (url, method, data) => {
 		.catch(reject)
 	})
 }
+
+let socket = null
+
+export const getSocket = () => {
+	if (socket) return socket
+	const url = window.location.origin
+	socket = io.connect(url)
+	return socket
+}
+
