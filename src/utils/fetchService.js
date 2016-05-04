@@ -10,6 +10,11 @@ export const fetchAppList = userId => {
 }
 
 export const fetchErrorList = (appId, pageNumber, pageSize) => {
-	const ERROR_LIST_URL = `api/error/${appId}/${pageNumber}/${pageSize}`
+	const ERROR_LIST_URL = `/api/error/errors/${appId}/${pageNumber}/${pageSize}`
 	return fetchV(ERROR_LIST_URL, 'GET')
+}
+
+export const fetchSingleError = errorId => {
+	const url = `/api/error/singleError/${errorId}`
+	return fetchV(url, 'GET')
 }

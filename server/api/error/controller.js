@@ -136,3 +136,16 @@ export const getError = (req, res) => {
 			res.send({code: 0, err})
 		})
 }
+
+export const singleError = (req, res) => {
+	const { errorId } = req.params
+	Error.findById(errorId)
+		.populate('environment')
+		.populate('userAgentInfo')
+		.then(data => {
+			res.send({code: 1, data})
+		})
+		.catch(err => {
+			res.send({code: 0, err})
+		})
+}

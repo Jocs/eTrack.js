@@ -3,6 +3,7 @@
  */
 
 import React, { Component, PropTypes } from 'react'
+import { Link } from 'react-router'
 import Table from 'material-ui/lib/table/table'
 import TableHeaderColumn from 'material-ui/lib/table/table-header-column'
 import TableRow from 'material-ui/lib/table/table-row'
@@ -41,11 +42,15 @@ export default class CurrentTable extends Component {
 					<TableRowColumn>{l.environment.url}</TableRowColumn>
 					<TableRowColumn>{browser}</TableRowColumn>
 					<TableRowColumn>
+						<Link
+							to={`/detail/${l._id}`}
+						>
 						<IconButton
 							tooltip='Detail'
 						>
 							<More/>
 						</IconButton>
+						</Link>
 					</TableRowColumn>
 				</TableRow>
 			)
@@ -70,21 +75,6 @@ export default class CurrentTable extends Component {
 						</TableHeader>
 					<TableBody>
 						{rows}
-						{/* <TableRow>
-							<TableRowColumn>1</TableRowColumn>
-							<TableRowColumn>John Smith</TableRowColumn>
-							<TableRowColumn>Employed</TableRowColumn>
-							<TableRowColumn>1</TableRowColumn>
-							<TableRowColumn>John Smith</TableRowColumn>
-							<TableRowColumn>Employed</TableRowColumn>
-							<TableRowColumn>
-								<IconButton
-									tooltip='Detail'
-								>
-									<More/>
-								</IconButton>
-							</TableRowColumn>
-						</TableRow> */}
 					</TableBody>
 				</Table>
 			</div>

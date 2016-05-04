@@ -57,12 +57,12 @@ export const fetchCurrentErrorList = appId => {
 		fetchErrorList(appId, pageNumber, pageSize)
 		.then(res => {
 			if (res.code === 1) dispatch(updateCurrentErrorList(res.data))
-			else if (res.code === 0) dispatch(openSnackBar('从数据库获取错误列表失败', 'error', 3000))
+			else if (res.code === 0) dispatch(openSnackBar('从数据库获取错误列表失败', 'danger', 3000))
 			dispatch(toggleLoadingStatus('hide'))
 		})
 		.catch(err => {
 			console.log(err)
-			dispatch(openSnackBar('获取实时错误列表失败', 'error', 3000))
+			dispatch(openSnackBar('获取实时错误列表失败', 'danger', 3000))
 			dispatch(toggleLoadingStatus('hide'))
 		})
 	}
