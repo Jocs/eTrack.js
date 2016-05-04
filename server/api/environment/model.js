@@ -16,7 +16,7 @@ const EnvironmentSchema = Schema({
 	viewportHeight: String,
 	viewportWidth: String,
 	loadOn: String,
-	createdAt: {type: Date, default: Date.now, expires: 30}
+	createdAt: {type: Date, default: Date.now, expires: '30d'}
 })
 
 const Environment = mongoose.model('Environment', EnvironmentSchema)

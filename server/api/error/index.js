@@ -3,7 +3,7 @@
  */
 
 import express from 'express'
-import { receiveFault, receiveError } from './controller'
+import { receiveFault, receiveError, getError } from './controller'
 import { initBrowser } from './browser'
 import { initStatistic } from './statistic'
 
@@ -14,5 +14,6 @@ const router = express.Router()
 
 router.post('/capture', receiveError)
 router.post('/fault', receiveFault)
+router.get('/:appId/:pageNumber/:pageSize', getError)
 
 export default router

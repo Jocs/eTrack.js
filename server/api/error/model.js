@@ -19,7 +19,7 @@ const ErrorSchema = new Schema({
 	appId: {type: Schema.Types.ObjectId, ref: 'App'},
 	appOwner: {type: Schema.Types.ObjectId, ref: 'User'},
 	logger: String,
-	createdAt: {type: Date, default: Date.now, expires: 30}
+	createdAt: {type: Date, default: Date.now, expires: '30d'}
 })
 
 const Error = mongoose.model('Error', ErrorSchema)

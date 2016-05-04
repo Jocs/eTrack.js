@@ -20,7 +20,7 @@ const readFileHandle = (err, data) => {
 		const preSave = _.groupBy(bs, 'appId')
 		const promises = Object.keys(preSave)
 			.map(key => {
-				Browser.findOne({appId: key})
+				return Browser.findOne({appId: key})
 				.then(d => {
 					if (!d) {
 						const browsers = preSave[key].reduce((acc, b) => {

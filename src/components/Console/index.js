@@ -12,6 +12,7 @@ import DashIcon from 'material-ui/lib/svg-icons/action/dashboard'
 import ListIcon from 'material-ui/lib/svg-icons/device/dvr'
 import AppIcon from 'material-ui/lib/svg-icons/content/font-download'
 import * as consoleActionsCreator from '../../actions/console'
+
 import style from './style'
 
 import './index.scss'
@@ -53,6 +54,7 @@ class Console extends Component {
 							leftIcon={<ListIcon style={style.icon}/>}
 						>
 							实时错误
+							<span className='barget'>4</span>
 						</MenuItem>
 					</Link>
 					<Link to='/applist'

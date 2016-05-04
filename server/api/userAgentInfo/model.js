@@ -14,7 +14,7 @@ const UserAgentInfoSchema = Schema({
 	engine: String,
 	os: String,
 	ua: String,
-	createdAt: {type: Date, default: Date.now, expires: 30}
+	createdAt: {type: Date, default: Date.now, expires: '30d'}
 })
 
 const UserAgentInfo = mongoose.model('UserAgentInfo', UserAgentInfoSchema)

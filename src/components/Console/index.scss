@@ -1,5 +1,20 @@
 .console-link {
 	text-decoration: none;
+	.barget {
+		position: absolute;
+	    right: 18px;
+	    top: 3px;
+	    min-width: 14px;
+	    height: 20px;
+	    padding-left: 3px;
+	    padding-right: 3px;
+	    background: #ff4081;
+	    border-radius: 50%;
+	    line-height: 23px;
+	    text-align: center;
+	    color: white;
+	    font-size: 12px;
+	}
 }
 .console-current {
 	div {

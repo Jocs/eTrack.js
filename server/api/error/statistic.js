@@ -14,10 +14,11 @@ const readFileHandle = (err, data) => {
 		const msgs = data.split('\n').slice(1)
 		const msgObj = msgs.reduce((acc, m) => {
 			const token = m.split(' ')
-			return token[2] === 'ajax' ? [...acc, {appId: token[0], date: token[1], ajax: 1}] : [...acc, {appId: token[0], date: token[1], js: 1}]
+			return token[2] === 'ajax' ? [...acc, {appId: token[0], date: token[1], ajax: 1}]
+				: [...acc, {appId: token[0], date: token[1], js: 1}]
 		}, [])
 		const appIdGroup = _.groupBy(msgObj, 'appId')
-		const dateGroup = Object.keys(appIdGroup).reduce((acc, key) => {
+		const dataGroup = Object.keys(appIdGroup).reduce((acc, key) => {
 			appIdGroup[key].forEach(item => {
 				if (acc[key]) {
 					if (acc[key][item['date']]) {
@@ -37,7 +38,46 @@ const readFileHandle = (err, data) => {
 			})
 			return acc
 		}, {})
-		console.log(dateGroup)
+		console.log(dataGroup)
+		const promises = Object.keys(dataGroup).map(key => {
+			return Statistic.findOne({appId: key})
+			.then(data => {
+				if (data) {
+					Object.keys(dataGroup[key]).forEach(k => {
+						if (data.errorPerDay.some(d => d.date === k)) {
+							data.errorPerDay.forEach(d => {
+								if (d.date === k) {
+									d.ajax += dataGroup[key][k].ajax
+									d.js += dataGroup[key][k].js
+								}
+							})
+						} else {
+							if (data.errorPerDay[data.errorPerDay.length - 1].date !== k) {
+								data.errorPerDay.push({date: k, ajax: dataGroup[key][k].ajax, js: dataGroup[key][k].js})
+							}
+						}
+					})
+					return data.save()
+				} else {
+					const errorPerDay = Object.keys(dataGroup[key]).map(k => {
+						return {
+							date: k,
+							ajax: dataGroup[key][k].ajax,
+							js: dataGroup[key][k].js
+						}
+					})
+					const sta = new Statistic({
+						appId: key,
+						errorPerDay
+					})
+					return sta.save()
+				}
+			})
+		})
+
+		Promise.all(promises)
+		.then(data => fs.writeFile(`${__dirname}/statistic.txt`, '', 'utf8', writeFileHandle))
+		.catch(err => console.log(err))
 	}
 }
 

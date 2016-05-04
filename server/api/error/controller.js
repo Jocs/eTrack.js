@@ -113,3 +113,32 @@ export const receiveError = (req, res) => {
 
 	res.status(200).send('error reveived thank you for your use of eTrack.js')
 }
+
+export const getError = (req, res) => {
+	const { appId, pageNumber, pageSize } = req.params
+	Error.find({appId})
+		.skip((Number(pageNumber) - 1) * Number(pageSize))
+		.limit(Number(pageSize))
+		.populate({
+			path: 'environment',
+			select: 'url'
+		})
+		.populate({
+			path: 'userAgentInfo',
+			select: 'browser'
+		})
+		.select('environment userAgentInfo message errorType time user')
+		.then(data => {
+			res.send({code: 1, data})
+		})
+		.catch(err => {
+			res.send({code: 0, err})
+		})
+}
+
+
+
+
+
+
+

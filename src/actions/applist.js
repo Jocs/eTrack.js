@@ -6,6 +6,7 @@ import C from '../constants'
 import { toggleLoadingStatus } from './loading'
 import { fetchAppList } from '../utils/fetchService'
 import { openSnackBar } from './snackBar'
+import { selectCurrentApp, fetchCurrentErrorList } from './current'
 
 export const updateAppList = apps => ({
 	type: C.UNDATE_APP_LIST,
@@ -18,6 +19,8 @@ export const getAppList = userId => {
 		fetchAppList(userId)
 		.then(apps => {
 			dispatch(updateAppList(apps))
+			dispatch(selectCurrentApp(apps.apps[0]))
+			dispatch(fetchCurrentErrorList(apps.apps[0]._id))
 			dispatch(toggleLoadingStatus('hide'))
 		})
 		.catch(error => {
