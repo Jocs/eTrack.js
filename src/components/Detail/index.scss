@@ -1,4 +1,41 @@
 .detail {
 	margin-top: 64px;
 	padding: 20px;
+	.tab {
+		margin-right: 320px;
+		background: #eee;
+		height: 1000px;
+		ul {
+			height: 40px;
+		    list-style: none;
+		    background: rgb(38, 166, 154);
+		    margin: 0;
+		    padding: 0;
+		    text-align: center;
+		    line-height: 40px;
+		    font-size: 16px;
+		    color: #fff;
+		    li {
+		    	display: inline-block;
+		    	width: 50%;
+		    	cursor: pointer;
+		    	border-right: 1px solid #fff;
+		    	box-sizing: border-box;
+		    	border-bottom: 2px solid #ddd;
+		    }
+		    li:last-of-type {
+		    	border-right: none;
+		    }
+		    .border {
+		    	border-bottom: 2px solid orange;
+		    }
+		}
+	}
+	.right-board {
+		position: fixed;
+		top: 84px;
+		right: 20px;
+		bottom: 20px;
+		width: 300px;
+	}
 }

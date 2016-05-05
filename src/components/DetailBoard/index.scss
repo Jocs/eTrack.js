@@ -1,0 +1,19 @@
+.board {
+	padding: 5px;
+	font-size: 14px;
+	.section {
+		margin-bottom: 5px;
+	}
+	.title {
+		text-align: center;
+	    color: rgb(0, 188, 212);
+	    line-height: 30px;
+	    border-bottom: 2px solid rgb(0, 188, 212);
+	}
+	.body {
+		line-height: 25px;
+		padding-left: 20px;
+		color: #666;
+	}
+
+}

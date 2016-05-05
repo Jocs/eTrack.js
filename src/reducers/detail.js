@@ -6,7 +6,9 @@ import C from '../constants'
 import { createReducer } from '../utils'
 
 const initialState = {
-	_id: null
+	_id: null,
+	environment: null,
+	userAgentInfo: null
 }
 
 export default createReducer(initialState, {
