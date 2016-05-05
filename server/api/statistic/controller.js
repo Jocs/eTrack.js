@@ -8,7 +8,6 @@ export const getStatisticData = (req, res) => {
 	const { appId } = req.params
 	Statistic.findOne({appId})
 		.then(data => {
-			if (data === null) res.send({code: 2})
 			const { errorPerDay } = data
 			const totalDay = data.errorPerDay.length
 			const yesterdayJs = data.errorPerDay[totalDay - 2].js
@@ -20,15 +19,18 @@ export const getStatisticData = (req, res) => {
 			const beforeYesterdayAjax = data.errorPerDay[totalDay - 3].ajax
 			const yesterdayAjaxCompare = beforeYesterdayAjax === 0
 				? null : (yesterdayAjax - beforeYesterdayAjax) / beforeYesterdayAjax
-			res.send({
-				code: 1,
-				totalDay,
-				yesterdayJs,
-				yesterdayJsCompare,
-				yesterdayAjax,
-				yesterdayAjaxCompare,
-				errorPerDay
-			})
+			if (data === null) res.send({code: 2})
+			else {
+				res.send({
+					code: 1,
+					totalDay,
+					yesterdayJs,
+					yesterdayJsCompare,
+					yesterdayAjax,
+					yesterdayAjaxCompare,
+					errorPerDay
+				})
+			}
 		})
 		.catch(err => {
 			res.send({code: 0, err})

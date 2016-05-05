@@ -9,8 +9,10 @@ export const browserPercentage = (req, res) => {
 	Browser.findOne({appId})
 		.then(data => {
 			if (data === null) res.send({code: 2})
-			const { browsers } = data
-			res.send({code: 1, browsers})
+			else {
+				const { browsers } = data
+				res.send({code: 1, browsers})
+			}
 		})
 		.catch(err => {
 			res.send({code: 0, err})

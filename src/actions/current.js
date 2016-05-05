@@ -7,6 +7,11 @@ import { fetchErrorList } from '../utils/fetchService'
 import { toggleLoadingStatus } from './loading'
 import { openSnackBar } from './snackBar'
 import { getSocket } from '../utils'
+import {
+	fetchStatistic,
+	fetchErrorLocation,
+	fetchBrowsers
+} from './dashboard'
 
 export const toggleAutoRefresh = value => ({
 	type: C.TOGGLE_AUTO_REFRESH,
@@ -29,8 +34,12 @@ export const selectAppAndUpdateList = app => {
 			socket.emit('unsubscribe', _id)
 			socket.emit('subscribe', app._id)
 		}
+		const appId = app._id
 		dispatch(selectCurrentApp(app))
-		dispatch(fetchCurrentErrorList(app._id))
+		dispatch(fetchCurrentErrorList(appId))
+		dispatch(fetchStatistic(appId))
+		dispatch(fetchErrorLocation(appId))
+		dispatch(fetchBrowsers(appId))
 	}
 }
 
