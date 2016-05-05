@@ -4,6 +4,7 @@
 
 import React, { Component, PropTypes } from 'react'
 import Paper from 'material-ui/lib/paper'
+
 import './index.scss'
 
 export default class Board extends Component {
