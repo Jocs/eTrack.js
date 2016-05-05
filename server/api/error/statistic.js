@@ -38,7 +38,7 @@ const readFileHandle = (err, data) => {
 			})
 			return acc
 		}, {})
-		console.log(dataGroup)
+
 		const promises = Object.keys(dataGroup).map(key => {
 			return Statistic.findOne({appId: key})
 			.then(data => {
@@ -82,7 +82,7 @@ const readFileHandle = (err, data) => {
 }
 
 export const initStatistic = () => {
-	setTimeout(() => {
+	setInterval(() => {
 		fs.readFile(`${__dirname}/statistic.txt`, 'utf8', readFileHandle)
 	}, 1000)
 }

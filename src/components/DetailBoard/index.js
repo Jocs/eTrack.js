@@ -17,9 +17,9 @@ export default class Board extends Component {
 	render() {
 		const { dependencies, location, viewportWidth, viewportHeight, loadOn, runTime } = this.props.detail.environment
 		const dependenciesObj = JSON.parse(dependencies)
-		const dps = Object.keys(dependenciesObj).map(k => {
+		const dps = Object.keys(dependenciesObj).map((k, index) => {
 			return (
-				<div className='body'>
+				<div className='body' key={index}>
 					<span className='lib-name'>{k}{'~'}</span>
 					<span className='lib-version'>{dependenciesObj[k]}</span>
 				</div>
@@ -34,7 +34,7 @@ export default class Board extends Component {
 		const time = `${dateObj.toLocaleDateString()} ${dateObj.toString().split(' ')[4]}`
 		return (
 			<Paper className='board'
-				zDepth='1'
+				zDepth={1}
 			>
 				<div className='lib section'>
 					<div className='title'>您的应用共依赖{dps.length}个JavaScript库</div>

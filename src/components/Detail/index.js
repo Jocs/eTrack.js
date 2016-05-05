@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 
 import * as detailActionCreator from '../../actions/detail'
 import Board from '../DetailBoard'
+import Track from '../Track'
 
 // import style from './style'
 
@@ -25,7 +26,8 @@ class Detail extends Component {
 	static propTypes = {
 		consoleLeftNav: PropTypes.bool.isRequired,
 		params: PropTypes.object,
-		fetchDetailErrorIfNeeded: PropTypes.func.isRequired
+		fetchDetailErrorIfNeeded: PropTypes.func.isRequired,
+		detail: PropTypes.object.isRequired
 	}
 
 	componentWillMount() {
@@ -47,6 +49,7 @@ class Detail extends Component {
 
 	render() {
 		const { consoleLeftNav } = this.props
+		const { environment } = this.props.detail
 		const detailStyle = consoleLeftNav ? {marginLeft: 170} : {marginLeft: 0}
 		return (
 			<div className='detail' style={detailStyle}>
@@ -55,12 +58,14 @@ class Detail extends Component {
 						<li className='border'>用户行为追踪</li>
 						<li>错误追溯栈</li>
 					</ul>
-					{this.state.show ? <div>xingwei</div> : <div>track</div>}
+					{this.state.show ? <Track
+							{...this.props}
+						/> : <div>track</div>}
 				</div>
 				<div className='right-board'>
-					<Board
+					{ environment && <Board
 						{...this.props}
-					/>
+					/>}
 				</div>
 			</div>
 		)
