@@ -5,6 +5,8 @@ import userRouter from '../api/user'
 import appRouter from '../api/applications'
 import authRouter from '../auth'
 import errorRouter from '../api/error'
+import statisticRouter from '../api/statistic'
+import browserRouter from '../api/browser'
 
 const router = (app, rootPath) => {
 	app.get('/', (req, res, err) => {
@@ -15,6 +17,9 @@ const router = (app, rootPath) => {
 	app.use('/api/user', userRouter)
 	app.use('/api/applications', appRouter)
 	app.use('/api/error', errorRouter)
+	app.use('/api/statistic', statisticRouter)
+	app.use('/api/browser', browserRouter)
+
 	app.route('/*')
 	.get(function(req, res) {
 		res.sendFile(`${rootPath}/index.html`)

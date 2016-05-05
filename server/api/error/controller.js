@@ -149,3 +149,23 @@ export const singleError = (req, res) => {
 			res.send({code: 0, err})
 		})
 }
+
+export const errorsWithLocation = (req, res) => {
+	const { appId } = req.params
+	Error.find({appId})
+		.sort({'time': -1})
+		.limit(200)
+		.populate({
+			path: 'environment',
+			select: 'location'
+		})
+		.select('environment message errorType time user')
+		.then(data => {
+			const filterData = data.filter(d => d.environment.location)
+			res.send({code: 1, data: filterData})
+		})
+		.catch(err => {
+			res.send({code: 0, err})
+		})
+}
+

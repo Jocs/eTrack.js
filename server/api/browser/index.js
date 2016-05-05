@@ -2,10 +2,10 @@
  * create by Jocs 2016.05.05
  */
 import express from 'express'
-import { getStatisticData } from './controller'
+import { browserPercentage } from './controller'
 
 const router = express.Router()
 
-router.get('/allInOne/:appId', getStatisticData)
+router.get('/percentage/:appId', browserPercentage)
 
 export default router
