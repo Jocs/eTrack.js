@@ -14,12 +14,12 @@ export const getStatisticData = (req, res) => {
 			const yesterdayJs = data.errorPerDay[totalDay - 2].js
 			const beforeYesterdayJs = data.errorPerDay[totalDay - 3].js
 			const yesterdayJsCompare = beforeYesterdayJs === 0
-				? '无穷' : (yesterdayJs - beforeYesterdayJs) / beforeYesterdayJs
+				? null : (yesterdayJs - beforeYesterdayJs) / beforeYesterdayJs
 
 			const yesterdayAjax = data.errorPerDay[totalDay - 2].ajax
 			const beforeYesterdayAjax = data.errorPerDay[totalDay - 3].ajax
 			const yesterdayAjaxCompare = beforeYesterdayAjax === 0
-				? '无穷' : (yesterdayAjax - beforeYesterdayAjax) / beforeYesterdayAjax
+				? null : (yesterdayAjax - beforeYesterdayAjax) / beforeYesterdayAjax
 			res.send({
 				code: 1,
 				totalDay,

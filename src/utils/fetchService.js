@@ -18,3 +18,19 @@ export const fetchSingleError = errorId => {
 	const url = `/api/error/singleError/${errorId}`
 	return fetchV(url, 'GET')
 }
+
+export const fetchErrorsWithLocation = appId => {
+	const url = `/api/error/errorsWithLocation/${appId}`
+	return fetchV(url, 'GET')
+}
+
+export const fetchBrowserPencentage = appId => {
+	const url = `/api/browser/percentage/${appId}`
+	return fetchV(url, 'GET')
+}
+
+export const fetchAllInOne = appId => {
+	const url = `/api/statistic/allInOne/${appId}`
+	return fetchV(url, 'GET')
+}
+

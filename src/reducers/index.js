@@ -10,6 +10,7 @@ import snackbar from './snackBar'
 import appList from './appList'
 import current from './current'
 import detail from './detail'
+import dashboard from './dashboard'
 
 export default combineReducers({
 	auth,
@@ -19,6 +20,7 @@ export default combineReducers({
 	appList,
 	current,
 	detail,
+	dashboard,
 	router: routerStateReducer
 })
 
