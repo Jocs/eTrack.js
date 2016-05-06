@@ -1,3 +1,6 @@
+/**
+ * create by Jocs 2016.05.05
+ */
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import Avatar from 'material-ui/lib/avatar'

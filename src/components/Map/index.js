@@ -102,7 +102,7 @@ export default class Map extends Component {
 					type: 'scatter',
 					coordinateSystem: 'geo',
 					data: data.js,
-					symbolSize: 8,
+					symbolSize: 10,
 					label: {
 						normal: {show: false},
 						emphasis: {show: false}
@@ -122,14 +122,14 @@ export default class Map extends Component {
 					type: 'scatter',
 					coordinateSystem: 'geo',
 					data: data.ajax,
-					symbolSize: 8,
+					symbolSize: 10,
 					label: {
 						normal: {show: false},
 						emphasis: {show: false}
 					},
 					itemStyle: {
 						normal: {
-							color: 'rgb(232, 124, 37)'
+							color: 'rgb(39, 114, 123)'
 						},
 						emphasis: {
 							borderColor: '#fff',
@@ -142,7 +142,7 @@ export default class Map extends Component {
 					type: 'effectScatter',
 					coordinateSystem: 'geo',
 					data: data.top10,
-					symbolSize: 8,
+					symbolSize: 12,
 					showEffectOn: 'render',
 					rippleEffect: {
 						brushType: 'stroke'
@@ -154,7 +154,7 @@ export default class Map extends Component {
 					},
 					itemStyle: {
 						normal: {
-							color: '#f4e925',
+							color: 'rgb(193, 35, 43)',
 							shadowBlur: 10,
 							shadowColor: '#333'
 						}

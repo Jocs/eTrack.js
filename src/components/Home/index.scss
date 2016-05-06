@@ -1,0 +1,131 @@
+.home {
+	margin-top: 64px;
+	.logo-page {
+		background: rgb(0, 188, 212);
+		padding-top: 100px;
+		text-align: center;
+		height: 550px;
+		box-sizing: border-box;
+		h1 {
+			font-size: 120px;
+			margin: 0;
+			padding: 0;
+			color: #eee;
+		}
+		h3 {
+			font-size: 34px;
+			margin-top: 50px;
+			color: #eee;
+		}
+		a {
+			display: inline-block;
+		    width: 130px;
+		    height: 45px;
+		    text-align: center;
+		    border: 2px solid #fff;
+		    line-height: 45px;
+		    color: #fff;
+		    text-decoration: none;
+		    font-size: 20px;
+		    margin-right: 20px;
+		}
+	}
+
+	.map-page {
+		height: 620px;
+		background: #eee;
+		padding-top: 100px;
+		box-sizing: border-box;
+		.map-wrapper {
+			width: 600px;
+			height: 420px;
+			margin-left: 100px;
+			display: inline-block;
+			vertical-align: middle;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+
+	.browser-page {
+		height: 620px;
+		padding-top: 100px;
+		box-sizing: border;
+		padding-left: 100px;
+		.pie {
+			width: 400px;
+			height: 400px;
+			vertical-align: middle;
+			display: inline-block;
+		}
+	}
+	.text {
+		display: inline-block;
+		color: rgb(0, 188, 212);
+		font-size: 30px;
+	}
+	.right {
+		margin-left: 100px;
+	}
+	.left {
+		margin-right: 100px;
+	}
+
+
+	.detail-page {
+		height: 540px;
+		padding-top: 100px;
+		padding-left: 100px;
+		.detail-image {
+			border: 2px solid #ddd;
+			width: 600px;
+			height: 480px;
+			display: inline-block;
+			vertical-align: middle;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+	.foot {
+		height: 64px;
+		background: rgb(52, 59, 71);
+		position: relative;
+		text-align: center;
+		h3 {
+			margin: 0;
+			padding: 0;
+			font-size: 30px;
+			line-height: 64px;
+			color: #fff;
+		}
+		.rights {
+			position: absolute;
+		    top: 19px;
+		    left: 34px;
+		    color: #fff;
+		    font-size: 12px;
+		}
+		.github {
+			position: absolute;
+		    top: 29px;
+		    right: 34px;
+		    color: #fff;
+		    font-size: 12px;
+		    text-decoration: none;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
