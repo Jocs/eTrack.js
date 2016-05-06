@@ -5,6 +5,13 @@
 import React, { Component, PropTypes } from 'react'
 import echarts from 'echarts'
 
+import '../../assets/javascript/shine.js'
+import '../../assets/javascript/macarons.js'
+import '../../assets/javascript/dark.js'
+import '../../assets/javascript/infographic.js'
+import '../../assets/javascript/roma.js'
+import '../../assets/javascript/vintage.js'
+
 
 export default class Pie extends Component {
 	constructor(props) {
@@ -21,11 +28,7 @@ export default class Pie extends Component {
 		this.drawChart()
 	}
 
-	componentDidUpdate() {
-		this.drawChart()
-	}
-
-	componentWillReceiveProps() {
+	componentDidUpdate(nextProps) {
 		this.drawChart()
 	}
 
@@ -70,7 +73,7 @@ export default class Pie extends Component {
 				{
 					name: '浏览器－主版本号',
 					type: 'pie',
-					radius: [10, 110],
+					radius: [10, '55%'],
 					center: ['50%', '50%'],
 					roseType: 'radius',
 					label: {
@@ -93,7 +96,7 @@ export default class Pie extends Component {
 				}
 			]
 		}
-		this.chart = echarts.init(node)
+		this.chart = echarts.init(node, 'macarons')
 		this.chart.setOption(options)
 
 	}

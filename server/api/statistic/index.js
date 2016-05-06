@@ -3,6 +3,9 @@
  */
 import express from 'express'
 import { getStatisticData } from './controller'
+import mock from './mock'
+
+mock()
 
 const router = express.Router()
 
