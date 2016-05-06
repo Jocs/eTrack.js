@@ -15,7 +15,10 @@ export default class Map extends Component {
 	static propTypes = {
 		height: PropTypes.number.isRequired,
 		width: PropTypes.number.isRequired,
-		errors: PropTypes.array.isRequired
+		errors: PropTypes.array.isRequired,
+		push: PropTypes.func.isRequired,
+		dispatch: PropTypes.func.isRequired,
+		fetchDetail: PropTypes.func.isRequired
 	}
 
 	componentDidMount() {
@@ -25,6 +28,7 @@ export default class Map extends Component {
 	componentDidUpdate() {
 		this.drawChart()
 	}
+
 
 	componentWillUnmount() {
 		this.chart.dispose()
@@ -161,6 +165,13 @@ export default class Map extends Component {
 
 		this.chart = echarts.init(node, 'infographic')
 		this.chart.setOption(options)
+
+		const { push, dispatch, fetchDetail } = this.props
+
+		this.chart.on('click', params => {
+			fetchDetail(params.value[3])
+			dispatch(push(`detail/${params.value[3]}`))
+		})
 	}
 
 

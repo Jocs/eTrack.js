@@ -5,6 +5,7 @@
 import { getSocket } from '../utils'
 import { updateUnReadCount, addNewToErrorList } from './current'
 import { openSnackBar } from './snackBar'
+import { updateErrorLocation } from './dashboard'
 
 const socket = getSocket()
 
@@ -14,6 +15,9 @@ export const socketErrorMessageListener = () => {
 		socket.on('errorMessage', data => {
 			const { autoRefresh } = getState().current
 			dispatch(openSnackBar(`${data.user} : ${data.message}`, 'danger', 5000))
+			if (data.environment.location) {
+				dispatch(updateErrorLocation(data))
+			}
 			if (autoRefresh) {
 				dispatch(addNewToErrorList(data))
 			} else {

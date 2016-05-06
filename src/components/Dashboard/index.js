@@ -13,6 +13,7 @@ import Line from '../Line'
 import Map from '../Map'
 
 import * as dashboardActionCreator from '../../actions/dashboard'
+import * as detailActionCreator from '../../actions/detail'
 
 import style from './style'
 
@@ -58,7 +59,10 @@ class Dashboard extends Component {
 		date: PropTypes.array,
 		js: PropTypes.array,
 		ajax: PropTypes.array,
-		errorsWithLocation: PropTypes.array
+		errorsWithLocation: PropTypes.array,
+		fetchDetailErrorIfNeeded: PropTypes.func,
+		push: PropTypes.func,
+		dispatch: PropTypes.func
 	}
 
 	componentDidMount() {
@@ -86,7 +90,7 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		const { consoleLeftNav, browsers, date, js, ajax, errorsWithLocation } = this.props
+		const { consoleLeftNav, browsers, date, js, ajax, errorsWithLocation, fetchDetailErrorIfNeeded, push, dispatch } = this.props
 		const dashboardStyle = consoleLeftNav ? {marginLeft: 120} : {marginLeft: 0}
 
 		const images = ['infographic', 'roma', 'shine', 'dark', 'vintage', 'macarons'].map((t, i) => {
@@ -127,6 +131,9 @@ class Dashboard extends Component {
 						errors={errorsWithLocation}
 						height={this.state.mapHeight}
 						width={this.state.mapWidth}
+						dispatch={dispatch}
+						fetchDetail={fetchDetailErrorIfNeeded}
+						push={push}
 					/>
 				</div>
 				<LeftNav
@@ -179,7 +186,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-	return {push, dispatch, ...bindActionCreators(Object.assign({}, dashboardActionCreator), dispatch)}
+	return {push, dispatch, ...bindActionCreators(Object.assign({}, dashboardActionCreator, detailActionCreator), dispatch)}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
