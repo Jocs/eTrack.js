@@ -8,9 +8,9 @@ const appId = '571f011a020c19975b2c79f7'
 
 const date = _.flatMap(_.range(12), m => _.range(30).map(d => `${m + 1}/${d + 1}`))
 
-const gRandom = () => Math.floor(Math.random() * 10000 + 100)
+const gRandom = () => Math.floor(Math.random() * 5000 + 5000)
 
-const errorPerDay = date.map(d => ({ date: d, js: gRandom(), ajax: gRandom() }))
+const errorPerDay = date.map(d => ({ date: d, js: gRandom() - 3000, ajax: gRandom() }))
 
 
 const mock = () => {

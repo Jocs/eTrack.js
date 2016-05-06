@@ -47,7 +47,7 @@ class Dashboard extends Component {
 			lineWidth: 0,
 			mapWidth: 0,
 			mapHeight: 0,
-			rightTheme: true,
+			rightTheme: false,
 			zDepth: [1, 1, 1, 1, 1, 1]
 		}
 	}

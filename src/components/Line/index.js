@@ -26,6 +26,10 @@ export default class Line extends Component {
 		this.drawChart()
 	}
 
+	componentWillUnmount() {
+		this.chart.dispose()
+	}
+
 	drawChart() {
 		const node = this.refs.chart
 		const { date, js, ajax } = this.props
