@@ -96,7 +96,7 @@ export default class Pie extends Component {
 				}
 			]
 		}
-		this.chart = echarts.init(node, 'macarons')
+		this.chart = echarts.init(node, 'infographic')
 		this.chart.setOption(options)
 
 	}
