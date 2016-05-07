@@ -1,7 +1,10 @@
 /**
  * crete by Jocs 2016.04.22
  */
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as authActionCreator from '../../actions/auth'
 import Pie from '../Pie'
 
 import './index.scss'
@@ -21,7 +24,12 @@ class Home extends Component {
 			]
 		}
 	}
+
+	static propTypes = {
+		toggleLoginPanel: PropTypes.func.isRequired
+	}
 	render() {
+		const { toggleLoginPanel } = this.props
 		return (
 			<div className='home'>
 				<section className='logo-page'>
@@ -29,7 +37,9 @@ class Home extends Component {
 					<h3>帮您构建更好的JavaScript应用</h3>
 					<div>
 						<a href='https://github.com/Jocs/jocs.github.io/issues/1'>阅读文档</a>
-						<a href='javascript:;'>立即使用</a>
+						<a href='javascript:;'
+							onClick={event => toggleLoginPanel('login')}
+						>立即使用</a>
 					</div>
 				</section>
 				<section className='map-page'>
@@ -65,7 +75,7 @@ class Home extends Component {
 				</section>
 				<footer className='foot'>
 					<p className='rights'>All Rights Reserved © 2016</p>
-					<h3>eTrack.Js</h3>
+					<h3>{'{eTrack.Js}'}</h3>
 					<a href='https://github.com/Jocs' className='github'>GitHub</a>
 				</footer>
 			</div>
@@ -73,4 +83,13 @@ class Home extends Component {
 	}
 }
 
-export default Home
+const mapStateToProps = state => {
+	return {}
+}
+
+const mapDispatchToProps = dispatch => {
+	return bindActionCreators(Object.assign({}, authActionCreator), dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
+

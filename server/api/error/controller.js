@@ -154,7 +154,7 @@ export const errorsWithLocation = (req, res) => {
 	const { appId } = req.params
 	Error.find({appId})
 		.sort({'time': -1})
-		.limit(200)
+		.limit(100)
 		.populate({
 			path: 'environment',
 			select: 'location'

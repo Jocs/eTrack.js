@@ -54,7 +54,7 @@ export default createReducer(initialState, {
 
 	[C.UPDATE_ERRORS_LOCATION]: (state, payload) => {
 		return Object.assign({}, state, {
-			errorsWithLocation: [payload, ...state.errorsWithLocation].slice(0, 200)
+			errorsWithLocation: [payload, ...state.errorsWithLocation].slice(0, 100)
 		})
 	}
 })

@@ -7,6 +7,7 @@ import Time from 'material-ui/lib/svg-icons/device/access-time'
 import Http from 'material-ui/lib/svg-icons/social/public'
 import People from 'material-ui/lib/svg-icons/social/people'
 import Code from 'material-ui/lib/svg-icons/action/settings-ethernet'
+import All from 'material-ui/lib/svg-icons/action/spellcheck'
 import Colors from 'material-ui/lib/styles/colors'
 import TrackError from 'material-ui/lib/svg-icons/alert/error-outline'
 
@@ -60,27 +61,33 @@ export default class Track extends Component {
 							style={style.svg}
 						/>
 					</div>
-					<div className='http total'>
-						<Http color={Colors.green500}
+					<div className='all total'>
+						<All
+							color={'#eb606b'}
 							style={style.svg}
-						/><span>{total.ajax}</span>
+						/>&nbsp;<span>{loggers.length}</span>
+					</div>
+					<div className='http total'>
+						<Http color={'rgb(76, 175, 80)'}
+							style={style.svg}
+						/>&nbsp;<span>{total.ajax}</span>
 					</div>
 					<div className='people total'>
 						<People color={Colors.lime500}
 							style={style.svg}
-						/><span>{total.visitor}</span>
+						/>&nbsp;<span>{total.visitor}</span>
 					</div>
 					<div className='code total'>
 						<Code color={Colors.blue500}
 							style={style.svg}
-						/><span>{total.console}</span>
+						/>&nbsp;<span>{total.console}</span>
 					</div>
 				</div>
 				<div className='time-line'></div>
 				<div className='track-logger'>
 					{logs}
 					<div className='log-wrapper'>
-						<div className='log-content error-log'>
+						<div className='log-content error-log final-error'>
 							<h3 className='error-title'>
 								<TrackError
 									color={Colors.red500}
@@ -88,10 +95,12 @@ export default class Track extends Component {
 								/>
 								{user}产生的{errorType && errorType.split('@')[0]}错误
 							</h3>
-							<div className='log-hide'>
-								<span
-									onClick={this.handClick}
-								>错误信息：</span>{message}
+							<div className='log-body-wrapper'>
+								<div className='log-hide'>
+									<span
+										onClick={this.handClick}
+									>错误信息：</span>{message}
+								</div>
 							</div>
 							<div className='timeStamp'>{errTime}</div>
 						</div>
@@ -142,25 +151,28 @@ class Visitor extends Component {
 					<span className='log-title'>{
 						action === 'click' ? `用户点击<${tag}>元素` : `用户<${tag}>输入`
 					}</span>
-					<div className='element'>
-						<p>
-							<span className='bracket'>&lt;</span>
-							<span className='ele-tag'>{tag}</span>
-						</p>
-							{attrs}
-						<p>
-							<span className='bracket'>&gt;</span>
-							{action === 'click' ? value : ''}
-							<span className='bracket'>&lt;/</span>
-							<span className='ele-tag'>{tag}</span>
-							<span className='bracket'>&gt;</span>
-						</p>
+					<div className='log-body-wrapper'>
+						<div className='element'>
+							<p className='element-name'>元素：</p>
+							<p>
+								<span className='bracket'>&lt;</span>
+								<span className='ele-tag'>{tag}</span>
+							</p>
+								{attrs}
+							<p>
+								<span className='bracket'>&gt;</span>
+								{action === 'click' ? value : ''}
+								<span className='bracket'>&lt;/</span>
+								<span className='ele-tag'>{tag}</span>
+								<span className='bracket'>&gt;</span>
+							</p>
+						</div>
+						{action === 'input' && <div className='log-value'>用户输入值：{value}</div>}
+						<div className='log-hide'
+						><span
+							onClick={this.handClick}
+						>CSS选择器：</span>{cssSelector}</div>
 					</div>
-					{action === 'input' && <div className='log-value'>用户输入值：{value}</div>}
-					<div className='log-hide'
-					><span
-						onClick={this.handClick}
-					>CSS选择器：</span>{cssSelector}</div>
 					<div className='timeStamp'>{time}</div>
 				</div>
 			</div>
@@ -194,13 +206,16 @@ class DetailCnsole extends Component {
 						color={Colors.blue500}
 						style={{verticalAlign: 'middle'}}
 					/>
-					<span className='log-title'>控制台“console.{severity}()”打印内容</span>
-					<div className='log-hide'>
-						<span
-							onClick={this.handClick}
-						>Message:
-						</span>
-						{message}
+					{' '}
+					<span className='log-title'>控制台"console.{severity}()"打印内容</span>
+					<div className='log-body-wrapper'>
+						<div className='log-hide'>
+							<span
+								onClick={this.handClick}
+							>Message:
+							</span>
+							{message}
+						</div>
 					</div>
 					<div className='timeStamp'>{time}</div>
 				</div>
@@ -236,15 +251,17 @@ class Ajax extends Component {
 						style={{verticalAlign: 'middle'}}
 					/>
 					{' '}
-					<span className='log-title'>用户发送"{method}"请求(StatusCode：{statusCode})</span>
-					<div className='log-body'>请求持续时间：{duration ? `耗时${duration} ms` : '请求未收到响应'}</div>
-					<div className='log-body'>请求URL：{url}</div>
-					<div className='log-hide'>
-						<span
-							onClick={this.handClick}
-						>ResponseText：
-						</span>
-						{responseText}
+					<span className='log-title'>用户发送"{method.toUpperCase()}"请求(StatusCode：{statusCode})</span>
+					<div className='log-body-wrapper'>
+						<div className='log-body'>请求持续时间：{duration ? `耗时${duration} ms` : '请求未收到响应'}</div>
+						<div className='log-body'>请求URL：{url}</div>
+						<div className='log-hide'>
+							<span
+								onClick={this.handClick}
+							>ResponseText：
+							</span>
+							{responseText}
+						</div>
 					</div>
 					<div className='timeStamp'>{time}</div>
 				</div>

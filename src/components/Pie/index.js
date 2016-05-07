@@ -38,7 +38,23 @@ export default class Pie extends Component {
 
 	drawChart() {
 		const { browsers } = this.props
-		const names = browsers.map(b => b.name)
+		const sortedBrowsers = browsers
+		.sort((a, b) => {
+			switch (true) {
+				case (a.value - b.value) > 0: return -1
+				case (a.value - b.value) < 0: return 1
+				default: return 0
+			}
+		})
+		const others = {
+			name: 'ohters',
+			value: sortedBrowsers.slice(10).reduce((acc, b) => acc + b.value, 0)
+		}
+		const browsersTops = sortedBrowsers.slice(0, 10).concat(others)
+		
+		console.log(browsersTops)
+
+		const names = browsersTops.map(b => b.name)
 		const node = this.refs.chart
 		const options = {
 			title: {
@@ -92,7 +108,7 @@ export default class Pie extends Component {
 							show: true
 						}
 					},
-					data: browsers
+					data: browsersTops
 				}
 			]
 		}

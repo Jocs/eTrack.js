@@ -25,7 +25,8 @@
     "navigator": true,
     "window": true,
     "React": true,
-    "io": true
+    "io": true,
+    "BMap": true
   },
 
   "parser": "babel-eslint",

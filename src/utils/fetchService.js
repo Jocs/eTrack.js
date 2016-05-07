@@ -34,3 +34,27 @@ export const fetchAllInOne = appId => {
 	return fetchV(url, 'GET')
 }
 
+
+export const getCity = (lot, lat) => {
+	return new Promise((resolve, reject) => {
+		// const map = new BMap.Map('allmap')
+		const point = new BMap.Point(lot, lat)
+		const gc = new BMap.Geocoder()
+		gc.getLocation(point, function(rs) {
+			const addComp = rs.addressComponents
+			resolve(addComp)
+			// alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber)
+		})
+	})
+
+}
+
+
+
+
+
+
+
+
+
+

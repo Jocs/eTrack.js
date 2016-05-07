@@ -13,7 +13,10 @@ export default class Board extends Component {
 
 	}
 	static propTypes = {
-		detail: PropTypes.object
+		detail: PropTypes.object,
+		province: PropTypes.string,
+		city: PropTypes.string,
+		country: PropTypes.string.isRequired
 	}
 	render() {
 		const { dependencies, location, viewportWidth, viewportHeight, loadOn, runTime } = this.props.detail.environment
@@ -21,8 +24,8 @@ export default class Board extends Component {
 		const dps = Object.keys(dependenciesObj).map((k, index) => {
 			return (
 				<div className='body' key={index}>
-					<span className='lib-name'>{k}{'~'}</span>
-					<span className='lib-version'>{dependenciesObj[k]}</span>
+					<span className='lib-name'>库名：{k}{' '}</span>
+					<span className='lib-version'>版本：{dependenciesObj[k]}</span>
 				</div>
 			)
 		})
@@ -33,40 +36,42 @@ export default class Board extends Component {
 		const locationObj = JSON.parse(location)
 		const dateObj = new Date(Number(loadOn))
 		const time = `${dateObj.toLocaleDateString()} ${dateObj.toString().split(' ')[4]}`
+		const { country, province, city } = this.props.detail
 		return (
-			<Paper className='board'
+			<Paper
+				className='board'
 				zDepth={1}
 			>
 				<div className='lib section'>
-					<div className='title'>您的应用共依赖{dps.length}个JavaScript库</div>
+					<div className='title'>依赖{dps.length}个JavaScript库</div>
 					{dps}
 				</div>
 				<div className='browser section'>
-					<div className='title'>产生错误时使用的浏览器和操作系统</div>
-					<div className='body'>{browserObj.name + '~' + browserObj.version}</div>
-					{osObj && <div className='body'>{osObj.name + '~' + osObj.version}</div>}
+					<div className='title'>浏览器和操作系统</div>
+					<div className='body'>浏览器：{browserObj.name + ' 版本：' + browserObj.version}</div>
+					{osObj && <div className='body'>操作系统：{osObj.name + ' 版本：' + osObj.version}</div>}
 				</div>
 				{locationObj && <div className='section'>
-					<div className='title'>错误所在设备地理位置</div>
+					<div className='title'>地理位置及城市</div>
 					<div className='body'>
-						<span>Lat: {locationObj.latitude}</span>
+						<span>经纬度：[{locationObj.latitude.toFixed(3)}, &nbsp;{locationObj.longitude.toFixed(3)}]</span>
 					</div>
 					<div className='body'>
-						<span>Lot: {locationObj.longitude}</span>
+						<span>城市：{`${country} ${province} ${city}`}</span>
 					</div>
 				</div>}
 				<div className='section'>
 					<div className='title'>浏览器视图尺寸</div>
-					<div className='body'>{['宽度:' + viewportWidth + 'px * 长度:' + viewportHeight + 'px']}</div>
+					<div className='body'>{'[宽度:' + viewportWidth + 'px * 长度:' + viewportHeight + 'px]'}</div>
 				</div>
 				<div className='section'>
-					<div className='title'>应用启动时间及运行时长</div>
-					<div className='body'>{time}</div>
+					<div className='title'>启动时间及运行时长</div>
+					<div className='body'>启动时间：{time}</div>
 					<div className='body'>运行时长：{runTime / 1000 + 's'}</div>
 				</div>
 				<div className='section'>
 					<div className='title'>eTrack 版本号</div>
-					<div className='body'>Version: 1.0.0</div>
+					<div className='body'>版本: Beta版</div>
 				</div>
 			</Paper>
 		)
