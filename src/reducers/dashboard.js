@@ -5,6 +5,7 @@ import C from '../constants'
 import { createReducer } from '../utils'
 
 const initialState = {
+	total: 0,
 	totalDay: 0,
 	yesterdayJs: 0,
 	yesterdayJsCompare: 0,
@@ -26,7 +27,7 @@ export default createReducer(initialState, {
 	},
 
 	[C.UPDATE_STATISTIC]: (state, payload) => {
-		const { totalDay, yesterdayJs, yesterdayJsCompare, yesterdayAjax, yesterdayAjaxCompare } = payload
+		const { total, totalDay, yesterdayJs, yesterdayJsCompare, yesterdayAjax, yesterdayAjaxCompare } = payload
 		const { date, js, ajax } = payload.errorPerDay.reduce((acc, d) => ({
 			date: [...acc.date, d.date],
 			js: [...acc.js, d.js],
@@ -37,6 +38,7 @@ export default createReducer(initialState, {
 			ajax: []
 		})
 		return Object.assign({}, state, {
+			total,
 			totalDay,
 			yesterdayJs,
 			yesterdayAjax,

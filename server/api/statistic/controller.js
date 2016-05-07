@@ -10,6 +10,7 @@ export const getStatisticData = (req, res) => {
 		.then(data => {
 			const { errorPerDay } = data
 			const totalDay = data.errorPerDay.length
+			const total = data.errorPerDay.reduce((acc, item) => acc + item.js + item.ajax, 0)
 			const yesterdayJs = data.errorPerDay[totalDay - 2].js
 			const beforeYesterdayJs = data.errorPerDay[totalDay - 3].js
 			const yesterdayJsCompare = beforeYesterdayJs === 0
@@ -23,6 +24,7 @@ export const getStatisticData = (req, res) => {
 			else {
 				res.send({
 					code: 1,
+					total,
 					totalDay,
 					yesterdayJs,
 					yesterdayJsCompare,

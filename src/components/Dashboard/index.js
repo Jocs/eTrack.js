@@ -6,6 +6,9 @@ import LeftNav from 'material-ui/lib/left-nav'
 import IconButton from 'material-ui/lib/icon-button'
 import Close from 'material-ui/lib/svg-icons/navigation/close'
 import Paper from 'material-ui/lib/paper'
+import Title from 'material-ui/lib/svg-icons/av/web-asset'
+import Up from 'material-ui/lib/svg-icons/action/trending-up'
+import Down from 'material-ui/lib/svg-icons/action/trending-down'
 
 
 import Pie from '../Pie'
@@ -62,7 +65,14 @@ class Dashboard extends Component {
 		errorsWithLocation: PropTypes.array,
 		fetchDetailErrorIfNeeded: PropTypes.func,
 		push: PropTypes.func,
-		dispatch: PropTypes.func
+		dispatch: PropTypes.func,
+		currentApp: PropTypes.object,
+		total: PropTypes.number,
+		totalDay: PropTypes.number,
+		yesterdayJs: PropTypes.number,
+		yesterdayAjax: PropTypes.number,
+		yesterdayJsCompare: PropTypes.number,
+		yesterdayAjaxCompare: PropTypes.number
 	}
 
 	componentDidMount() {
@@ -90,7 +100,24 @@ class Dashboard extends Component {
 	}
 
 	render() {
-		const { consoleLeftNav, browsers, date, js, ajax, errorsWithLocation, fetchDetailErrorIfNeeded, push, dispatch } = this.props
+		const {
+			consoleLeftNav,
+			browsers,
+			date,
+			js,
+			ajax,
+			errorsWithLocation,
+			fetchDetailErrorIfNeeded,
+			push,
+			dispatch,
+			currentApp,
+			totalDay,
+			total,
+			yesterdayJs,
+			yesterdayAjax,
+			yesterdayJsCompare,
+			yesterdayAjaxCompare
+		} = this.props
 		const dashboardStyle = consoleLeftNav ? {marginLeft: 120} : {marginLeft: 0}
 
 		const images = ['infographic', 'roma', 'shine', 'dark', 'vintage', 'macarons'].map((t, i) => {
@@ -106,10 +133,18 @@ class Dashboard extends Component {
 			)
 		})
 
+		const totalStr = total.toString().split('').reduceRight((acc, d, i) => {
+			return i % 3 === 1 && i !== 0 ? acc = `,${d}${acc}` : `${d}${acc}`
+		}, '')
+
 		return (
 			<div className='dashboard' style={dashboardStyle}>
 				<div className='header'>
-
+					<h2>
+						<Title
+							style={{verticalAlign: 'sub'}}
+						/> 应用名称：{currentApp.name}
+					</h2>
 				</div>
 				<div ref='line' className='line-chart'>
 					<Line
@@ -136,6 +171,41 @@ class Dashboard extends Component {
 						push={push}
 					/>
 				</div>
+				<div className='statistic-bar'>
+					<div className='protect-days statistic'>
+						<p>eTrack.Js已检测您的应用</p>
+						<p>共<span className='total-day'>{totalDay}</span>天</p>
+					</div>
+					<div className='total-errors statistic'>
+						<p>应用出现错误</p>
+						<p>共<span className='total-day'>{totalStr}</span>次</p>
+					</div>
+					<div className='yesterday statistic last'>
+						<div>昨日错误量</div>
+						<p>
+							<span className='text'>JavaScript:</span>
+							<span className='total-time'>{yesterdayJs}</span>
+							<span className='text'>次</span>
+							{' '}
+							{yesterdayJsCompare >= 0 ? <Up color={'red'}/> : <Down color={'green'}/>}
+							{' '}
+							<span className={
+								yesterdayJsCompare >= 0 ? 'text up' : 'text down'
+							}>{`${yesterdayJsCompare.toFixed(4) * 100}%`}</span>
+						</p>
+						<p>
+							<span className='text'>Ajax:</span>
+							<span className='total-time'>{yesterdayAjax}</span>
+							<span className='text'>次</span>
+							{' '}
+							{yesterdayAjaxCompare >= 0 ? <Up color={'red'}/> : <Down color={'green'}/>}
+							{' '}
+							<span className={
+								yesterdayAjaxCompare >= 0 ? 'text up' : 'text down'
+							}>{`${yesterdayAjaxCompare.toFixed(4) * 100}%`}</span>
+						</p>
+					</div>
+				</div>
 				<LeftNav
 					width={500}
 					openRight={true}
@@ -159,6 +229,7 @@ class Dashboard extends Component {
 const mapStateToProps = state => {
 	const { consoleLeftNav } = state.console
 	const {
+		total,
 		totalDay,
 		yesterdayJs,
 		yesterdayJsCompare,
@@ -170,7 +241,10 @@ const mapStateToProps = state => {
 		browsers,
 		errorsWithLocation
 	} = state.dashboard
+	const { currentApp } = state.current
 	return {
+		currentApp,
+		total,
 		consoleLeftNav,
 		totalDay,
 		yesterdayJs,

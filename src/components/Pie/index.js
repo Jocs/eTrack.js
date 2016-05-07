@@ -51,8 +51,6 @@ export default class Pie extends Component {
 			value: sortedBrowsers.slice(10).reduce((acc, b) => acc + b.value, 0)
 		}
 		const browsersTops = sortedBrowsers.slice(0, 10).concat(others)
-		
-		console.log(browsersTops)
 
 		const names = browsersTops.map(b => b.name)
 		const node = this.refs.chart

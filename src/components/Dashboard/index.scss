@@ -1,3 +1,4 @@
+$textColor: rgb(39, 114, 123);
 .dashboard {
 	margin-top: 64px;
 	padding: 20px;
@@ -5,9 +6,14 @@
 	padding-right: 70px;
 	.header {
 		width: 100%;
-		height: 140px;
-		background: green;
+		height: 35px;
 		margin-bottom: 10px;
+		h2 {
+			color: #666;
+			font-size: 16px;
+			margin: 0;
+			padding: 0;
+		}
 	}
 	.line-chart {
 		width: 100%;
@@ -51,4 +57,57 @@
 	.odd {
 		margin-right: 10px;
 	}
+	.statistic-bar {
+		color: $textColor;
+		text-align: center;
+		width: 100%;
+		height: 150px;
+		margin-top: 10px;
+		font-size: 25px;
+		.statistic {
+			width: 32%;
+			height: 150px;
+			margin-right: 2%;
+			display: inline-block;
+			background: #eee;
+			vertical-align: top;
+		}
+		.last {
+			margin-right: 0;
+		}
+		.total-day {
+			font-size: 40px;
+			color: rgb(215, 80, 75)
+		}
+
+		.yesterday {
+			padding-left: 20px;
+			box-sizing: border-box;
+			div {
+				line-height: 50px;
+			}
+			.text {
+				font-size: 14px;
+			}
+			.total-time {
+				color: rgb(215, 80, 75);
+			}
+			.up {
+				color: red;
+			}
+			.down {
+				color: green;
+			}
+			p {
+				margin: 0;
+				padding-bottom: 10px;
+				text-align: left;
+			}
+		}
+		
+	}
 }
+
+
+
+
