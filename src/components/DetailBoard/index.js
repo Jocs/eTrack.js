@@ -4,13 +4,18 @@
 
 import React, { Component, PropTypes } from 'react'
 import Paper from 'material-ui/lib/paper'
+import Visibility from 'material-ui/lib/svg-icons/action/visibility'
+import Unvisibility from 'material-ui/lib/svg-icons/action/visibility-off'
 
 import './index.scss'
 
 export default class Board extends Component {
 	constructor(props) {
 		super(props)
-
+		this.handdleIconClick = this.handdleIconClick.bind(this)
+		this.state = {
+			hide: true
+		}
 	}
 	static propTypes = {
 		detail: PropTypes.object,
@@ -18,8 +23,16 @@ export default class Board extends Component {
 		city: PropTypes.string,
 		country: PropTypes.string
 	}
+
+	handdleIconClick(event) {
+		event.preventDefault()
+		this.setState({
+			hide: !this.state.hide
+		})
+	}
+
 	render() {
-		const { dependencies, location, viewportWidth, viewportHeight, loadOn, runTime } = this.props.detail.environment
+		const { dependencies, location, viewportWidth, viewportHeight, loadOn, runTime, url } = this.props.detail.environment
 		const dependenciesObj = JSON.parse(dependencies)
 		const dps = Object.keys(dependenciesObj).map((k, index) => {
 			return (
@@ -37,14 +50,38 @@ export default class Board extends Component {
 		const dateObj = new Date(Number(loadOn))
 		const time = `${dateObj.toLocaleDateString()} ${dateObj.toString().split(' ')[4]}`
 		const { country, province, city } = this.props.detail
+		const iconStyle = {
+			verticalAlign: 'middle',
+			cursor: 'pointer'
+		}
+		const iconColor = 'rgb(0, 188, 212)'
+
 		return (
 			<Paper
 				className='board'
 				zDepth={1}
 			>
-				<div className='lib section'>
-					<div className='title'>依赖{dps.length}个JavaScript库</div>
+				<div className={`lib section ${this.state.hide ? 'hide' : ''}`}>
+					<div className='title'>依赖{dps.length}个JavaScript库&nbsp;
+						{dps.length >= 3 ? (this.state.hide ? <Unvisibility
+								style={iconStyle}
+								color={iconColor}
+								onClick={this.handdleIconClick}
+							/> : <Visibility
+								style={iconStyle}
+								color={iconColor}
+								onClick={this.handdleIconClick}
+							/>) : ''}
+					</div>
 					{dps}
+				</div>
+				<div>
+					<div className='title'>
+						出错页面URL
+					</div>
+					<div className='body url'>
+						{url}
+					</div>
 				</div>
 				<div className='browser section'>
 					<div className='title'>浏览器和操作系统</div>

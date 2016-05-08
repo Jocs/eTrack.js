@@ -15,7 +15,8 @@ export default class Line extends Component {
 		height: PropTypes.number.isRequired,
 		date: PropTypes.array.isRequired,
 		js: PropTypes.array.isRequired,
-		ajax: PropTypes.array.isRequired
+		ajax: PropTypes.array.isRequired,
+		theme: PropTypes.string
 	}
 
 	componentDidMount() {

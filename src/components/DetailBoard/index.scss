@@ -1,6 +1,13 @@
 .board {
 	padding: 5px;
 	font-size: 14px;
+	overflow: auto;
+	.lib {
+		overflow: hidden;
+	}
+	.hide {
+		height: 60px;
+	}
 	.section {
 		margin-bottom: 5px;
 	}
@@ -14,6 +21,11 @@
 		line-height: 25px;
 		padding-left: 20px;
 		color: #666;
+	}
+	.url {
+		width: 250px;
+		overflow: hidden;
+		word-wrap: break-word;
 	}
 
 }
