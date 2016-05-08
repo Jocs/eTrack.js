@@ -173,7 +173,7 @@ class Dashboard extends Component {
 				</div>
 				<div className='statistic-bar'>
 					<div className='protect-days statistic'>
-						<p>eTrack.Js已检测您的应用</p>
+						<p>eTrack.Js已监测您的应用</p>
 						<p>共<span className='total-day'>{totalDay}</span>天</p>
 					</div>
 					<div className='total-errors statistic'>

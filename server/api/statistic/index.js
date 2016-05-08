@@ -5,11 +5,11 @@ import express from 'express'
 import { getStatisticData } from './controller'
 
 // mock 记得删除
-import mock from './mock'
+// import mock from './mock'
 import mockLocation from '../environment'
 
 // important 记得删除啊。
-mock()
+// mock()
 mockLocation()
 
 const router = express.Router()

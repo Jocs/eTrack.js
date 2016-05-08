@@ -74,7 +74,7 @@ export const receiveError = (req, res) => {
 		if (err) {
 			console.log(err)
 		} else {
-			const str = `${data}\n${applicationId} ${new Date().getMonth() + 1}/${new Date().getDate()} ${errorType === 'ajax@error' ? 'ajax' : 'js'}`
+			const str = `${data}\n${applicationId} ${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()} ${errorType === 'ajax@error' ? 'ajax' : 'js'}`
 			fs.writeFile(`${__dirname}/statistic.txt`, str, 'utf8', staWriteHandle)
 		}
 	}

@@ -47,7 +47,7 @@ export default class Pie extends Component {
 			}
 		})
 		const others = {
-			name: 'ohters',
+			name: 'Others',
 			value: sortedBrowsers.slice(10).reduce((acc, b) => acc + b.value, 0)
 		}
 		const browsersTops = sortedBrowsers.slice(0, 10).concat(others)

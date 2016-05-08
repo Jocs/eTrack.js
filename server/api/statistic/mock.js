@@ -6,11 +6,13 @@ import Statistic from './model'
 
 const appId = '571f011a020c19975b2c79f7'
 
-const date = _.flatMap(_.range(12), m => _.range(30).map(d => `${m + 1}/${d + 1}`))
+const date = _.flatMap(_.range(4), m => _.range(30).map(d => `2016/${m + 1}/${d + 1}`)).concat(
+	_.range(8).map(d => `2016/5/${d + 1}`)
+)
 
-const gRandom = () => Math.floor(Math.random() * 2000 + 4000)
+const gRandom = () => Math.floor(Math.random() * 500 + 500)
 
-const errorPerDay = date.map(d => ({ date: d, js: gRandom() - 3000, ajax: gRandom() }))
+const errorPerDay = date.map(d => ({ date: d, js: gRandom() - 300, ajax: gRandom() }))
 
 
 const mock = () => {

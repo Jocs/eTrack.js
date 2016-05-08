@@ -82,6 +82,7 @@ class Current extends Component {
 						<Toggle
 							style={style.toggle}
 							label='自动更新'
+							defaultToggled={autoRefresh}
 							labelPosition='right'
 							onToggle={this.handleToggle}
 						/>
