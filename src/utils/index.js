@@ -29,6 +29,10 @@ export const getToken = () => localStorage.getItem('token')
 export const setToken = token => localStorage.setItem('token', token)
 export const removeToken = () => localStorage.removeItem('token')
 
+// get , set 主题
+export const getTheme = () => localStorage.getItem('theme') ? localStorage.getItem('theme') : ''
+export const setTheme = themeName => localStorage.setItem('theme', themeName)
+
 export const postJSON = (url, data) => {
 	return fetch(url, {
 		method: 'POST',

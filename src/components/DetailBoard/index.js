@@ -16,7 +16,7 @@ export default class Board extends Component {
 		detail: PropTypes.object,
 		province: PropTypes.string,
 		city: PropTypes.string,
-		country: PropTypes.string.isRequired
+		country: PropTypes.string
 	}
 	render() {
 		const { dependencies, location, viewportWidth, viewportHeight, loadOn, runTime } = this.props.detail.environment

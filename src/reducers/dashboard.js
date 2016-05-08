@@ -2,9 +2,10 @@
  * create by Jocs 2015.05.05
  */
 import C from '../constants'
-import { createReducer } from '../utils'
+import { createReducer, getTheme, setTheme } from '../utils'
 
 const initialState = {
+	theme: getTheme(),
 	total: 0,
 	totalDay: 0,
 	yesterdayJs: 0,
@@ -58,5 +59,11 @@ export default createReducer(initialState, {
 		return Object.assign({}, state, {
 			errorsWithLocation: [payload, ...state.errorsWithLocation].slice(0, 100)
 		})
+	},
+	[C.CHANGE_THEME]: (state, payload) => {
+		return Object.assign({}, state, {
+			theme: payload
+		})
 	}
+
 })

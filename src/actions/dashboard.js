@@ -4,6 +4,7 @@
 
 import C from '../constants'
 import { fetchBrowserPencentage, fetchErrorsWithLocation, fetchAllInOne } from '../utils/fetchService'
+import { setTheme } from '../utils'
 import { openSnackBar } from './snackBar'
 
 export const updateBrowser = browsers => {
@@ -31,6 +32,14 @@ export const updateErrorLocation = error => {
 	return {
 		type: C.UPDATE_ERRORS_LOCATION,
 		payload: error
+	}
+}
+
+export const changeTheme = themeName => {
+	setTheme(themeName)
+	return {
+		type: C.CHANGE_THEME,
+		payload: themeName
 	}
 }
 

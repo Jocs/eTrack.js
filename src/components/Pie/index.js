@@ -21,7 +21,8 @@ export default class Pie extends Component {
 	static propTypes = {
 		browsers: PropTypes.array.isRequired,
 		width: PropTypes.number,
-		height: PropTypes.number
+		height: PropTypes.number,
+		theme: PropTypes.string
 	}
 
 	componentDidMount() {
@@ -37,7 +38,7 @@ export default class Pie extends Component {
 	}
 
 	drawChart() {
-		const { browsers } = this.props
+		const { browsers, theme } = this.props
 		const sortedBrowsers = browsers
 		.sort((a, b) => {
 			switch (true) {
@@ -110,7 +111,7 @@ export default class Pie extends Component {
 				}
 			]
 		}
-		this.chart = echarts.init(node, 'infographic')
+		this.chart = echarts.init(node, theme)
 		this.chart.setOption(options)
 
 	}

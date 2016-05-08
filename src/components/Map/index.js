@@ -18,7 +18,8 @@ export default class Map extends Component {
 		errors: PropTypes.array.isRequired,
 		push: PropTypes.func.isRequired,
 		dispatch: PropTypes.func.isRequired,
-		fetchDetail: PropTypes.func.isRequired
+		fetchDetail: PropTypes.func.isRequired,
+		theme: PropTypes.string
 	}
 
 	componentDidMount() {
@@ -26,17 +27,19 @@ export default class Map extends Component {
 	}
 
 	componentDidUpdate() {
+		this.chart.off('click')
 		this.drawChart()
 	}
 
 
 	componentWillUnmount() {
+		this.chart.off('click')
 		this.chart.dispose()
 	}
 
 	drawChart() {
 		const node = this.refs.chart
-		const { errors } = this.props
+		const { errors, theme } = this.props
 		const data = errors.reduce((acc, e, i) => {
 			const { latitude, longitude } = JSON.parse(e.environment.location)
 			const value = {
@@ -163,7 +166,7 @@ export default class Map extends Component {
 			]
 		}
 
-		this.chart = echarts.init(node, 'infographic')
+		this.chart = echarts.init(node, theme)
 		this.chart.setOption(options)
 
 		const { push, dispatch, fetchDetail } = this.props

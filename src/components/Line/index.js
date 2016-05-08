@@ -32,7 +32,7 @@ export default class Line extends Component {
 
 	drawChart() {
 		const node = this.refs.chart
-		const { date, js, ajax } = this.props
+		const { date, js, ajax, theme } = this.props
 		const options = {
 			title: {
 				text: 'JavaScript和Ajax错误日变化趋势图',
@@ -108,7 +108,7 @@ export default class Line extends Component {
 			]
 		}
 
-		this.chart = echarts.init(node, 'infographic')
+		this.chart = echarts.init(node, theme)
 		this.chart.setOption(options)
 	}
 

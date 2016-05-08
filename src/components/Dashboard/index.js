@@ -9,6 +9,8 @@ import Paper from 'material-ui/lib/paper'
 import Title from 'material-ui/lib/svg-icons/av/web-asset'
 import Up from 'material-ui/lib/svg-icons/action/trending-up'
 import Down from 'material-ui/lib/svg-icons/action/trending-down'
+import Polymer from 'material-ui/lib/svg-icons/action/polymer'
+import FlatButton from 'material-ui/lib/flat-button'
 
 
 import Pie from '../Pie'
@@ -44,6 +46,7 @@ class Dashboard extends Component {
 	constructor(props) {
 		super(props)
 		this.handleClose = this.handleClose.bind(this)
+		this.handleThemeClick = this.handleThemeClick.bind(this)
 		this.state = {
 			pieWidth: 0,
 			pieHeight: 0,
@@ -72,7 +75,9 @@ class Dashboard extends Component {
 		yesterdayJs: PropTypes.number,
 		yesterdayAjax: PropTypes.number,
 		yesterdayJsCompare: PropTypes.number,
-		yesterdayAjaxCompare: PropTypes.number
+		yesterdayAjaxCompare: PropTypes.number,
+		theme: PropTypes.string,
+		changeTheme: PropTypes.func.isRequired
 	}
 
 	componentDidMount() {
@@ -99,8 +104,16 @@ class Dashboard extends Component {
 		})
 	}
 
+	handleThemeClick(event) {
+		event.preventDefault()
+		this.setState({
+			rightTheme: true
+		})
+	}
+
 	render() {
 		const {
+			theme,
 			consoleLeftNav,
 			browsers,
 			date,
@@ -116,13 +129,15 @@ class Dashboard extends Component {
 			yesterdayJs,
 			yesterdayAjax,
 			yesterdayJsCompare,
-			yesterdayAjaxCompare
+			yesterdayAjaxCompare,
+			changeTheme
 		} = this.props
 		const dashboardStyle = consoleLeftNav ? {marginLeft: 120} : {marginLeft: 0}
 
 		const images = ['infographic', 'roma', 'shine', 'dark', 'vintage', 'macarons'].map((t, i) => {
 			return (
 				<Paper
+					onClick={() => changeTheme(t)}
 					className={`image ${i % 2 === 0 ? 'odd' : ''} img${i}`}
 					zDepth={this.state.zDepth[i]}
 					key={i}
@@ -145,9 +160,22 @@ class Dashboard extends Component {
 							style={{verticalAlign: 'sub'}}
 						/> 应用名称：{currentApp.name}
 					</h2>
+					<div className='theme'>
+						<div className='theme-btn'
+							onClick={this.handleThemeClick}
+						>
+							<FlatButton
+								label='主题'
+								labelPosition="after"
+								secondary={true}
+								icon={<Polymer />}
+							/>
+						</div>
+					</div>
 				</div>
 				<div ref='line' className='line-chart'>
 					<Line
+						theme={theme}
 						date={date}
 						js={js}
 						ajax={ajax}
@@ -156,13 +184,16 @@ class Dashboard extends Component {
 					/>
 				</div>
 				<div ref='pie' className='pie-chart'>
-					<Pie browsers={browsers}
+					<Pie
+						browsers={browsers}
+						theme={theme}
 						height={this.state.pieHeight}
 						width={this.state.pieWidth}
 					/>
 				</div>
 				<div ref='map' className='map-chart'>
 					<Map
+						theme={theme}
 						errors={errorsWithLocation}
 						height={this.state.mapHeight}
 						width={this.state.mapWidth}
@@ -207,7 +238,7 @@ class Dashboard extends Component {
 					</div>
 				</div>
 				<LeftNav
-					width={500}
+					width={300}
 					openRight={true}
 					open={this.state.rightTheme}
 					style={style.rightBar}
@@ -229,6 +260,7 @@ class Dashboard extends Component {
 const mapStateToProps = state => {
 	const { consoleLeftNav } = state.console
 	const {
+		theme,
 		total,
 		totalDay,
 		yesterdayJs,
@@ -243,6 +275,7 @@ const mapStateToProps = state => {
 	} = state.dashboard
 	const { currentApp } = state.current
 	return {
+		theme,
 		currentApp,
 		total,
 		consoleLeftNav,
