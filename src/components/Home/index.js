@@ -14,13 +14,17 @@ class Home extends Component {
 		super(props)
 		this.state = {
 			browsers: [
-				{ 'name': 'Chrome-52', 'value': 7 },
+				{ 'name': 'Chrome-52', 'value': 9 },
+				{ 'name': 'Chrome-51', 'value': 8 },
+				{ 'name': 'Chrome-49', 'value': 3 },
 				{ 'name': 'Safari-9', 'value': 6 },
 				{ 'name': 'Firefox-47', 'value': 6 },
 				{ 'name': 'Firefox-44', 'value': 5 },
+				{ 'name': 'Firefox-45', 'value': 5 },
 				{ 'name': 'Opera-36', 'value': 7 },
-				{ 'name': 'Opera-37', 'value': 5 },
-				{ 'name': 'Chrome-50', 'value': 7 }
+				{ 'name': 'Opera-37', 'value': 3 },
+				{ 'name': 'Chrome-50', 'value': 4 },
+				{ 'name': 'Firefox-46', 'value': 2 }
 			]
 		}
 	}
@@ -58,7 +62,7 @@ class Home extends Component {
 					</div>
 					<div className='pie'>
 						<Pie
-							width={400}
+							width={420}
 							height={400}
 							browsers={this.state.browsers}
 						/>

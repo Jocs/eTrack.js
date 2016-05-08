@@ -33,7 +33,7 @@ export const fetchDetailErrorIfNeeded = errorId => {
 				dispatch(updateDetailError(data.data))
 				const { location } = data.data.environment
 				const geo = JSON.parse(location)
-				getCity(geo.longitude, geo.latitude)
+				geo && getCity(geo.longitude, geo.latitude)
 					.then(p => {
 						console.log(p)
 						dispatch(updateCity(p.province, p.city))
