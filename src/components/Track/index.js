@@ -243,6 +243,12 @@ class Ajax extends Component {
 		const { startedOn, endOn, method, responseText, statusCode, url } = this.props.value
 		const time = getTime(startedOn)
 		const duration = endOn ? (endOn - startedOn) : null
+		const durationChildren = () => {
+			if (!duration) return <span className='error'>请求未响应</span>
+			else if (duration >= 1000) return <span>耗时 <span className='warning'>{duration}</span> ms</span>
+			else return <span>耗时 {duration} ms</span>
+		}
+
 		return (
 			<div className='log-wrapper'>
 				<div className='ajax-log log-content'>
@@ -253,7 +259,9 @@ class Ajax extends Component {
 					{' '}
 					<span className='log-title'>用户发送"{method.toUpperCase()}"请求(StatusCode：{statusCode})</span>
 					<div className='log-body-wrapper'>
-						<div className='log-body'>请求持续时间：{duration ? `耗时${duration} ms` : '请求未收到响应'}</div>
+						<div className='log-body'>请求持续时间：
+							{durationChildren()}
+						</div>
 						<div className='log-body'>请求URL：{url}</div>
 						<div className='log-hide'>
 							<span

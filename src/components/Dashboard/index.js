@@ -222,7 +222,7 @@ class Dashboard extends Component {
 							{' '}
 							<span className={
 								yesterdayJsCompare >= 0 ? 'text up' : 'text down'
-							}>{`${yesterdayJsCompare.toFixed(4) * 100}%`}</span>
+							}>{`${(yesterdayJsCompare * 100).toFixed(2)}%`}</span>
 						</p>
 						<p>
 							<span className='text'>Ajax:</span>
@@ -233,7 +233,7 @@ class Dashboard extends Component {
 							{' '}
 							<span className={
 								yesterdayAjaxCompare >= 0 ? 'text up' : 'text down'
-							}>{`${yesterdayAjaxCompare.toFixed(4) * 100}%`}</span>
+							}>{`${(yesterdayAjaxCompare * 100).toFixed(2)}%`}</span>
 						</p>
 					</div>
 				</div>
