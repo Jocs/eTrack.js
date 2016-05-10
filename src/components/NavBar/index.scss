@@ -13,6 +13,13 @@
 	    height: 42px;
 	    display: inline-block;
 	}
+	.menu {
+		display: none;
+	}
+}
+
+.et-navbar-accont:hover .menu {
+	display: block;
 }
 .loading {
 	position: absolute;

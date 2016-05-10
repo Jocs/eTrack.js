@@ -10,9 +10,9 @@ const date = _.flatMap(_.range(4), m => _.range(30).map(d => `2016/${m + 1}/${d 
 	_.range(8).map(d => `2016/5/${d + 1}`)
 )
 
-const gRandom = () => Math.floor(Math.random() * 500 + 500)
+const gRandom = () => Math.floor(Math.random() * 50 + 50)
 
-const errorPerDay = date.map(d => ({ date: d, js: gRandom() - 300, ajax: gRandom() }))
+const errorPerDay = date.map(d => ({ date: d, js: gRandom() - 30, ajax: gRandom() }))
 
 
 const mock = () => {

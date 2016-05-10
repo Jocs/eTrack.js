@@ -37,6 +37,22 @@ class NavBar extends Component {
 		dispatch: PropTypes.func.isRequired,
 		router: PropTypes.object.isRequired
 	}
+
+	documentHandler() {
+		const parent = event.target.parentNode
+		if (!parent.classList || parent.classList && !parent.classList.contains('et-navbar-accont')) {
+			this.setState({showMenu: false})
+		}
+	}
+
+	componentDidMount() {
+		document.addEventListener('click', this.documentHandler.bind(this), false)
+	}
+
+	componentWillUnMount() {
+		document.removeEventListener('click', this.documentHandler.bind(this), false)
+	}
+
 	handleLogin(event) {
 		event.preventDefault()
 		this.props.toggleLoginPanel('login')

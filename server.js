@@ -15,11 +15,14 @@ const server = http.createServer(app)
 const socketio = io.listen(server)
 const DIRNAME = __dirname
 
+// 设置运行环境
+process.env.NODE_ENV = process.env.SERVER_SOFTWARE === 'bae/3' ? 'production' : 'development'
+
 Object.keys(config).forEach(key => config[key](app, DIRNAME))
 router(app, DIRNAME)
 socketConfig(socketio)
 
-server.listen(process.env.PORT || 8080, function onListen() {
+server.listen(process.env.PORT || 18080, function onListen() {
 	const address = server.address()
 	console.log('Listening on: %j', address)
 	console.log(' -> that probably means: http://localhost:%d', address.port)

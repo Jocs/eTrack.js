@@ -7,7 +7,7 @@ import webpackConfigration from '../../webpack/common.config'
 const compiler = webpack(webpackConfigration)
 
 const webpackInit = app => {
-	process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+	if (process.env.NODE_ENV !== 'development') return false
 	app.use(webpackDevMiddleware(compiler, {
 		noInfo: true,
 		publicPath: webpackConfigration.output.publicPath

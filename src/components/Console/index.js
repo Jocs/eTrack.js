@@ -11,6 +11,7 @@ import MenuItem from 'material-ui/lib/menus/menu-item'
 import DashIcon from 'material-ui/lib/svg-icons/action/dashboard'
 import ListIcon from 'material-ui/lib/svg-icons/device/dvr'
 import AppIcon from 'material-ui/lib/svg-icons/content/font-download'
+import SearchIcon from 'material-ui/lib/svg-icons/action/pageview'
 
 import * as consoleActionsCreator from '../../actions/console'
 
@@ -57,6 +58,17 @@ class Console extends Component {
 						>
 							实时错误
 							{unReadCount !== 0 && <span className='barget'>{unReadCount}</span>}
+						</MenuItem>
+					</Link>
+					<Link to='/search'
+						className='console-link'
+						activeClassName='console-current'
+					>
+						<MenuItem
+							innerDivStyle={style.inDiv}
+							leftIcon={<SearchIcon style={style.icon}/>}
+						>
+							错误检索
 						</MenuItem>
 					</Link>
 					<Link to='/applist'
