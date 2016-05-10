@@ -16,7 +16,8 @@ const socketio = io.listen(server)
 const DIRNAME = __dirname
 
 // 设置运行环境
-process.env.NODE_ENV = process.env.SERVER_SOFTWARE === 'bae/3' ? 'production' : 'development'
+process.env.NODE_ENV = process.env.SSH_CONNECTION && process.env.SSH_CONNECTION.split(' ')[2] === '139.196.50.67'
+	? 'production' : 'development'
 
 Object.keys(config).forEach(key => config[key](app, DIRNAME))
 router(app, DIRNAME)
@@ -26,4 +27,5 @@ server.listen(process.env.PORT || 18080, function onListen() {
 	const address = server.address()
 	console.log('Listening on: %j', address)
 	console.log(' -> that probably means: http://localhost:%d', address.port)
+	console.log(`NODE_ENV ${process.env.NODE_ENV}`)
 })

@@ -6,7 +6,7 @@ import C from '../constants'
 import { createReducer } from '../utils'
 
 const initialState = {
-	currentApp: null,
+	currentApp: {name: ''},
 	unReadCount: 0,
 	currentErrorList: [],
 	autoRefresh: false
