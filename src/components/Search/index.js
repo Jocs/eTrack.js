@@ -3,6 +3,7 @@
  */
 
 import React, { Component, PropTypes } from 'react'
+import Pagination from '../Pagination'
 
 import './index.scss'
 
@@ -15,6 +16,11 @@ class Search extends Component {
 		return (
 			<div className='search'>
 				This is Search page
+				<Pagination
+					offset={12}
+					total={23}
+					fetchData={data => console.log(data)}
+				/>
 			</div>
 		)
 	}

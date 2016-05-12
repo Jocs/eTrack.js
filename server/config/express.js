@@ -11,7 +11,7 @@ import cors from 'cors'
 const expressInit = (app, rootPath) => {
 	app.use(express.static(`${rootPath}`))
 	app.use(bodyParser.urlencoded({extended: false}))
-	app.use(bodyParser.json())
+	app.use(bodyParser.json({'limit': '10000kb'}))
 	app.use(morgan('dev'))
 	app.use(cookieParser())
 	app.use(cors())
