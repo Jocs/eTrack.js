@@ -93,6 +93,7 @@ class Current extends Component {
 				</div>
 				{currentApp && <Table
 					list={currentErrorList}
+					type='short'
 				/>}
 			</div>
 		)

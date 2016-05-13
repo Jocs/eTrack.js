@@ -21,11 +21,12 @@ export default class CurrentTable extends Component {
 	}
 
 	static propTypes = {
-		list: PropTypes.array.isRequired
+		list: PropTypes.array.isRequired,
+		type: PropTypes.string
 	}
 
 	render() {
-		const { list } = this.props
+		const { list, type } = this.props
 		const ERROR_REG = /ajax/
 		const rows = list.map((l, index) => {
 			const browser = JSON.parse(l.userAgentInfo.browser).name
@@ -36,7 +37,7 @@ export default class CurrentTable extends Component {
 							ERROR_REG.test(l.errorType) ? <span className='ajax'>AJAX</span> : <span className='js'>JS</span>
 						}
 					</TableRowColumn>
-					<TableRowColumn>{new Date(Number(l.time)).toString().split(' ')[4]}</TableRowColumn>
+					<TableRowColumn>{getTime(l.time, type)}</TableRowColumn>
 					<TableRowColumn>{l.user}</TableRowColumn>
 					<TableRowColumn>{l.message}</TableRowColumn>
 					<TableRowColumn>{l.environment.url}</TableRowColumn>
@@ -79,5 +80,19 @@ export default class CurrentTable extends Component {
 				</Table>
 			</div>
 		)
+	}
+}
+
+function getTime(time, type) {
+	const date = new Date(Number(time))
+	const year = date.getFullYear()
+	const month = date.getMonth() + 1
+	const day = date.getDate()
+	const shortTime = date.toString().split(' ')[4]
+	const longTime = `${year}/${month}/${day} ${shortTime}`
+	switch (type) {
+		case 'short': return shortTime
+		case 'long': return longTime
+		default: return shortTime
 	}
 }
