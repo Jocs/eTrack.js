@@ -80,7 +80,7 @@ class Pagination extends Component {
 				offset: nextProps.offset,
 				total: nextProps.total
 			}, () => {
-				this.refs.input.value = this.this.state.offset
+				this.refs.input.value = this.state.offset
 			})
 		}
 	}
@@ -96,7 +96,7 @@ class Pagination extends Component {
 		if (event.keyCode === ENTER_KEYCODE) {
 			const v = Number(validValue(value, offset, total))
 			if (v !== Number(this.state.offset)) {
-				fetchData(v)
+				fetchData(event, v)
 			}
 			this.setState({
 				offset: v
@@ -114,7 +114,7 @@ class Pagination extends Component {
 			case 'number': {
 				if (where !== offset) {
 					this.setState({offset: where}, () => {
-						fetchData(this.state.offset)
+						fetchData(event, this.state.offset)
 						this.refs.input.value = this.state.offset
 					})
 				}
@@ -125,7 +125,7 @@ class Pagination extends Component {
 					if (Number(this.state.offset) < Number(this.state.total)) {
 						console.log('ddd')
 						this.setState({offset: this.state.offset + 1}, () => {
-							fetchData(this.state.offset)
+							fetchData(event, this.state.offset)
 							this.refs.input.value = this.state.offset
 						})
 					}
@@ -133,7 +133,7 @@ class Pagination extends Component {
 				if (where === 'previous') {
 					if (this.state.offset > 1) {
 						this.setState({offset: this.state.offset - 1}, () => {
-							fetchData(this.state.offset)
+							fetchData(event, this.state.offset)
 							this.refs.input.value = this.state.offset
 						})
 					}

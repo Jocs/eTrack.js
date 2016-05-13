@@ -18,7 +18,7 @@ export const updateResult = (searchResult, pageNumber, total) => {
 	}
 }
 
-export const searchError = type => search => {
+export const searchError = (type, search) => {
 	return (dispatch, getState) => {
 		dispatch(toggleLoadingStatus('loading'))
 		fetchSearch(type)(search)

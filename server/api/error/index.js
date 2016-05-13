@@ -25,7 +25,7 @@ router.post('/fault', receiveFault)
 router.get('/singleError/:errorId', singleError)
 router.get('/errorsWithLocation/:appId', errorsWithLocation)
 router.get('/simpleSearch/:appId/:pageNumber/:pageSize/:message', simpleSearch)
-router.get('/complexSearch/:appId/:pageNumber/:pageSize/:include/:errorType/:startTime/:endTime/:browser/:user', complexSearch)
+router.post('/complexSearch', complexSearch)
 router.get('/errors/:appId/:pageNumber/:pageSize', getError)
 
 

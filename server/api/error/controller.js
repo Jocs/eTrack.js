@@ -205,18 +205,17 @@ export const complexSearch = (req, res) => {
 		pageSize,
 		include,
 		errorType,
-		startTime,
-		endTime,
+		start,
+		end,
 		browser,
 		user
-	} = req.params
+	} = req.body
 
+	console.log(user === '')
 
 	const IN_REGEXP = include !== '' ? new RegExp(include, 'i') : new RegExp(/.*/, 'i')
 	const USER_REGEXP = user !== '' ? new RegExp(user, 'i') : new RegExp(/.*/, 'i')
 	const Error_TYPE_REGEXP = errorType === 'all' ? new RegExp(/.*/, 'i') : errorType === 'ajax' ? new RegExp('ajax', 'i') : new RegExp('^((?!ajax).)*$', 'i')
-	const start = new Date(Number(startTime))
-	const end = new Date(Number(endTime))
 	const BROWSER_REGEXP = browser === 'all' ? new RegExp(/.*/, 'i') : new RegExp(browser, 'i')
 
 	const getSpecialData = () => {

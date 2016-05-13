@@ -41,9 +41,11 @@ export const fetchSimpleSearch = search => {
 }
 
 export const fetchComplexSearch = search => {
-	const { appId, pageNumber, pageSize, include, type, start, end, browser, user } = search
-	const url = `/api/error/complexSearch/${appId}/${pageNumber}/${pageSize}/${include}/${type}/${start}/${end}/${browser}/${user}`
-	return fetchV(url, 'GET')
+	const { appId, pageNumber, pageSize, include, errorType, start, end, browser, user } = search
+	const url = '/api/error/complexSearch'
+	return fetchV(url, 'POST', {
+		appId, pageNumber, pageSize, include, errorType, start, end, browser, user
+	})
 }
 
 export const fetchSearch = type => search => {

@@ -13,6 +13,7 @@ import RaisedButton from 'material-ui/lib/raised-button'
 import Toggle from 'material-ui/lib/svg-icons/action/code'
 
 import * as searchActionCreator from '../../actions/search'
+import * as snackbarActionCreator from '../../actions/snackbar'
 import Pagination from '../Pagination'
 import Table from '../CurrentTable'
 
@@ -23,16 +24,29 @@ class Search extends Component {
 	constructor(props) {
 		super(props)
 		this.toggleSearch = this.toggleSearch.bind(this)
+		this.simpleSearch = this.simpleSearch.bind(this)
+		this.complexSearch = this.complexSearch.bind(this)
+		this.handChange = this.handChange.bind(this)
 		this.state = {
 			pageSize: this.props.search.pageSize,
-			complex: false
+			complex: false,
+			searchType: 'simple',
+			message: '',
+			include: '',
+			user: '',
+			errorType: 'all',
+			browser: 'all',
+			start: '',
+			end: ''
 		}
 	}
 
 	static propTypes = {
 		search: PropTypes.object.isRequired,
 		consoleLeftNav: PropTypes.bool.isRequired,
-		searchError: PropTypes.func.isRequired
+		searchError: PropTypes.func.isRequired,
+		openSnackBar: PropTypes.func.isRequired,
+		currentApp: PropTypes.object.isRequired
 	}
 
 	toggleSearch() {
@@ -41,9 +55,48 @@ class Search extends Component {
 		})
 	}
 
+	handChange(event, type) {
+		this.setState({[type]: event.target.value}, () => {
+			// console.log(this.state)
+		})
+
+	}
+
+	simpleSearch(event, pageNumber) {
+		event.preventDefault()
+		const { openSnackBar, searchError } = this.props
+
+		if (this.state.message === '') return openSnackBar('搜索框不能为空', 'info', 4000)
+		this.setState({searchType: 'simple'}, () => {
+			searchError('simple', {
+				message: this.state.message,
+				appId: this.props.currentApp._id,
+				pageNumber,
+				pageSize: this.props.search.pageSize
+			})
+		})
+
+
+	}
+
+	complexSearch(event, pageNumber) {
+		event.preventDefault()
+		const { openSnackBar, searchError } = this.props
+		const { include, user, errorType, browser, start, end } = this.state
+		if (this.state.start === '' || this.state.end === '') return openSnackBar('日期不能为空', 'info', 4000)
+		this.setState({searchType: 'complex'}, () => {
+			searchError('complex', {
+				appId: this.props.currentApp._id,
+				pageNumber,
+				pageSize: this.props.search.pageSize,
+				include, user, errorType, browser, start, end
+			})
+		})
+	}
+
 	render() {
-		const { consoleLeftNav, searchError } = this.props
-		const { searchResult } = this.props.search
+		const { consoleLeftNav } = this.props
+		const { searchResult, pageNumber, total } = this.props.search
 		const searchStyle = consoleLeftNav ? {marginLeft: 170} : {marginLeft: 0}
 
 		return (
@@ -55,9 +108,12 @@ class Search extends Component {
 				>
 					<div className='simple-serch'>
 						<div className='search-wrapper'>
-							<input type='text'/>
+							<input type='text'
+								onChange={event => this.handChange(event, 'message')}
+							/>
 							<SearchIcon
 								style={style.searchIcon}
+								onClick={event => this.simpleSearch(event, 1)}
 							/>
 						</div>
 						<span
@@ -80,17 +136,21 @@ class Search extends Component {
 									<label>错误信息：</label>
 									<TextField
 										hintText='不填默认搜索全部错误！'
+										onChange={event => this.handChange(event, 'include')}
 									/>
 									<label>用户：</label>
 									<TextField
 										hintText='不填默认搜索所有用户！'
+										onChange={event => this.handChange(event, 'user')}
 									/>
 								</div>
 								<div className='form-group radio'>
 									<label>错误类型：</label>
 									<RadioButtonGroup
 										style={style.radioButtonGroup}
-										name='shipSpeed' defaultSelected='all'>
+										name='shipSpeed' defaultSelected='all'
+										onChange={event => this.handChange(event, 'errorType')}
+									>
 										<RadioButton
 											value='js'
 											label='JavaScript'
@@ -112,7 +172,9 @@ class Search extends Component {
 									<label>浏览器：</label>
 									<RadioButtonGroup
 										style={style.radioButtonGroup}
-										name='shipSpeed' defaultSelected='all'>
+										name='shipSpeed' defaultSelected='all'
+										onChange={event => this.handChange(event, 'browser')}
+									>
 										<RadioButton
 											value='chrome'
 											label='Chrome'
@@ -142,14 +204,19 @@ class Search extends Component {
 								</div>
 								<div className='form-group date-picker'>
 									<label>时间范围：</label>
-									<input type='date'/>
+									<input type='date'
+										onChange={event => this.handChange(event, 'start')}
+									/>
 									－
-									<input type='date'/>
+									<input type='date'
+										onChange={event => this.handChange(event, 'end')}
+									/>
 								</div>
 								<div className='form-group serch-button'>
 									<RaisedButton
 										secondary={true}
 										label='开始搜索'
+										onClick={event => this.complexSearch(event, 1)}
 									/>
 								</div>
 							</div>
@@ -166,9 +233,12 @@ class Search extends Component {
 								type='long'
 							/>
 							<Pagination
-								offset={12}
-								total={23}
-								fetchData={data => console.log(data)}
+								offset={Number(pageNumber)}
+								total={Number(total)}
+								fetchData={
+									this.state.searchType === 'simple'
+									? this.simpleSearch : this.complexSearch
+								}
 							/>
 						</div>
 					}
@@ -186,7 +256,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-	return bindActionCreators(Object.assign({}, searchActionCreator), dispatch)
+	return bindActionCreators(Object.assign({}, searchActionCreator, snackbarActionCreator), dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search)

@@ -29,7 +29,7 @@ export default class CurrentTable extends Component {
 		const { list, type } = this.props
 		const ERROR_REG = /ajax/
 		const rows = list.map((l, index) => {
-			const browser = JSON.parse(l.userAgentInfo.browser).name
+			const browser = l.userAgentInfo ? JSON.parse(l.userAgentInfo.browser).name : '未知浏览器'
 			return (
 				<TableRow key={index} className='row-column'>
 					<TableRowColumn>
@@ -59,7 +59,7 @@ export default class CurrentTable extends Component {
 		return (
 			<div className='current-table'>
 				<Table
-					height={window.innerHeight - 250}
+					height={type === 'short' ? window.innerHeight - 250 : 'auto'}
 					fixedHeader={true}
 					selectable={false}
 				>
