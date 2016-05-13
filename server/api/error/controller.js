@@ -209,7 +209,7 @@ export const complexSearch = (req, res) => {
 		endTime,
 		browser,
 		user
-	} = req.body
+	} = req.params
 
 
 	const IN_REGEXP = include !== '' ? new RegExp(include, 'i') : new RegExp(/.*/, 'i')
@@ -219,29 +219,8 @@ export const complexSearch = (req, res) => {
 	const end = new Date(Number(endTime))
 	const BROWSER_REGEXP = browser === 'all' ? new RegExp(/.*/, 'i') : new RegExp(browser, 'i')
 
-	console.log(start)
-
-	Error
-	.find({appId})
-	.where({message: {$regex: IN_REGEXP}})
-	.where({errorType: {$regex: Error_TYPE_REGEXP}})
-	.where({createdAt: {$gt: start, $lt: end}})
-	.where({user: {$regex: USER_REGEXP}})
-	.skip((Number(pageNumber) - 1) * Number(pageSize))
-	.limit(Number(pageSize))
-	.populate({
-		path: 'environment',
-		select: 'url'
-	})
-	.populate({
-		path: 'userAgentInfo',
-		select: 'browser',
-		match: {browser: new RegExp(BROWSER_REGEXP, 'i')}
-	})
-	.select('environment userAgentInfo message errorType time user')
-	.then(data => {
-		console.log(data)
-		Error
+	const getSpecialData = () => {
+		return 	Error
 		.find({appId})
 		.where({message: {$regex: IN_REGEXP}})
 		.where({errorType: {$regex: Error_TYPE_REGEXP}})
@@ -252,10 +231,22 @@ export const complexSearch = (req, res) => {
 			select: 'browser',
 			match: {browser: new RegExp(BROWSER_REGEXP, 'i')}
 		})
+	}
+
+	getSpecialData()
+	.skip((Number(pageNumber) - 1) * Number(pageSize))
+	.limit(Number(pageSize))
+	.populate({
+		path: 'environment',
+		select: 'url'
+	})
+	.select('environment userAgentInfo message errorType time user')
+	.then(data => {
+		getSpecialData()
 		.count()
 		.then(total => {
 			console.log(total, 'total')
-			res.send({code: 1, data, total: Math.ceil(total / pageSize)})
+			res.send({code: 1, data, total: Math.ceil(total / pageSize), pageSize, pageNumber})
 		})
 	})
 	.catch(err => {
