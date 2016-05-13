@@ -28,6 +28,7 @@ class Search extends Component {
 		this.complexSearch = this.complexSearch.bind(this)
 		this.handChange = this.handChange.bind(this)
 		this.state = {
+			dirty: false,
 			pageSize: this.props.search.pageSize,
 			complex: false,
 			searchType: 'simple',
@@ -67,6 +68,7 @@ class Search extends Component {
 		const { openSnackBar, searchError } = this.props
 
 		if (this.state.message === '') return openSnackBar('搜索框不能为空', 'info', 4000)
+		this.setState({dirty: true})
 		this.setState({searchType: 'simple'}, () => {
 			searchError('simple', {
 				message: this.state.message,
@@ -84,6 +86,7 @@ class Search extends Component {
 		const { openSnackBar, searchError } = this.props
 		const { include, user, errorType, browser, start, end } = this.state
 		if (this.state.start === '' || this.state.end === '') return openSnackBar('日期不能为空', 'info', 4000)
+		this.setState({dirty: true})
 		this.setState({searchType: 'complex'}, () => {
 			searchError('complex', {
 				appId: this.props.currentApp._id,
@@ -225,8 +228,10 @@ class Search extends Component {
 				</div>
 				<div>
 					{
-						searchResult.length === 0
-						? <div className='no-result'><img src='./src/assets/images/noResult.jpg'/></div>
+						this.state.dirty === false
+						? <div className='no-result'><img className='search-img' src='./src/assets/images/search.png'/></div>
+						: searchResult.length === 0
+						? <div className='no-result'><img src='./src/assets/images/NoResult.jpg'/></div>
 						: <div className='table'>
 							<Table
 								list={searchResult}
