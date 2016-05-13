@@ -3,15 +3,7 @@
  */
 
 import React, { Component, PropTypes } from 'react'
-import echarts from 'echarts'
-
-import '../../assets/javascript/shine.js'
-import '../../assets/javascript/macarons.js'
-import '../../assets/javascript/dark.js'
-import '../../assets/javascript/infographic.js'
-import '../../assets/javascript/roma.js'
-import '../../assets/javascript/vintage.js'
-
+// import echarts from 'echarts' 已经在html中引用，防止bundle过大
 
 export default class Pie extends Component {
 	constructor(props) {

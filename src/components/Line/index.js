@@ -3,7 +3,7 @@
  */
 
 import React, { Component, PropTypes } from 'react'
-import echarts from 'echarts'
+// import echarts from 'echarts'
 
 export default class Line extends Component {
 	constructor(props) {

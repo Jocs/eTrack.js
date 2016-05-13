@@ -3,9 +3,7 @@
  */
 
 import React, { Component, PropTypes } from 'react'
-import echarts from 'echarts'
-
-import '../../assets/javascript/china.js'
+// import echarts from 'echarts'
 
 export default class Map extends Component {
 	constructor(props) {

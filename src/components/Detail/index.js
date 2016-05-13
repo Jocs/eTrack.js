@@ -27,7 +27,8 @@ class Detail extends Component {
 		consoleLeftNav: PropTypes.bool.isRequired,
 		params: PropTypes.object,
 		fetchDetailErrorIfNeeded: PropTypes.func.isRequired,
-		detail: PropTypes.object.isRequired
+		detail: PropTypes.object.isRequired,
+		stack: PropTypes.string
 	}
 
 	componentWillMount() {
@@ -49,7 +50,7 @@ class Detail extends Component {
 
 	render() {
 		const { consoleLeftNav } = this.props
-		const { environment } = this.props.detail
+		const { environment, stack } = this.props.detail
 		const detailStyle = consoleLeftNav ? {marginLeft: 170} : {marginLeft: 0}
 		return (
 			<div className='detail' style={detailStyle}>
@@ -60,7 +61,7 @@ class Detail extends Component {
 					</ul>
 					{this.state.show ? <Track
 							{...this.props}
-						/> : <div>track</div>}
+						/> : <div className='stack'>{stack}</div>}
 				</div>
 				<div className='right-board'>
 					{ environment && <Board

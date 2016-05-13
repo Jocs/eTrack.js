@@ -226,7 +226,7 @@ class Search extends Component {
 				<div>
 					{
 						searchResult.length === 0
-						? <div>暂无结果</div>
+						? <div className='no-result'><img src='./src/assets/images/noResult.jpg'/></div>
 						: <div className='table'>
 							<Table
 								list={searchResult}
