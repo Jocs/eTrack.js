@@ -34,6 +34,24 @@ export const fetchAllInOne = appId => {
 	return fetchV(url, 'GET')
 }
 
+export const fetchSimpleSearch = search => {
+	const { appId, pageNumber, pageSize, message } = search
+	const url = `/api/error/simpleSearch/${appId}/${pageNumber}/${pageSize}/${message}`
+	return fetchV(url, 'GET')
+}
+
+export const fetchComplexSearch = search => {
+	const { appId, pageNumber, pageSize, include, type, start, end, browser, user } = search
+	const url = `/api/error/complexSearch/${appId}/${pageNumber}/${pageSize}/${include}/${type}/${start}/${end}/${browser}/${user}`
+	return fetchV(url, 'GET')
+}
+
+export const fetchSearch = type => search => {
+	switch (type) {
+		case 'simple': return fetchSimpleSearch(search)
+		case 'complex': return fetchComplexSearch(search)
+	}
+}
 
 export const getCity = (lot, lat) => {
 	return new Promise((resolve, reject) => {
@@ -48,13 +66,3 @@ export const getCity = (lot, lat) => {
 	})
 
 }
-
-
-
-
-
-
-
-
-
-

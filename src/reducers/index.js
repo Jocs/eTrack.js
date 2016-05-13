@@ -11,6 +11,7 @@ import appList from './appList'
 import current from './current'
 import detail from './detail'
 import dashboard from './dashboard'
+import research from './research'
 
 export default combineReducers({
 	auth,
@@ -21,6 +22,7 @@ export default combineReducers({
 	current,
 	detail,
 	dashboard,
+	research,
 	router: routerStateReducer
 })
 
