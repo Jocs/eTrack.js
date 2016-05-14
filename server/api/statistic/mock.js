@@ -4,7 +4,7 @@
 import _ from 'lodash'
 import Statistic from './model'
 
-const appId = '571f011a020c19975b2c79f7'
+const appId = '57374022e9e14bcec793b06b'
 
 const date = _.flatMap(_.range(4), m => _.range(30).map(d => `2016/${m + 1}/${d + 1}`)).concat(
 	_.range(14).map(d => `2016/5/${d + 1}`)

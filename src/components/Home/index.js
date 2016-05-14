@@ -47,7 +47,7 @@ class Home extends Component {
 	}
 
 	render() {
-		const { toggleLoginPanel } = this.props
+		// const { toggleLoginPanel } = this.props
 		const { cursor, showWord } = this.state
 
 		return (
@@ -58,12 +58,12 @@ class Home extends Component {
 						{/\./.test(showWord) ? showWord.split(/\$/)[showWord.split(/\$/).length - 1] : showWord}
 						<span style={{color: cursor ? '#eee' : 'rgb(0, 188, 212)'}}>&nbsp;|</span>&nbsp;*/
 					</h3>
-					<div>
+					{/* <div>
 						<a href='https://github.com/Jocs/jocs.github.io/issues/1'>阅读文档</a>
 						<a href='javascript:;'
 							onClick={event => toggleLoginPanel('login')}
 						>立即使用</a>
-					</div>
+					</div> */}
 				</section>
 				<section className='map-page'>
 					<div className='map-wrapper'>
@@ -85,7 +85,7 @@ class Home extends Component {
 				</section>
 				<section className='detail-page'>
 					<div className='detail-image'>
-						<img src='./src/assets/images/detail.jpg'/>
+						<img src='./src/assets/images/detail.png'/>
 					</div>
 					<div className='text right'>
 						<p>用户页面访问行为追踪</p>
