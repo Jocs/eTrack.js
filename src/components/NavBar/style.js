@@ -1,6 +1,5 @@
 /**
  * create by Jocs 2016.04.24
- * @type {Object}
  */
 const style = {
 	loading: {
@@ -20,7 +19,7 @@ const style = {
 	account: {
 		height: 51,
 		width: 35,
-		fill: '#cccccc',
+		fill: '#fff',
 		marginRight: 35,
 		cursor: 'pointer'
 	},

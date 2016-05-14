@@ -20,6 +20,7 @@ export const updateResult = (searchResult, pageNumber, total) => {
 
 export const searchError = (type, search) => {
 	return (dispatch, getState) => {
+		if (!search.appId) return dispatch(openSnackBar('还没创建应用，暂不能查询！', 'danger', 5000))
 		dispatch(toggleLoadingStatus('loading'))
 		fetchSearch(type)(search)
 		.then(data => {

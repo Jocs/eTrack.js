@@ -77,7 +77,6 @@ export default class Login extends Component {
 		event.preventDefault()
 		const {userName, email, password} = this.state
 		const { loginPanel, singupSuccess, toggleLoginPanel, dispatch, push, getAppList } = this.props
-		console.log(this.props)
 		const userNameErrorText = validateUserName(userName)
 		const emailErrorText = validateEmail(email)
 		const passwordErrorText = validatePassword(password)

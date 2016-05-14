@@ -76,7 +76,7 @@ export const fetchBrowsers = appId => {
 		fetchBrowserPencentage(appId)
 		.then(data => {
 			if (data.code === 1) dispatch(updateBrowser(data.browsers))
-			else dispatch(openSnackBar('数据库查询浏览器百分比失败', 'danger', 4000))
+			else if (data.code === 2) dispatch(openSnackBar('数据库暂无浏览器百分比数据', 'info', 4000))
 		})
 		.catch(err => {
 			console.log(err)

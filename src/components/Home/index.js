@@ -5,7 +5,6 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as authActionCreator from '../../actions/auth'
-import Pie from '../Pie'
 
 import './index.scss'
 
@@ -14,8 +13,8 @@ class Home extends Component {
 		super(props)
 		this.state = {
 			about: 'eTrack.Js is a JavaScript Error monitor and reportor.$' +
-				'Help you build a better JavaScript Application.$' +
-				'Hope you love it and enjoy your development.',
+					'Help you build a better JavaScript Application.$' +
+					'Hope you love it and enjoy your development.',
 			showWord: '',
 			cursor: true
 		}

@@ -55,6 +55,11 @@ export const fetchSearch = type => search => {
 	}
 }
 
+export const deleteApp = (userId, appId) => {
+	const url = `/api/applications/deleteOne/${userId}/${appId}`
+	return fetchV(url, 'GET')
+}
+
 export const getCity = (lot, lat) => {
 	return new Promise((resolve, reject) => {
 		// const map = new BMap.Map('allmap')

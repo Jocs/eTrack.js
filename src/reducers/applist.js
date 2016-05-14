@@ -10,11 +10,13 @@ const initialState = []
 export default createReducer(initialState, {
 	[C.UNDATE_APP_LIST]: (state, payload) => payload,
 	[C.ADD_APP_TO_STATE]: (state, payload) => {
-		console.log(payload)
 		return [payload, ...state]
 	},
 	[C.LOGOUT]: (state, payload) => {
 		return initialState
+	},
+	[C.PULL_ONE_APP_OUT_OF_LIST]: (state, payload) => {
+		return state.filter(app => app._id !== payload)
 	}
 })
 

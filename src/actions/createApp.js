@@ -6,6 +6,7 @@ import { toggleLoadingStatus } from './loading'
 import { fetchV } from '../utils'
 import { openSnackBar } from './snackBar'
 import { push } from 'redux-router'
+import { getAppList } from './applist'
 
 const addAppToState = response => ({
 	type: C.ADD_APP_TO_STATE,
@@ -18,9 +19,16 @@ export const createApp = data => {
 		dispatch(toggleLoadingStatus('loading'))
 		fetchV('/api/applications/createApp', 'POST', data)
 		.then(res => {
+			const { currentApp } = getState().current
+			const { userId } = getState().auth
+			// 如果创建的应用是第一个应用，将该应用设置为currentApp
+			if (currentApp.name === '') {
+				res.code === 1 && dispatch(getAppList(userId))
+			} else {
+				res.code === 1 && dispatch(addAppToState(res.response))
+			}
 			dispatch(toggleLoadingStatus('hide'))
 			dispatch(openSnackBar('创建应用成功！', 'success', 4000))
-			res.code === 1 && dispatch(addAppToState(res.response))
 			dispatch(push('/applist'))
 		})
 		.catch(error => {
