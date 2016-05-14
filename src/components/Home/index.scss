@@ -7,13 +7,13 @@
 		height: 550px;
 		box-sizing: border-box;
 		h1 {
-			font-size: 120px;
+			font-size: 100px;
 			margin: 0;
 			padding: 0;
 			color: #eee;
 		}
 		h3 {
-			font-size: 34px;
+			font-size: 24px;
 			margin-top: 50px;
 			color: #eee;
 		}
@@ -59,6 +59,10 @@
 			height: 400px;
 			vertical-align: middle;
 			display: inline-block;
+			overflow: hidden;
+			img {
+				width: 100%;
+			}
 		}
 	}
 	.text {
