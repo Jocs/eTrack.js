@@ -4,8 +4,8 @@
 
 import React, { Component, PropTypes } from 'react'
 import Time from 'material-ui/lib/svg-icons/device/access-time'
-import Http from 'material-ui/lib/svg-icons/social/public'
-import People from 'material-ui/lib/svg-icons/social/people'
+import Http from 'material-ui/lib/svg-icons/action/swap-horiz'
+import People from 'material-ui/lib/svg-icons/social/person'
 import Code from 'material-ui/lib/svg-icons/action/settings-ethernet'
 import All from 'material-ui/lib/svg-icons/action/spellcheck'
 import Colors from 'material-ui/lib/styles/colors'

@@ -11,7 +11,29 @@ const readFileHandle = (err, data) => {
 	if (err) {
 		console.log(err)
 	} else {
+		Statistic
+		.find()
+		.then(stacs => {
+			const today = `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`
+			const promises = stacs.filter(s => {
+				const length = s.errorPerDay.length
+				return s.errorPerDay[length - 1] !== today
+			})
+			.map(s => {
+				s.errorPerDay.push({
+					date: today,
+					js: 0,
+					ajax: 0
+				})
+				return s.save()
+			})
+			return Promise.all(promises)
+		})
+		.catch(err => {
+			console.log(err)
+		})
 		const msgs = data.split('\n').slice(1)
+		if (!msgs) return false // 没有统计信息直接退出
 		const msgObj = msgs.reduce((acc, m) => {
 			const token = m.split(' ')
 			return token[2] === 'ajax' ? [...acc, {appId: token[0], date: token[1], ajax: 1}]
