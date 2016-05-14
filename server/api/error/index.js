@@ -14,13 +14,14 @@ import {
 } from './controller'
 import { initBrowser } from './browser'
 import { initStatistic } from './statistic'
+import { validateError } from './middleware'
 
 initBrowser()
 initStatistic()
 
 const router = express.Router()
 
-router.post('/capture', receiveError)
+router.post('/capture', validateError, receiveError)
 router.post('/fault', receiveFault)
 router.get('/singleError/:errorId', singleError)
 router.get('/errorsWithLocation/:appId', errorsWithLocation)

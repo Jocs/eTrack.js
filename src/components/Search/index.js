@@ -13,7 +13,7 @@ import RaisedButton from 'material-ui/lib/raised-button'
 import Toggle from 'material-ui/lib/svg-icons/action/code'
 
 import * as searchActionCreator from '../../actions/search'
-import * as snackbarActionCreator from '../../actions/snackbar'
+import * as snackbarActionCreator from '../../actions/snackBar'
 import Pagination from '../Pagination'
 import Table from '../CurrentTable'
 
