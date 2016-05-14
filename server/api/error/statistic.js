@@ -17,7 +17,7 @@ const readFileHandle = (err, data) => {
 			const today = `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`
 			const promises = stacs.filter(s => {
 				const length = s.errorPerDay.length
-				return s.errorPerDay[length - 1] !== today
+				return s.errorPerDay[length - 1].date !== today
 			})
 			.map(s => {
 				s.errorPerDay.push({

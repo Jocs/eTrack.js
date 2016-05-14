@@ -13,7 +13,9 @@ class Home extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			about: 'eTrack is a JavaScript Error monitor and reportor!.  Help you build a better JavaScript Application!.',
+			about: 'eTrack.Js is a JavaScript Error monitor and reportor.$' +
+				'Help you build a better JavaScript Application.$' +
+				'Hope you love it and enjoy your development.',
 			showWord: '',
 			cursor: true
 		}
@@ -54,8 +56,8 @@ class Home extends Component {
 				<section className='logo-page'>
 					<h1>{'{eTrack.Js}'}</h1>
 					<h3>/*&nbsp;
-					{/\./.test(showWord) ? showWord.split(/\./)[showWord.split(/\./).length - 1] : showWord}
-					<span style={{color: cursor ? '#eee' : 'rgb(0, 188, 212)'}}>&nbsp;|</span>&nbsp;*/
+						{/\./.test(showWord) ? showWord.split(/\$/)[showWord.split(/\$/).length - 1] : showWord}
+						<span style={{color: cursor ? '#eee' : 'rgb(0, 188, 212)'}}>&nbsp;|</span>&nbsp;*/
 					</h3>
 					<div>
 						<a href='https://github.com/Jocs/jocs.github.io/issues/1'>阅读文档</a>
