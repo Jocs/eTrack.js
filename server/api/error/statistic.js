@@ -84,5 +84,5 @@ const readFileHandle = (err, data) => {
 export const initStatistic = () => {
 	setInterval(() => {
 		fs.readFile(`${__dirname}/statistic.txt`, 'utf8', readFileHandle)
-	}, 1000)
+	}, 1000 * 60 * 5)
 }

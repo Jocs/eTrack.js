@@ -27,6 +27,7 @@ class Search extends Component {
 		this.simpleSearch = this.simpleSearch.bind(this)
 		this.complexSearch = this.complexSearch.bind(this)
 		this.handChange = this.handChange.bind(this)
+		this.handleKeyUp = this.handleKeyUp.bind(this)
 		this.state = {
 			dirty: false,
 			pageSize: this.props.search.pageSize,
@@ -61,6 +62,11 @@ class Search extends Component {
 			// console.log(this.state)
 		})
 
+	}
+
+	handleKeyUp(event) {
+		const ENTER_KEYCODE = 13
+		if (event.keyCode === ENTER_KEYCODE) this.simpleSearch(event, 1)
 	}
 
 	simpleSearch(event, pageNumber) {
@@ -113,6 +119,7 @@ class Search extends Component {
 						<div className='search-wrapper'>
 							<input type='text'
 								onChange={event => this.handChange(event, 'message')}
+								onKeyUp={this.handleKeyUp}
 							/>
 							<SearchIcon
 								style={style.searchIcon}
@@ -121,7 +128,8 @@ class Search extends Component {
 						</div>
 						<span
 							onClick={this.toggleSearch}
-						>高级搜索</span>
+						>高级搜索
+						</span>
 					</div>
 					<ReactCSSTransitionGroup
 						transitionName='searchPanel'

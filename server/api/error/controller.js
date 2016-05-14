@@ -221,6 +221,7 @@ export const complexSearch = (req, res) => {
 	const getSpecialData = () => {
 		return 	Error
 		.find({appId})
+		.sort({'time': -1})
 		.where({message: {$regex: IN_REGEXP}})
 		.where({errorType: {$regex: Error_TYPE_REGEXP}})
 		.where({createdAt: {$gt: start, $lt: end}})
