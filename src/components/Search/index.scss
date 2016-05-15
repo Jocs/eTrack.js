@@ -36,13 +36,14 @@
 	.complex-search {
 		position: relative;
 		height: 210px;
-		background: honeydew;
-		color: #666;
+		background: #fff;
+		color: #999;
 		top: -60px;
 		padding-top: 20px;
 		margin-bottom: -60px;
 		label {
-			color: #00BFA5;
+			color: #333;
+			font-size: 14px;
 		}
 		.complex-inner {
 			width: 800px;
@@ -51,6 +52,7 @@
 				height: 35px;
 				margin-bottom: 10px;
 				line-height: 35px;
+				font-size: 14px;
 			}
 			.radio {
 				margin-bottom: 0;

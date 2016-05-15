@@ -166,16 +166,22 @@ class Search extends Component {
 											value='js'
 											label='JavaScript'
 											style={style.radioButton}
+											iconStyle={style.radioIcon}
+											labelStyle={style.radionLabel}
 										/>
 										<RadioButton
 											value='ajax'
-											label='AJAX'
+											label='Ajax'
 											style={style.radioButton}
+											iconStyle={style.radioIcon}
+											labelStyle={style.radionLabel}
 										/>
 										<RadioButton
 											value='all'
-											label='ALL'
+											label='All'
 											style={style.radioButton}
+											iconStyle={style.radioIcon}
+											labelStyle={style.radionLabel}
 										/>
 									</RadioButtonGroup>
 								</div>
@@ -190,26 +196,36 @@ class Search extends Component {
 											value='chrome'
 											label='Chrome'
 											style={style.radioButton}
+											iconStyle={style.radioIcon}
+											labelStyle={style.radionLabel}
 										/>
 										<RadioButton
 											value='firefox'
 											label='FireFox'
 											style={style.radioButton}
+											iconStyle={style.radioIcon}
+											labelStyle={style.radionLabel}
 										/>
 										<RadioButton
 											value='opera'
 											label='Opera'
 											style={style.radioButton}
+											iconStyle={style.radioIcon}
+											labelStyle={style.radionLabel}
 										/>
 										<RadioButton
 											value='safari'
 											label='Safari'
 											style={style.radioButton}
+											iconStyle={style.radioIcon}
+											labelStyle={style.radionLabel}
 										/>
 										<RadioButton
 											value='all'
 											label='All'
 											style={style.radioButton}
+											iconStyle={style.radioIcon}
+											labelStyle={style.radionLabel}
 										/>
 									</RadioButtonGroup>
 								</div>

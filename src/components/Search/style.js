@@ -19,6 +19,14 @@ export default {
 		top: '10px',
 		right: '20px',
 		cursor: 'pointer'
+	},
+	radioIcon: {
+		width: '20px',
+		marginRight: '5px'
+	},
+	radioLabel: {
+		color: '#666',
+		fontSize: '12px'
 	}
 }
 
