@@ -11,6 +11,7 @@ import TextField from 'material-ui/TextField'
 import { RadioButton, RadioButtonGroup } from 'material-ui'
 import RaisedButton from 'material-ui/RaisedButton'
 import Toggle from 'material-ui/svg-icons/action/code'
+import DatePicker from 'material-ui/DatePicker'
 
 import * as searchActionCreator from '../../actions/search'
 import * as snackbarActionCreator from '../../actions/snackBar'
@@ -241,7 +242,7 @@ class Search extends Component {
 								</div>
 								<div className='form-group serch-button'>
 									<RaisedButton
-										secondary={true}
+										primary={true}
 										label='开始搜索'
 										onClick={event => this.complexSearch(event, 1)}
 									/>

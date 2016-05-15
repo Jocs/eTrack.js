@@ -1,4 +1,47 @@
 .start {
 	margin-top: 64px;
 	margin-left: 170px;
+	padding: 20px;
+	padding-right: 190px;
+	.steps {
+		max-width: 880px;
+	}
+	.step {
+		height: 300px;
+		overflow: hidden;
+		.img-wrapper, .intro {
+			display: inline-block;
+			width: 50%;
+		}
+		.img-wrapper {
+			max-width: 440px;
+			vertical-align: top;
+			img {
+				width: 100%;
+				border: 1px solid #ddd;
+				border-radius: 3px;
+			}
+		}
+		.intro {
+			box-sizing: border-box;
+			max-width: 440px;
+			padding-left: 20px;
+			padding-right: 20px;
+			p {
+				line-height: 22px;
+				color: #666;
+			}
+		}
+	}
+	a {
+		text-decoration: none;
+	}
+	.finish {
+		.text {
+			margin-top: 150px;
+			text-align: center;
+			font-size: 18px;
+			color: rgb(0, 188, 212);
+		}
+	}
 }
