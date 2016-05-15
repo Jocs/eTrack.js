@@ -113,7 +113,7 @@ class Home extends Component {
 						onClick={event => dispatch(push('/start'))}
 					>Document .</a>
 					<a href='https://github.com/Jocs/jocs.github.io/issues/1' className='blog'>Blog .</a>
-					<a href='https://github.com/Jocs' className='github'>GitHub</a>
+					<a href='https://github.com/Jocs/eTrack.Js' className='github'>GitHub</a>
 				</footer>
 			</div>
 		)
