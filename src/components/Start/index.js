@@ -1,7 +1,7 @@
 /**
  * create by Jocs 2016.05.15
  */
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import {
 	Step,
 	Stepper,

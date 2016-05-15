@@ -12,6 +12,9 @@ const router = (app, rootPath) => {
 	app.get('/', (req, res, err) => {
 		res.sendFile(`${rootPath}/index.html`)
 	})
+	app.get('/download', (req, res) => {
+		res.download(`${rootPath}/server/download/etrack.min.js`)
+	})
 
 	app.use('/auth', authRouter)
 	app.use('/api/user', userRouter)

@@ -5,6 +5,8 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as authActionCreator from '../../actions/auth'
+import { push } from 'redux-router'
+import { download } from '../../utils/fetchService'
 
 import './index.scss'
 
@@ -27,7 +29,9 @@ class Home extends Component {
 	}
 
 	static propTypes = {
-		toggleLoginPanel: PropTypes.func.isRequired
+		toggleLoginPanel: PropTypes.func.isRequired,
+		push: PropTypes.func.isRequired,
+		dispatch: PropTypes.func.isRequired
 	}
 
 	componentDidMount() {
@@ -55,7 +59,7 @@ class Home extends Component {
 	render() {
 		// const { toggleLoginPanel } = this.props
 		const { cursor, showWord } = this.state
-
+		const { push, dispatch } = this.props
 		return (
 			<div className='home'>
 				<section className='logo-page'>
@@ -103,6 +107,12 @@ class Home extends Component {
 				<footer className='foot'>
 					<p className='rights'>All Rights Reserved © 2016</p>
 					<h3>{'{eTrack.Js}'}</h3>
+					<a href='/download' className='download'
+					>Download .</a>
+					<a href='javascript:;' className='doc'
+						onClick={event => dispatch(push('/start'))}
+					>Document .</a>
+					<a href='https://github.com/Jocs/jocs.github.io/issues/1' className='blog'>Blog .</a>
 					<a href='https://github.com/Jocs' className='github'>GitHub</a>
 				</footer>
 			</div>
@@ -115,7 +125,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-	return bindActionCreators(Object.assign({}, authActionCreator), dispatch)
+	return {push, dispatch, ...bindActionCreators(Object.assign({}, authActionCreator), dispatch)}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

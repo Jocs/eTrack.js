@@ -119,13 +119,24 @@
 		    color: #fff;
 		    font-size: 12px;
 		}
-		.github {
+		.github, .blog, .doc, .download {
 			position: absolute;
 		    top: 29px;
-		    right: 34px;
 		    color: #fff;
 		    font-size: 12px;
 		    text-decoration: none;
+		}
+		.github {
+			right: 34px;
+		}
+		.blog {
+			right: 80px;
+		}
+		.doc {
+			right: 120px;
+		}
+		.download {
+			right: 202px;
 		}
 	}
 }
