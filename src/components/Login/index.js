@@ -2,9 +2,9 @@
  * create by Jocs 2016.04.22
  */
 import React, { Component, PropTypes } from 'react'
-import Dialog from 'material-ui/lib/dialog'
-import RaisedButton from 'material-ui/lib/raised-button'
-import TextField from 'material-ui/lib/text-field'
+import Dialog from 'material-ui/Dialog'
+import RaisedButton from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
 
 import {
 	validateUserName,

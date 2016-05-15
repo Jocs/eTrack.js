@@ -4,14 +4,16 @@
 
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
-import Table from 'material-ui/lib/table/table'
-import TableHeaderColumn from 'material-ui/lib/table/table-header-column'
-import TableRow from 'material-ui/lib/table/table-row'
-import TableHeader from 'material-ui/lib/table/table-header'
-import TableRowColumn from 'material-ui/lib/table/table-row-column'
-import TableBody from 'material-ui/lib/table/table-body'
-import IconButton from 'material-ui/lib/icon-button'
-import More from 'material-ui/lib/svg-icons/navigation/more-horiz'
+import {
+	Table,
+	TableRow,
+	TableHeader,
+	TableHeaderColumn,
+	TableRowColumn,
+	TableBody
+} from 'material-ui/Table'
+import IconButton from 'material-ui/IconButton'
+import More from 'material-ui/svg-icons/navigation/more-horiz'
 
 import './index.scss'
 
@@ -59,7 +61,7 @@ export default class CurrentTable extends Component {
 		return (
 			<div className='current-table'>
 				<Table
-					height={type === 'short' ? window.innerHeight - 250 : 'auto'}
+					height={type === 'short' ? (window.innerHeight - 250).toString() + 'px' : 'auto'}
 					fixedHeader={true}
 					selectable={false}
 				>

@@ -3,9 +3,9 @@
  */
 
 import React, { Component, PropTypes } from 'react'
-import Paper from 'material-ui/lib/paper'
-import Visibility from 'material-ui/lib/svg-icons/action/visibility'
-import Unvisibility from 'material-ui/lib/svg-icons/action/visibility-off'
+import Paper from 'material-ui/Paper'
+import Visibility from 'material-ui/svg-icons/action/visibility'
+import Unvisibility from 'material-ui/svg-icons/action/visibility-off'
 
 import './index.scss'
 

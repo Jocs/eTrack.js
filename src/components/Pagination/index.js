@@ -3,8 +3,8 @@
  */
 
 import React, { Component, PropTypes } from 'react'
-import Left from 'material-ui/lib/svg-icons/hardware/keyboard-arrow-left'
-import Right from 'material-ui/lib/svg-icons/hardware/keyboard-arrow-right'
+import Left from 'material-ui/svg-icons/hardware/keyboard-arrow-left'
+import Right from 'material-ui/svg-icons/hardware/keyboard-arrow-right'
 
 import './index.scss'
 

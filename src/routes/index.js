@@ -9,7 +9,9 @@ import {
 } from 'react-router'
 
 import App from '../containers/App.js'
-import { Home, Console, Dashboard, Current, Applist, Create, Detail, Search } from '../components'
+import { Home, Console, Dashboard, Current, Applist, Create, Detail, Search,
+	Document, Start, TopApi, UiApi
+} from '../components'
 import { getToken } from '../utils'
 
 function consoleEnter(nextState, replace, next) {
@@ -31,6 +33,11 @@ export default (
 			<Route path='/createApp' component={Create}/>
 			<Route path='/detail/:id' component={Detail}/>
 			<Route path='/search' component={Search}/>
+		</Route>
+		<Route path='document' component={Document}>
+			<Route path='/start' component={Start}/>
+			<Route path='/topApi' component={TopApi}/>
+			<Route path='/uiApi' component={UiApi}/>
 		</Route>
 	</Route>
 )

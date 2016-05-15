@@ -3,12 +3,12 @@
  */
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
-import Avatar from 'material-ui/lib/avatar'
-import AppBar from 'material-ui/lib/app-bar'
-import Menu from 'material-ui/lib/menus/menu'
-import MenuItem from 'material-ui/lib/menus/menu-item'
-import AccontIcon from 'material-ui/lib/svg-icons/action/account-circle'
-import RefreshIndicator from 'material-ui/lib/refresh-indicator'
+import Avatar from 'material-ui/Avatar'
+import AppBar from 'material-ui/AppBar'
+import Menu from 'material-ui/Menu'
+import MenuItem from 'material-ui/MenuItem'
+import AccontIcon from 'material-ui/svg-icons/action/account-circle'
+import RefreshIndicator from 'material-ui/RefreshIndicator'
 import style from './style'
 
 import './index.scss'
@@ -122,6 +122,13 @@ class NavBar extends Component {
 							>
 								<MenuItem
 									primaryText='控制页面'
+								/>
+							</Link>
+							<Link to='/start'
+								className='navbar-link'
+							>
+								<MenuItem
+									primaryText='阅读文档'
 								/>
 							</Link>
 							<MenuItem

@@ -9,8 +9,8 @@ import { push } from 'redux-router'
 import * as currentActionCreator from '../../actions/current'
 import * as loadActionCreator from '../../actions/loading'
 
-import Toggle from 'material-ui/lib/toggle'
-import Refresh from 'material-ui/lib/svg-icons/navigation/refresh'
+import Toggle from 'material-ui/Toggle'
+import Refresh from 'material-ui/svg-icons/navigation/refresh'
 
 import AppSelector from '../AppSelector'
 import Table from '../CurrentTable'

@@ -9,6 +9,8 @@ const style = {
 	menu: {
 		marginRight: 32,
 		marginBottom: 32,
+		background: '#fff',
+		border: '1px solid #eee',
 		top: 64,
 		right: 24,
 		width: 100,

@@ -2,7 +2,10 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { push } from 'redux-router'
-import Snackbar from 'material-ui/lib/snackbar'
+import Snackbar from 'material-ui/Snackbar'
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 import { NavBar, Login } from '../components'
 import * as actionCreators from '../actions/auth'
@@ -37,6 +40,8 @@ class App extends Component {
 			closeSnackBar
 		} = this.props
 
+		const muiTheme = getMuiTheme()
+
 		let style = null
 		switch (sanckbarType) {
 			case 'primary': {
@@ -63,6 +68,7 @@ class App extends Component {
 		}
 		style = Object.assign({}, style, {color: '#333', textAlign: 'center'})
 		return (
+			<MuiThemeProvider muiTheme={muiTheme}>
 			<div className='mainContainer'>
 				<NavBar {...this.props}/>
 				<Login {...this.props}/>
@@ -76,6 +82,7 @@ class App extends Component {
 					className='app-snackbar'
 				/>
 			</div>
+			</MuiThemeProvider>
 		)
 	}
 }

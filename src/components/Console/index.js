@@ -6,12 +6,12 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { push } from 'redux-router'
-import LeftNav from 'material-ui/lib/left-nav'
-import MenuItem from 'material-ui/lib/menus/menu-item'
-import DashIcon from 'material-ui/lib/svg-icons/action/dashboard'
-import ListIcon from 'material-ui/lib/svg-icons/device/dvr'
-import AppIcon from 'material-ui/lib/svg-icons/content/font-download'
-import SearchIcon from 'material-ui/lib/svg-icons/action/pageview'
+import LeftNav from 'material-ui/Drawer'
+import MenuItem from 'material-ui/MenuItem'
+import DashIcon from 'material-ui/svg-icons/action/dashboard'
+import ListIcon from 'material-ui/svg-icons/device/dvr'
+import AppIcon from 'material-ui/svg-icons/content/font-download'
+import SearchIcon from 'material-ui/svg-icons/action/pageview'
 
 import * as consoleActionsCreator from '../../actions/console'
 
@@ -34,8 +34,9 @@ class Console extends Component {
 		const { consoleLeftNav, unReadCount } = this.props
 		return (
 			<div className='console'>
-				<LeftNav open={consoleLeftNav}
-					style={style.leftNav}
+				<LeftNav
+					open={consoleLeftNav}
+					containerStyle={style.leftNav}
 				>
 					<Link to='/dashboard'
 						className='console-link'

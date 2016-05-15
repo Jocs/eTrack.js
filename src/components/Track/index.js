@@ -3,13 +3,15 @@
  */
 
 import React, { Component, PropTypes } from 'react'
-import Time from 'material-ui/lib/svg-icons/device/access-time'
-import Http from 'material-ui/lib/svg-icons/action/swap-horiz'
-import People from 'material-ui/lib/svg-icons/social/person'
-import Code from 'material-ui/lib/svg-icons/action/settings-ethernet'
-import All from 'material-ui/lib/svg-icons/action/spellcheck'
-import Colors from 'material-ui/lib/styles/colors'
-import TrackError from 'material-ui/lib/svg-icons/alert/error-outline'
+import Time from 'material-ui/svg-icons/device/access-time'
+import Http from 'material-ui/svg-icons/action/swap-horiz'
+import People from 'material-ui/svg-icons/social/person'
+import Code from 'material-ui/svg-icons/action/settings-ethernet'
+import All from 'material-ui/svg-icons/action/spellcheck'
+import * as Colors from 'material-ui/styles/colors.js'
+import TrackError from 'material-ui/svg-icons/alert/error-outline'
+
+console.log(Colors)
 
 import './index.scss'
 import style from './style'
@@ -207,7 +209,7 @@ class DetailCnsole extends Component {
 						style={{verticalAlign: 'middle'}}
 					/>
 					{' '}
-					<span className='log-title'>控制台"console.{severity}()"打印内容</span>
+					<span className='log-title'>控制台console.{severity}()打印内容</span>
 					<div className='log-body-wrapper'>
 						<div className='log-hide'>
 							<span
@@ -257,7 +259,7 @@ class Ajax extends Component {
 						style={{verticalAlign: 'middle'}}
 					/>
 					{' '}
-					<span className='log-title'>用户发送"{method.toUpperCase()}"请求(StatusCode：{statusCode})</span>
+					<span className='log-title'>用户发送{method.toUpperCase()}请求(StatusCode：{statusCode})</span>
 					<div className='log-body-wrapper'>
 						<div className='log-body'>请求持续时间：
 							{durationChildren()}

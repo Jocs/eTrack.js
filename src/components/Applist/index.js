@@ -7,18 +7,22 @@ import { push } from 'redux-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import Table from 'material-ui/lib/table/table'
-import TableHeaderColumn from 'material-ui/lib/table/table-header-column'
-import TableRow from 'material-ui/lib/table/table-row'
-import TableHeader from 'material-ui/lib/table/table-header'
-import TableRowColumn from 'material-ui/lib/table/table-row-column'
-import TableBody from 'material-ui/lib/table/table-body'
-import Recorder from 'material-ui/lib/svg-icons/action/view-headline'
-import Delete from 'material-ui/lib/svg-icons/action/delete'
-import Edit from 'material-ui/lib/svg-icons/editor/mode-edit'
-import Dialog from 'material-ui/lib/dialog'
-import FlatButton from 'material-ui/lib/flat-button'
-import Warn from 'material-ui/lib/svg-icons/alert/error-outline'
+import {
+	Table,
+	TableRow,
+	TableHeader,
+	TableHeaderColumn,
+	TableRowColumn,
+	TableBody
+} from 'material-ui/Table'
+
+
+import Recorder from 'material-ui/svg-icons/action/view-headline'
+import Delete from 'material-ui/svg-icons/action/delete'
+import Edit from 'material-ui/svg-icons/editor/mode-edit'
+import Dialog from 'material-ui/Dialog'
+import FlatButton from 'material-ui/FlatButton'
+import Warn from 'material-ui/svg-icons/alert/error-outline'
 
 
 import './applist.scss'

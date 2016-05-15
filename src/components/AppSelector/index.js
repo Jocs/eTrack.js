@@ -3,7 +3,7 @@
  */
 
 import React, { Component, PropTypes } from 'react'
-import Title from 'material-ui/lib/svg-icons/av/web-asset'
+import Title from 'material-ui/svg-icons/av/web-asset'
 
 import './index.scss'
 
