@@ -40,7 +40,9 @@ class Applist extends Component {
 		appList: PropTypes.array.isRequired,
 		consoleLeftNav: PropTypes.bool.isRequired,
 		deleteApplication: PropTypes.func.isRequired,
-		userId: PropTypes.string.isRequired
+		userId: PropTypes.string.isRequired,
+		push: PropTypes.func.isRequired,
+		dispatch: PropTypes.func.isRequired
 	}
 
 	handleClose() {
@@ -69,7 +71,7 @@ class Applist extends Component {
 	}
 
 	render() {
-		const { appList, consoleLeftNav } = this.props
+		const { appList, consoleLeftNav, push, dispatch } = this.props
 		const style = consoleLeftNav ? {marginLeft: 170} : {marginLeft: 0}
 		const children = appList.map((app, i) => {
 			return (
@@ -106,7 +108,20 @@ class Applist extends Component {
 
 		return (
 			<div className='app-list' style={style}>
-				<h2><Recorder style={{verticalAlign: 'bottom'}}/>应用列表</h2>
+				<h2>
+					<Recorder
+						style={{verticalAlign: 'bottom'}}
+						color='#666'
+					/>
+					共{appList.length}个应用
+				</h2>
+				<FlatButton
+					label='创建应用'
+					labelPosition='before'
+					secondary={true}
+					style={styles.floatButton}
+					onClick={event => dispatch(push('createApp'))}
+				/>
 				<Table selectable={false}>
 					<TableHeader>
 						<TableRow>
@@ -151,15 +166,3 @@ const mapActionToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapActionToProps)(Applist)
-
-
-
-
-
-
-
-
-
-
-
-

@@ -15,6 +15,9 @@ export const createApp = (req, res) => {
 
 	Promise.all([app.save(), User.findOne({_id: userId})])
 	.then(data => {
+		if (data[1].applycations.length >= 5) {
+			return Promise.all([App.remove({_id: data[0]._id}), Promise.reject('用户最多能创建5个应用！')])
+		}
 		// 初始化每天统计数据。
 		const sta = new Statistic({
 			appId: data[0]._id,
@@ -37,7 +40,9 @@ export const createApp = (req, res) => {
 		res.send({code: 1, response: response[0]})
 	})
 	.catch(err => {
-		res.send({code: 0, err})
+		console.log(err)
+		if (err === '用户最多能创建5个应用！') res.send({code: 2, err})
+		else res.send({code: 0, err})
 	})
 }
 

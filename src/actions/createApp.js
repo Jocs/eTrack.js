@@ -21,14 +21,22 @@ export const createApp = data => {
 		.then(res => {
 			const { currentApp } = getState().current
 			const { userId } = getState().auth
-			// 如果创建的应用是第一个应用，将该应用设置为currentApp
-			if (currentApp.name === '') {
-				res.code === 1 && dispatch(getAppList(userId))
-			} else {
-				res.code === 1 && dispatch(addAppToState(res.response))
+			switch (res.code) {
+				case 1: {
+					currentApp.name === '' ? dispatch(getAppList(userId)) : dispatch(addAppToState(res.response))
+					dispatch(openSnackBar('创建应用成功！', 'success', 4000))
+					break
+				}
+				case 2: {
+					dispatch(openSnackBar(res.err, 'danger', 4000))
+					break
+				}
+				case 0: {
+					dispatch(openSnackBar('创建应用失败！', 'warning', 4000))
+					break
+				}
 			}
 			dispatch(toggleLoadingStatus('hide'))
-			dispatch(openSnackBar('创建应用成功！', 'success', 4000))
 			dispatch(push('/applist'))
 		})
 		.catch(error => {

@@ -117,12 +117,11 @@ class NavBar extends Component {
 							<MenuItem
 								primaryText='个人设置'
 							/>
-							<Link to='/createApp'
+							<Link to='/dashboard'
 								className='navbar-link'
 							>
 								<MenuItem
-									primaryText='新建应用'
-									onClick={() => this.setState({showMenu: false})}
+									primaryText='控制页面'
 								/>
 							</Link>
 							<MenuItem

@@ -19,5 +19,8 @@ export default {
 	},
 	warn: {
 		verticalAlign: 'sub'
+	},
+	floatButton: {
+		verticalAlign: 'middle'
 	}
 }
