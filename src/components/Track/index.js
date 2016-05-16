@@ -11,8 +11,6 @@ import All from 'material-ui/svg-icons/action/spellcheck'
 import * as Colors from 'material-ui/styles/colors.js'
 import TrackError from 'material-ui/svg-icons/alert/error-outline'
 
-console.log(Colors)
-
 import './index.scss'
 import style from './style'
 
@@ -33,7 +31,7 @@ export default class Track extends Component {
 	}
 
 	render() {
-		const { logger, message, time, errorType, user } = this.props.detail
+		const { logger, message, time, errorType, user, fileName, lineNumber, columnNumber } = this.props.detail
 		const loggers = typeof logger === 'string' && JSON.parse(logger) || []
 		const total = loggers.reduce((acc, l) => {
 			if (acc[l.catigory]) acc[l.catigory] ++
@@ -44,6 +42,16 @@ export default class Track extends Component {
 			ajax: 0,
 			visitor: 0
 		})
+
+		const getLineAndColDOM = () => {
+			if (lineNumber && columnNumber) {
+				return (<span className='line-col'>{`(第${lineNumber}行，第${columnNumber}列)`}</span>)
+			} else if (lineNumber && columnNumber === null) {
+				return (<span className='line-col'>{`(第${lineNumber}行)`}</span>)
+			} else {
+				return null
+			}
+		}
 
 		const errTime = getTime(time)
 
@@ -98,6 +106,12 @@ export default class Track extends Component {
 								{user}产生的{errorType && errorType.split('@')[0]}错误
 							</h3>
 							<div className='log-body-wrapper'>
+								{fileName
+									? <div className='log-body'>
+										<span>出错文件：{`${fileName}`}&nbsp;</span>
+										{getLineAndColDOM()}
+									</div> : null
+								}
 								<div className='log-hide'>
 									<span
 										onClick={this.handClick}
