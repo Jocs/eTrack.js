@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { push } from 'redux-router'
-import Snackbar from 'material-ui/Snackbar'
 
+import Snackbar from 'material-ui/Snackbar'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
