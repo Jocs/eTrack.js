@@ -11,7 +11,7 @@ const readFileHandle = (err, data) => {
 	if (err) {
 		console.log(err)
 	} else {
-		Statistic
+		const preSave = Statistic
 		.find()
 		.then(stacs => {
 			const today = `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`
@@ -29,9 +29,7 @@ const readFileHandle = (err, data) => {
 			})
 			return Promise.all(promises)
 		})
-		.catch(err => {
-			console.log(err)
-		})
+
 		const msgs = data.split('\n').slice(1)
 		if (!msgs) return false // 没有统计信息直接退出
 		const msgObj = msgs.reduce((acc, m) => {
@@ -97,7 +95,10 @@ const readFileHandle = (err, data) => {
 			})
 		})
 
-		Promise.all(promises)
+		preSave
+		.then(() => {
+			Promise.all(promises)
+		})
 		.then(data => fs.writeFile(`${__dirname}/statistic.txt`, '', 'utf8', writeFileHandle))
 		.catch(err => console.log(err))
 	}
@@ -106,5 +107,5 @@ const readFileHandle = (err, data) => {
 export const initStatistic = () => {
 	setInterval(() => {
 		fs.readFile(`${__dirname}/statistic.txt`, 'utf8', readFileHandle)
-	}, 1000 * 60 * 5)
+	}, 1000 * 60)
 }

@@ -28,9 +28,9 @@ const common = {
 		extensions: ['', '.jsx', '.js', '.json', '.scss'],
 		modulesDirectories: ['node_modules', PATHS.app]
 	},
-	externals: {
-		'React': 'react'
-	},
+	// externals: {
+	// 	'React': 'react'
+	// },
 	module: {
 		loaders: [{
 			test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,

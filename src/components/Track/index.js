@@ -284,7 +284,7 @@ class Ajax extends Component {
 								onClick={this.handClick}
 							>ResponseText：
 							</span>
-							{responseText}
+							{typeof responseText === 'object' ? JSON.stringify(responseText) : responseText}
 						</div>
 					</div>
 					<div className='timeStamp'>{time}</div>
