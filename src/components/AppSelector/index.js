@@ -4,6 +4,8 @@
 
 import React, { Component, PropTypes } from 'react'
 import Title from 'material-ui/svg-icons/av/web-asset'
+import DropDownMenu from 'material-ui/DropDownMenu'
+import MenuItem from 'material-ui/MenuItem'
 
 import './index.scss'
 
@@ -17,24 +19,23 @@ export default class AppSelector extends Component {
 		current: PropTypes.object.isRequired,
 		onChange: PropTypes.func.isRequired
 	}
-	handleChange(event) {
+	handleChange(event, index, value) {
 		const { onChange } = this.props
-		onChange(event.target.value)
+		onChange(value)
 	}
 	render() {
 		const { items, current } = this.props
 		const options = items.map((item, index) => {
-			return <option key={index} value={item._id}>{item.name}</option>
+			return <MenuItem key={index} value={item._id} primaryText={item.name} />
 		})
 		return (
 			<div className='app-selector'>
 				<Title style={{verticalAlign: 'sub'}} color='#666'/>
 				<span className='label'>应用名称:</span>
 				<div className='title-wrapper'>
-					<span className='title'>{current.name}</span>
-					<select value={current._id} onChange={this.handleChange}>
+					<DropDownMenu listStyle={{width: '170px'}} value={current._id} onChange={this.handleChange}>
 						{options}
-					</select>
+					</DropDownMenu>
 				</div>
 			</div>
 		)

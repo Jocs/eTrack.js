@@ -45,7 +45,7 @@ export const fetchDetailErrorIfNeeded = errorId => {
 						if (p.status === 0) {
 							const { province, city } = p.content.address_detail
 							dispatch(updateCity(province, city))
-						} else dispatch(openSnackBar(p.message ? p.message : '无法解析ip地址', 'danger', 3000))
+						} else dispatch(openSnackBar('无法解析ip地址', 'info', 3000))
 					})
 					.catch(err => {
 						console.error(err)

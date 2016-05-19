@@ -231,14 +231,27 @@ class Search extends Component {
 									</RadioButtonGroup>
 								</div>
 								<div className='form-group date-picker'>
-									<label>时间范围：</label>
-									<input type='date'
+									<label>开始日期：</label>
+									<DatePicker
+										hintText='start'
+										autoOk={true}
+										onChange={(event, date) => this.setState({start: date})}
+										style={style.datePicker}
+									/>
+									<label>结束日期：</label>
+									<DatePicker
+										hintText='end'
+										autoOk={true}
+										onChange={(event, date) => this.setState({end: date})}
+										style={style.datePicker}
+									/>
+									{/* <input type='date'
 										onChange={event => this.handChange(event, 'start')}
 									/>
 									－
 									<input type='date'
 										onChange={event => this.handChange(event, 'end')}
-									/>
+									/>*/}
 								</div>
 								<div className='form-group serch-button'>
 									<RaisedButton

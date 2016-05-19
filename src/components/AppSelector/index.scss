@@ -1,22 +1,7 @@
 .app-selector {
 	color: #666;
-	.label {
-		margin-right: 5px;
-	}
 	.title-wrapper {
 		display: inline-block;
 		position: relative;
-	}
-	.title {
-		position: absolute;
-		top: 7px;
-		color: rgb(0, 145, 234);
-	}
-	select {
-		width: 100px;
-	    height: 35px;
-	    border: none;
-	    opacity: 0;
-	    cursor: pointer;
 	}
 }

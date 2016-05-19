@@ -34,7 +34,7 @@ export const socketErrorMessageListener = () => {
 					} else if (res.status === 1 || res.status === 2) {
 						dispatch(openSnackBar(res.message, 'danger', 4000))
 					} else {
-						dispatch(openSnackBar('无法解析ip返回信息', 'danger', 3000))
+						dispatch(openSnackBar('无法解析ip返回信息', 'info', 3000))
 					}
 				})
 				.catch(err => {

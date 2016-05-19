@@ -6,12 +6,15 @@ import { getMe } from './actions/auth'
 import { getToken, getSocket } from './utils'
 import { socketConnect } from './actions/console'
 import { socketErrorMessageListener } from './actions/socket'
+import injectTapEventPlugin from 'react-tap-event-plugin'
 
 import './index.scss'
 
 const rootElement = document.querySelector('#root')
 const store = configureStore(window.__INITIAL_STATE__)
 const socket = getSocket()
+
+injectTapEventPlugin()
 
 socket.on('preSubscribe', function(data) {
 	if (data === 'connect') store.dispatch(socketConnect())

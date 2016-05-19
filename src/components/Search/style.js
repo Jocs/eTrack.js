@@ -27,6 +27,9 @@ export default {
 	radioLabel: {
 		color: '#666',
 		fontSize: '12px'
+	},
+	datePicker: {
+		display: 'inline-block'
 	}
 }
 
