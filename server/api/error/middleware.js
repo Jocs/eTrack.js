@@ -6,7 +6,7 @@ export const validateError = (req, res, next) => {
 	const { applicationId } = req.body
 	App.findById(applicationId)
 	.then(app => {
-		if (app === null) return res.send({code: 2, error: '请试用正确的appId'})
+		if (app === null) return res.send({code: 2, error: `${applicationId}不正确，请使用正确的appId`})
 		next()
 	})
 	.catch(err => {

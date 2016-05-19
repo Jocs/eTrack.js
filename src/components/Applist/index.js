@@ -122,7 +122,7 @@ class Applist extends Component {
 				<FlatButton
 					label='创建应用'
 					labelPosition='before'
-					secondary={true}
+					primary={true}
 					style={styles.floatButton}
 					onClick={event => dispatch(push('createApp'))}
 				/>

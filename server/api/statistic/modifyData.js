@@ -3,12 +3,12 @@
  */
 import Statistic from './model'
 
-const appId = '57392f0b6db8d67477ba656b'
+const appId = '57399f57866d675b7eab419b'
 
 const modify = () => {
 	Statistic.findOne({appId})
 	.then(s => {
-		s.errorPerDay.pull({_id: '5739ef455b3181710105de8f'})
+		s.errorPerDay.pull({_id: '573c9195131a58e40a310c48'})
 		s.save()
 	})
 	.then(data => {

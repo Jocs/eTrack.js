@@ -167,7 +167,7 @@ class Dashboard extends Component {
 							<FlatButton
 								label='主题'
 								labelPosition="after"
-								secondary={true}
+								primary={true}
 								icon={<Polymer />}
 							/>
 						</div>
@@ -239,7 +239,7 @@ class Dashboard extends Component {
 				</div>
 				<LeftNav
 					width={300}
-					openRight={true}
+					openSecondary={true}
 					open={this.state.rightTheme}
 					style={style.rightBar}
 				>

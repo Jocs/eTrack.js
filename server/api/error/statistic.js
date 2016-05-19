@@ -59,7 +59,7 @@ const readFileHandle = (err, data) => {
 			return acc
 		}, {})
 
-		const promises = Object.keys(dataGroup).map(key => {
+		const promises = dataGroup => Object.keys(dataGroup).map(key => {
 			return Statistic.findOne({appId: key})
 			.then(data => {
 				if (data) {
@@ -97,7 +97,7 @@ const readFileHandle = (err, data) => {
 
 		preSave
 		.then(() => {
-			Promise.all(promises)
+			Promise.all(promises(dataGroup))
 		})
 		.then(data => fs.writeFile(`${__dirname}/statistic.txt`, '', 'utf8', writeFileHandle))
 		.catch(err => console.log(err))

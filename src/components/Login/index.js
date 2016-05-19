@@ -160,13 +160,13 @@ export default class Login extends Component {
 		const actions = [
 			<RaisedButton
 				label={loginPanel}
-				secondary={true}
+				primary={true}
 				keyboardFocused={true}
 				style={{marginRight: 50}}
 				onMouseDown={this.handleSignupOrLogin}
 			/>, <RaisedButton
 				label='Cancel'
-				primary={true}
+				secondary={true}
 				keyboardFocused={true}
 				onMouseDown={this.handleCancel}
 			/>
