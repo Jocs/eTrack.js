@@ -70,6 +70,25 @@ export const fetchV = (url, method, data) => {
 		.catch(reject)
 	})
 }
+// // normal fetch
+// export const crosFetch = (url, method) => {
+// 	return new Promise((resolve, reject) => {
+// 		const xhr = new XMLHttpRequest()
+// 		xhr.open(method, url, true)
+// 		xhr.responseType = 'json'
+// 		xhr.send()
+// 		xhr.onload = function() {
+// 			if (this.status >= 200 && this.status < 300) {
+// 				resolve(this.response)
+// 			} else {
+// 				reject(this.statusText)
+// 			}
+// 		}
+// 		xhr.onerror = function() {
+// 			reject(this.statusText)
+// 		}
+// 	})
+// }
 
 let socket = null
 

@@ -88,15 +88,15 @@ export default class Board extends Component {
 					<div className='body'>浏览器：{browserObj.name + ' 版本：' + browserObj.version}</div>
 					{osObj && <div className='body'>操作系统：{osObj.name + ' 版本：' + osObj.version}</div>}
 				</div>
-				{locationObj && <div className='section'>
+				<div className='section'>
 					<div className='title'>地理位置及城市</div>
 					<div className='body'>
-						<span>经纬度：[{locationObj.latitude.toFixed(3)}, &nbsp;{locationObj.longitude.toFixed(3)}]</span>
+						{ locationObj && <span>经纬度：[{locationObj.latitude.toFixed(3)}, &nbsp;{locationObj.longitude.toFixed(3)}]</span> }
 					</div>
 					<div className='body'>
 						<span>城市：{`${country} ${province} ${city}`}</span>
 					</div>
-				</div>}
+				</div>
 				<div className='section'>
 					<div className='title'>浏览器视图尺寸</div>
 					<div className='body'>{'[宽度:' + viewportWidth + 'px * 长度:' + viewportHeight + 'px]'}</div>

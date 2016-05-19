@@ -71,5 +71,9 @@ export const getCity = (lot, lat) => {
 			// alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber)
 		})
 	})
+}
 
+export const ipToLocation = ip => {
+	const url = '/api/location/getLocation'
+	return fetchV(url, 'POST', {ip})
 }

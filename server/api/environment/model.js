@@ -16,6 +16,7 @@ const EnvironmentSchema = Schema({
 	viewportHeight: String,
 	viewportWidth: String,
 	loadOn: String,
+	ip: String,
 	createdAt: {type: Date, default: Date.now, expires: '30d'}
 })
 

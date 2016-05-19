@@ -2,7 +2,7 @@
  * create by Jocs 2015.05.05
  */
 import C from '../constants'
-import { createReducer, getTheme, setTheme } from '../utils'
+import { createReducer, getTheme } from '../utils'
 
 const initialState = {
 	theme: getTheme(),

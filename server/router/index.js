@@ -7,6 +7,7 @@ import authRouter from '../auth'
 import errorRouter from '../api/error'
 import statisticRouter from '../api/statistic'
 import browserRouter from '../api/browser'
+import locationRouter from '../api/location'
 
 const router = (app, rootPath) => {
 	app.get('/', (req, res, err) => {
@@ -22,6 +23,7 @@ const router = (app, rootPath) => {
 	app.use('/api/error', errorRouter)
 	app.use('/api/statistic', statisticRouter)
 	app.use('/api/browser', browserRouter)
+	app.use('/api/location', locationRouter)
 
 	app.route('/*')
 	.get(function(req, res) {

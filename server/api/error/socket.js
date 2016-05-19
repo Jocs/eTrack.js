@@ -8,7 +8,7 @@ const processError = (socket, e) => {
 	Error.findById(e._id)
 		.populate({
 			path: 'environment',
-			select: 'url location'
+			select: 'url location ip'
 		})
 		.populate({
 			path: 'userAgentInfo',

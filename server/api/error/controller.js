@@ -11,7 +11,21 @@ export const receiveFault = (req, res) => {
 	res.status(200).send('fault received thank you!')
 }
 
+
+function getClientIp(req) {
+	return req.headers['x-forwarded-for'] ||
+		req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress
+}
+
 export const receiveError = (req, res) => {
+	let ip = ''
+	try {
+		ip = getClientIp(req).split(/fff\:/)[1]
+	} catch (err) {
+		console.log('服务器端获取ip失败')
+	}
 	// 解构取值
 	const { applicationId, errorType, time, logger } = req.body
 	const {
@@ -39,7 +53,8 @@ export const receiveError = (req, res) => {
 		version,
 		viewportHeight,
 		viewportWidth,
-		loadOn: loadon
+		loadOn: loadon,
+		ip
 	})
 
 	const ui = new UserAgentInfo({
