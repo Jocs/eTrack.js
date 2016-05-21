@@ -66,35 +66,15 @@ export const receiveError = (req, res) => {
 		os: JSON.stringify(os),
 		ua
 	})
-
+	const errorHandler = err => err && console.log(err)
 	// 以下是统计浏览器使用率或浏览器出错比例
-	const writeFileHandle = err => {
-		if (err) console.log(err)
-	}
 
-	const readFileHandle = (err, data) => {
-		if (err) {
-			console.log(err)
-		} else {
-			const str = `${data}\n${applicationId} ${browser.name}-${browser.major} 1`
-			fs.writeFile(__dirname + '/browser.txt', str, 'utf8', writeFileHandle)
-		}
-	}
-
-	fs.readFile(__dirname + '/browser.txt', 'utf8', readFileHandle)
+	const browserStr = `\n${applicationId} ${browser.name}-${browser.major} 1`
+	fs.appendFile(`${__dirname}/browser.txt`, browserStr, 'utf8', errorHandler)
 
 	// 以下用来统计每日js 和 ajax错误的数量
-	const staWriteHandle = err => err && console.log(err)
-	const staReadHandle = (err, data) => {
-		if (err) {
-			console.log(err)
-		} else {
-			const str = `${data}\n${applicationId} ${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()} ${errorType === 'ajax@error' ? 'ajax' : 'js'}`
-			fs.writeFile(`${__dirname}/statistic.txt`, str, 'utf8', staWriteHandle)
-		}
-	}
-
-	fs.readFile(`${__dirname}/statistic.txt`, 'utf8', staReadHandle)
+	const statisticStr = `\n${applicationId} ${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()} ${errorType === 'ajax@error' ? 'ajax' : 'js'}`
+	fs.appendFile(`${__dirname}/statistic.txt`, statisticStr, 'utf8', errorHandler)
 
 	// 以下用来存入错误
 	Promise.all([en.save(), ui.save(), App.findOne({_id: applicationId})])
@@ -115,7 +95,9 @@ export const receiveError = (req, res) => {
 				logger: JSON.stringify(logger)
 			})
 
-			const handleSuccess = data => console.log(data)
+			const handleSuccess = data => {
+				// console.log(data)
+			}
 			const handError = err => console.log(err)
 
 			er.save()
@@ -204,7 +186,6 @@ export const simpleSearch = (req, res) => {
 	.then(data => {
 		return Error.find({appId}).count({'message': {$regex: new RegExp(message, 'i')}})
 		.then(total => {
-			console.log(total)
 			res.send({code: 1, data, pageSize, pageNumber, total: Math.ceil(total / pageSize)})
 		})
 	})
@@ -225,8 +206,6 @@ export const complexSearch = (req, res) => {
 		browser,
 		user
 	} = req.body
-
-	console.log(user === '')
 
 	const IN_REGEXP = include !== '' ? new RegExp(include, 'i') : new RegExp(/.*/, 'i')
 	const USER_REGEXP = user !== '' ? new RegExp(user, 'i') : new RegExp(/.*/, 'i')
@@ -260,7 +239,6 @@ export const complexSearch = (req, res) => {
 		getSpecialData()
 		.count()
 		.then(total => {
-			console.log(total, 'total')
 			res.send({code: 1, data, total: Math.ceil(total / pageSize), pageSize, pageNumber})
 		})
 	})

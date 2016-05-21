@@ -11,7 +11,7 @@ const readFileHandle = (err, data) => {
 	if (err) {
 		console.log(err)
 	} else {
-		const preSave = Statistic
+		const preSave = () => Statistic
 		.find()
 		.then(stacs => {
 			const today = `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`
@@ -95,9 +95,9 @@ const readFileHandle = (err, data) => {
 			})
 		})
 
-		preSave
+		preSave()
 		.then(() => {
-			Promise.all(promises(dataGroup))
+			return Promise.all(promises(dataGroup))
 		})
 		.then(data => fs.writeFile(`${__dirname}/statistic.txt`, '', 'utf8', writeFileHandle))
 		.catch(err => console.log(err))
