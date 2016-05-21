@@ -33,7 +33,7 @@ export default class AppSelector extends Component {
 				<Title style={{verticalAlign: 'sub'}} color='#666'/>
 				<span className='label'>应用名称:</span>
 				<div className='title-wrapper'>
-					<DropDownMenu listStyle={{width: '170px'}} value={current._id} onChange={this.handleChange}>
+					<DropDownMenu value={current._id} onChange={this.handleChange}>
 						{options}
 					</DropDownMenu>
 				</div>

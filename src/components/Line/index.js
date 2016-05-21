@@ -69,8 +69,8 @@ export default class Line extends Component {
 			dataZoom: [{
 				type: 'slider',
 				show: true,
-				end: 100,
-				start: 90,
+				endValue: date.length - 1,
+				startValue: date.length - 14 >= 0 ? date.length - 14 : 0,
 				handleSize: 8
 			}],
 			series: [

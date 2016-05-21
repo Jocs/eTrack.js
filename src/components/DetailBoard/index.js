@@ -32,7 +32,7 @@ export default class Board extends Component {
 	}
 
 	render() {
-		const { dependencies, location, viewportWidth, viewportHeight, loadOn, runTime, url } = this.props.detail.environment
+		const { dependencies, location, viewportWidth, viewportHeight, loadOn, runTime, url, ip } = this.props.detail.environment
 		const dependenciesObj = JSON.parse(dependencies)
 		const dps = Object.keys(dependenciesObj).map((k, index) => {
 			return (
@@ -95,6 +95,12 @@ export default class Board extends Component {
 					</div>
 					<div className='body'>
 						<span>城市：{`${country} ${province} ${city}`}</span>
+					</div>
+				</div>
+				<div className='section'>
+					<div className='title'>IP地址</div>
+					<div className='body'>
+						{ ip && <span>IP:{ip}</span> }
 					</div>
 				</div>
 				<div className='section'>
